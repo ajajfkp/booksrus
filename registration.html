@@ -87,7 +87,7 @@
 <div class="form-group" has-feedback>
   <label class="col-md-3 control-label" for="ln">Confirm Password</label>  
   <div class="col-md-3">
-  <input type="password" class="form-control" id="confirm_password" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+  <input type="password" class="form-control" id="confirm_password" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm Password" required>
   <div class="help-block with-errors"></div>  
   </div>
 </div>
@@ -139,12 +139,17 @@
 </div>
 
 <!-- Text input-->
-<div class="form-group">
-  <label class="col-md-3 control-label" for="State">State</label>  
-  <div class="col-md-3">
-  <input id="city" name="city" type="text" placeholder="State" class="form-control input-md" required>
-    
+<div class="form-group"> 
+  <label class="col-md-3 control-label">State</label>
+    <div class="col-md-3 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="state" class="form-control selectpicker" >
+      <option value=" " >Please select your state</option>
+      <option >Colorado</option>
+    </select>
   </div>
+</div>
 </div>
 
 <!-- Text input-->
@@ -155,7 +160,6 @@
     
   </div>
 </div>
-
 
 <div class="container">
   <div class="btn-group">
