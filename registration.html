@@ -161,6 +161,28 @@
   </div>
 </div>
 
+<SCRIPT language=JavaScript>
+
+function checkCheckBox(f){
+if (f.agree.checked == false )
+{
+alert('Please check the box to continue.');
+return false;
+}else
+return true;
+}
+
+</SCRIPT>
+
+<form action="/yourscript.cgi-or-your-page.html" method="POST" onsubmit="return checkCheckBox(this)">
+
+<!--Enter your form contents here-->
+
+<b>Read Terms & conditions here</b><br />
+I accept: <input type="checkbox" value="0" name="agree">
+</form>
+
+
 <div class="container">
   <div class="btn-group">
     <button type="Submit" class="btn btn-success">Register</button>
