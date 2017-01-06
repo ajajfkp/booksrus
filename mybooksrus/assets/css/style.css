@@ -1,0 +1,13 @@
+.jumbotron {
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+	margin-top: 35px;
+}
+
+.footer .container{
+	 text-align: center;
+}
+
+.fixed-footer{
+    bottom: 0;
+}
