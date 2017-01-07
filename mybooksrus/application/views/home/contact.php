@@ -1,1 +1,2 @@
-<h1>Contact</h1>
+<div class="container" style="margin-top: 60px;">
+	<h1>Contact</h1>

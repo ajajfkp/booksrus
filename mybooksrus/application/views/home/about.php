@@ -1,1 +1,2 @@
-<h1>About</h1>
+<div class="container" style="margin-top: 60px;">
+	<h1>About</h1>
