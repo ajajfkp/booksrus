@@ -57,9 +57,9 @@ class Auth extends CI_Controller {
 		// set form validation rules
 		$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|alpha|min_length[3]|max_length[30]|xss_clean');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|alpha|min_length[3]|max_length[30]|xss_clean');
-		$this->form_validation->set_rules('passwd', 'Password', 'trim|required|matches[cpasswd]|md5');
+		$this->form_validation->set_rules('passwd', 'Password', 'trim|required|min_length[6]|matches[cpasswd]|md5');
 		$this->form_validation->set_rules('cpasswd', 'Confirm Password', 'trim|required');
-		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|is_unique[users.email]');
+		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|is_unique[users.email]|callback_cust_email_check');
 		
 		// submit
 		if ($this->form_validation->run() == FALSE) {
@@ -96,6 +96,31 @@ class Auth extends CI_Controller {
 			redirect('/');
 		}
 	}
+	
+	public function cust_email_check($str) {
+		if (substr($str, -strlen(".edu")) != ".edu") {
+			$this->form_validation->set_message('cust_email_check', 'This %s must end with word ".edu"');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 		
 }

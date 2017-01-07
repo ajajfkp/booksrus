@@ -11,3 +11,143 @@
 .fixed-footer{
     bottom: 0;
 }
+
+#aboutwrap{
+	background:url('/booksrus/mybooksrus/assets/images/about-bg.jpg') no-repeat center top;
+	margin-top: -10px;
+    padding-top: 20px;
+    text-align: center;
+    background-attachment: relative;
+    background-position: center center;
+    min-height: 500px;
+    width: 100%;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#aboutwrap h2 {
+    color: #fff;
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-top: 150px;
+}
+
+#chartwrap {
+    width: 100%;
+}
+
+#chartwrap .container {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.mt {
+    padding-top: 25px;
+}
+
+#chartwrap h1, #chartwrap p {
+    margin-left: 10px;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+section {
+    text-align: center;
+}
+
+.title {
+    position: relative;
+    margin-bottom: 100px;
+}
+
+.contact .vira-card {
+    background-color: #f8f8f8;
+    padding: 35px 0;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 45px;
+}
+
+.vira-card {
+    text-align: center;
+    /* margin-bottom: 45px; */
+}
+
+.contact .vira-card .vira-card-header {
+    margin-bottom: 15px;
+    font-size: 21px;
+    color: #51c2b9;
+}
+
+.vira-card .vira-card-header {
+    margin-bottom: 45px;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.vira-card {
+    text-align: center;
+    /* margin-bottom: 45px; */
+}
+
+.social-icons ul {
+    text-align: center;
+    padding-left: 0;
+    display: inline-block;
+}
+
+.social-icons ul a li:last-child {
+    margin-right: 0;
+}
+
+.social-icons ul a li {
+    display: inline-block;
+    list-style-type: none;
+    border: 2px solid #51c2b9;
+    margin-right: 10px;
+    background-color: #51c2b9;
+    color: #fff;
+    font-size: 18px;
+    line-height: 32px;
+    width: 36px;
+}
+
+a {
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
