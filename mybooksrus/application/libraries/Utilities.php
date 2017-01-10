@@ -53,13 +53,13 @@ class Utilities {
 	public function validateSession() {
 		$sesdata = $this->CI->session->userdata('login');
 		if (isset($sesdata) && $sesdata === true) {
-			if($_SERVER['PATH_INFO']=='/auth/signin'){
+			if($_SERVER['REQUEST_URI']=='/auth/signin'){
 				redirect('dashboard/index');
-			}else if($_SERVER['PATH_INFO']=='/auth/signup'){
+			}else if($_SERVER['REQUEST_URI']=='/auth/signup'){
 				redirect('dashboard/index');
-			}else if($_SERVER['PATH_INFO']=='/auth/signupauth'){
+			}else if($_SERVER['REQUEST_URI']=='/auth/signupauth'){
 				redirect('dashboard/index');
-			}else if($_SERVER['PATH_INFO']=='/auth/signinauth'){
+			}else if($_SERVER['REQUEST_URI']=='/auth/signinauth'){
 				redirect('dashboard/index');
 			}
         } else {

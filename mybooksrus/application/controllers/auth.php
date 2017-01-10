@@ -79,7 +79,7 @@ class Auth extends CI_Controller {
 			if ($insRecord) {
 				$userDetails = $this->utilities->getUserDataById($insRecord);
 				if($userDetails){
-					$emailMsg = "Dear User,\nPlease click on below URL or paste into your browser to verify your Email Address\n\n http://localhost/booksrus/mybooksrus/verifyaccount/".$userDetails['email_verification_code']."\n"."\n\nThanks\nAdmin Team";
+					$emailMsg = "Dear User,\nPlease click on below URL or paste into your browser to verify your Email Address\n\n ". EMAIL_VARIFY_URL . $userDetails['email_verification_code']."\n"."\n\nThanks\nAdmin Team";
 					
 					//print_r($emailMsg);die;
 					$emailData = array(
@@ -132,11 +132,16 @@ class Auth extends CI_Controller {
 	
 	public function verifyaccount($verifyId) {
 		if(!empty($verifyId)){
-			$update = $this->commonModel->updateRecord('users',array('active_status'=>'1'),array('email_verification_code'=>$verifyId));
-			if($update){
-				echo "Accout verify success fully...!!!<br/>please login";
+			$getRec = $this->commonModel->getRecord('users','email_verification_code',array('email_verification_code'=>$verifyId,'active_status'=>'0'));
+			if($getRec){
+				$update = $this->commonModel->updateRecord('users',array('active_status'=>'1'),array('email_verification_code'=>$verifyId));
+				if($update){
+					echo "Accout verify success fully...!!!<br/>please login";
+				}else{
+					
+				}
 			}else{
-				
+				echo 'link has been expireed.... :-(';
 			}
 		}else{
 			echo "somthing is worng";die;
