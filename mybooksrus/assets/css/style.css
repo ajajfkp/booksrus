@@ -141,9 +141,21 @@ a {
     margin-left: 15px;
 }
 
+.su-frm-bcgrnd{
+    background: aliceblue;
+    margin: 5%;
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+}
 
+.su-frm-bcgrnd .row{
+	margin: 0px;
+}
 
-
+legend {
+    padding: 10px;
+}
 
 
 
