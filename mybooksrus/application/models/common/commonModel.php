@@ -347,7 +347,37 @@ class commonModel extends CI_Model {
             return false;
     }
 	
-	
+	function getUserDataById($userId){
+		$sql = 'SELECT
+		t1.id,
+		t1.passwd,
+		t1.email_verification_code,
+		t1.active_status,
+		t2.username,
+		t2.first_name,
+		t2.middle_name,
+		t2.last_name,
+		t2.email,
+		t2.mobile,
+		t2.phone,
+		t2.university,
+		t2.university_email,
+		t2.address_one,
+		t2.city_id,
+		t2.state_id,
+		t2.countery_id,
+		t2.profile_complete
+		FROM users t1 
+		INNER JOIN user_profile t2 on t1.id=t2.users_id WHERE t1.id="'.$userId.'"';
+		
+		$query = $this->db->query($sql);
+		if($query->num_rows() > 0){
+			return $query->row_array();
+		}else{
+			return false;
+		}
+		
+	}
 	
 	
 	

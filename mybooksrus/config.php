@@ -11,7 +11,21 @@
 define("CH_DB_USER", "x8u1f4p4_aijaz");
 define("CH_DB_PASSWORD", "!@#dev@db");
 define("CH_DB_NAME", "x8u1f4p4_local");
-define('BASE_URL', 'http://collegebooksrus.com/mybooksrus/'); */
+define('BASE_URL', 'http://collegebooksrus.com/mybooksrus/');
+
+/********** Email Config ******************
+
+define("PROTOCOL", "smtp");
+define("SMTP_HOST", "smtp.yourdomain.com");
+define("SMTP_PORT", "465");
+define("SMTP_USER", "smtp.yourdomain.com");
+define("SMTP_PASS", "passwd");
+define("MAILTYPE", "HTML");
+define("CHARSET", "iso-8859-1");
+define("WORDWRAP", "TRUE");
+
+
+ */
 
 
 
@@ -24,7 +38,15 @@ define("CH_DB_NAME", "booksrus");
 define('BASE_URL', 'http://localhost/booksrus/mybooksrus/');
 
 
-
+define("PROTOCOL", "SMTP");
+define("SMTP_HOST", "smtp.gmail.com");
+define("SMTP_PORT", "465");
+define("SMTP_USER", "aijaz.fkp@gmail.com");
+define("SMTP_PASS", "!@#romio_75");
+define("MAILTYPE", "HTML");
+define("CHARSET", "iso-8859-1");
+define("WORDWRAP", "TRUE");
+define("EMAIL_FROM", "admin@yourdomain.com");
 
 
 

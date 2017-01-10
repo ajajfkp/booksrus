@@ -34,5 +34,53 @@ class Utilities {
 		$this->CI->session->set_userdata('access',$setAceess);
 	}
 	
+	function getUserTypeAndStatus(){
+			if($this->CI->session->userdata('user_type')=='1'){
+				$return['user_type'] = 'admin';
+			}elseif($this->CI->session->userdata('user_type')=='0'){
+				$return['user_type'] = 'user';
+			}
+			if($this->CI->session->userdata('active_status')=='0'){
+				$return['active_status'] = 'active';
+			}elseif($this->CI->session->userdata('active_status')=='1'){
+				$return['active_status'] = 'inactive';
+			}elseif($this->CI->session->userdata('active_status')=='2'){
+				$return['active_status'] = 'delete';
+			}
+		return $return;
+	}
+	
+	public function validateSession() {
+		$sesdata = $this->CI->session->userdata('login');
+		if (isset($sesdata) && $sesdata === true) {
+			if($_SERVER['PATH_INFO']=='/auth/signin'){
+				redirect('dashboard/index');
+			}else if($_SERVER['PATH_INFO']=='/auth/signup'){
+				redirect('dashboard/index');
+			}else if($_SERVER['PATH_INFO']=='/auth/signupauth'){
+				redirect('dashboard/index');
+			}else if($_SERVER['PATH_INFO']=='/auth/signinauth'){
+				redirect('dashboard/index');
+			}
+        } else {
+			$this->destroySession();
+		}
+	}
+	
+	function destroySession() {
+        $this->CI->session->sess_destroy();
+        redirect('auth/signin');
+    }
+	
+	function getUserDataById($userId='0'){
+		if(!empty($userId)){
+			return $this->CI->commonModel->getUserDataById($userId);
+		}else{
+			return false;
+		}
+	}
+	
+	
+	
 	
 }

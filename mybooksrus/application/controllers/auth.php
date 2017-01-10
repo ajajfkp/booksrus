@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Auth extends CI_Controller {
 	function __construct(){
 		parent::__construct();
+		//$this->utilities->validateSession();
 		$this->load->library('Layouts');
-		$this->load->library('utilities');
-		$this->load->library('email');
-		
-		$this->load->library(array('session', 'form_validation'));
+		$this->load->library('sendemail');
 		$this->load->model('auth/auths');
+		$this->load->helper('string');
+		
 	}
 	
 	
@@ -33,10 +33,10 @@ class Auth extends CI_Controller {
 			// check for user credentials
 			$email = $this->input->post("email");
 			$passwd = $this->input->post("passwd");
-			$uresult = $this->auths->login($email, $passwd);
-			if ($uresult && count($uresult) > 0) {
+			$result = $this->auths->login($email, $passwd);
+			if ($result && count($result) > 0) {
 				// set session
-				$sess_data = array('login' => TRUE, 'uname' => $uresult['first_name'], 'uid' => $uresult['id']);
+				$sess_data = array('login' => TRUE, 'uname' => $result['first_name'], 'uid' => $result['id'], 'active_status' => $result['active_status'], 'email' => $result['email'], 'mobile' => $result['mobile'], 'user_type' => $result['user_type'], 'user_name' => $result['user_id']);
 				$this->utilities->setSession($sess_data);
 				redirect('dashboard/index');
 			} else {
@@ -48,7 +48,6 @@ class Auth extends CI_Controller {
 	
 	public function signup() {
 		$this->layouts->set_title('SignUp');
-		//$res = $this->auth->login('admin','admin');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$this->layouts->view('auth/signup');
 	}
@@ -59,8 +58,8 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|alpha|min_length[3]|max_length[30]|xss_clean');
 		$this->form_validation->set_rules('passwd', 'Password', 'trim|required|min_length[6]|matches[cpasswd]|md5');
 		$this->form_validation->set_rules('cpasswd', 'Confirm Password', 'trim|required');
-		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|is_unique[users.email]|callback_cust_email_check');
-		
+		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|is_unique[users.email]');
+		/* |callback_cust_email_check */
 		// submit
 		if ($this->form_validation->run() == FALSE) {
 			// fails
@@ -73,12 +72,37 @@ class Auth extends CI_Controller {
 				'first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
 				'email' => $this->input->post('email'),
-				'passwd' => $this->input->post('passwd')
+				'passwd' => $this->input->post('passwd'),
+				'email_verification_code' => random_string('alnum',20)
 			);
-
-			if ($this->auths->insert_user($data)) {
-				$this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please login to access your Profile!</div>');
-				redirect('auth/signin');
+			$insRecord = $this->auths->insert_user($data);
+			if ($insRecord) {
+				$userDetails = $this->utilities->getUserDataById($insRecord);
+				if($userDetails){
+					$emailMsg = "Dear User,\nPlease click on below URL or paste into your browser to verify your Email Address\n\n http://localhost/booksrus/mybooksrus/verifyaccount/".$userDetails['email_verification_code']."\n"."\n\nThanks\nAdmin Team";
+					
+					//print_r($emailMsg);die;
+					$emailData = array(
+						'to'=>$userDetails['email'],
+						'from'=>EMAIL_FROM,
+						'subject'=>'Email Verification - DONOT REPLY',
+						'message'=>$emailMsg
+					);
+					$send = $this->sendemail->emailSend($emailData);
+					if(!$send){
+						//Error
+						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Your account has been created please <a href="">verify</a> your account</div>');
+						redirect('auth/signup');
+					}else{
+						//Success
+						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"> verification email has been sent to your register email id please verify your Account...</div>');
+						redirect('auth/signup');
+					}
+				}else{
+					// error
+					$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!!</div>');
+					redirect('auth/signup');
+				}
 			} else {
 				// error
 				$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
@@ -106,6 +130,18 @@ class Auth extends CI_Controller {
 		}
 	}
 	
+	public function verifyaccount($verifyId) {
+		if(!empty($verifyId)){
+			$update = $this->commonModel->updateRecord('users',array('active_status'=>'1'),array('email_verification_code'=>$verifyId));
+			if($update){
+				echo "Accout verify success fully...!!!<br/>please login";
+			}else{
+				
+			}
+		}else{
+			echo "somthing is worng";die;
+		}
+	}
 	
 	
 	

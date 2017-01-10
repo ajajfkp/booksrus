@@ -40,7 +40,24 @@ class Layouts {
 		  'content_for_layout' => $view_content, 
 		  'title_for_layout' => $separated_title_for_layout
 		)); 
-	} 
+	}
+	
+	public function dbview($view_name, $params = array(), $layout = 'defaultdb') {
+		// Handle the site's title. If NULL, don't add anything. If not, add a  
+		// separator and append the title. 
+		if ($this->title_for_layout !== NULL) { 
+			$separated_title_for_layout = $this->title_separator . $this->title_for_layout; 
+		} 
+		  
+		// Load the view's content, with the params passed 
+		$view_content = $this->CI->load->view($view_name, $params, TRUE); 
+
+		// Now load the layout, and pass the view we just rendered 
+		$this->CI->load->view('dblayouts/' . $layout, array( 
+		  'content_for_layout' => $view_content, 
+		  'title_for_layout' => $separated_title_for_layout
+		)); 
+	}
     
 	public function add_include($path, $prepend_base_url = TRUE) { 
 		if ($prepend_base_url) { 
