@@ -36,6 +36,11 @@
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="<?php echo base_url('dashboard/index');?>">
+						<span class="glyphicon glyphicon-shopping-cart"></span> 4
+					</a>
+				</li>
 				<?php if ($this->session->userdata('login')){ ?>
 				<li>
 					<p class="navbar-text">

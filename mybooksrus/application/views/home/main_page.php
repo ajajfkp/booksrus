@@ -2,7 +2,27 @@
   <div class="container">
 	<h1>Collegebooksrus</h1>
 	<p class="lead"> To buy/Sell books within same univeristy </p>
-	<p><a class="btn btn-primary btn-lg" href="<?php echo base_url('auth/signup');?>" role="button">Sign up today &raquo;</a></p>
+	<p>
+	<div class="container">
+		<div class="row">
+			<h2>Search Books</h2>
+			<div id="custom-search-input">
+				<?php $attributes = array("name" => "searchform","method"=>"get");
+					echo form_open("search/index", $attributes);?>
+				<div class="input-group col-md-offset-2 col-md-8">
+					<input type="text" name="search" class="search-query form-control" placeholder="Search by Books name, ISBN, Author, university " />
+					<span class="input-group-btn">
+						<button class="btn btn-danger" type="submit">
+							<span class=" glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+				<?php echo form_close(); ?>
+			</div>
+		</div>
+	</div>
+	</p>
+	<!--<p><a class="btn btn-primary btn-lg" href="<?php echo base_url('auth/signup');?>" role="button">Sign up today &raquo;</a></p>-->
   </div>
 </div>
 

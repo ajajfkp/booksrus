@@ -1,31 +1,62 @@
 <div class="container" style="margin-top: 60px;">
-	<div class="" style="height: 500px;">
-		<div class="row">
-			<div class="col-md-4 well">
-			<?php $attributes = array("name" => "loginform");
-				echo form_open("auth/signinauth", $attributes);?>
+	<div class="row">
+		<div class="su-frm-bcgrnd">
+			<div class="row">
 				<legend>Login</legend>
-				<div class="form-group">
-					<label for="name">Email-ID</label>
-					<input class="form-control" name="email" placeholder="Enter Email-ID" type="text" value="<?php echo set_value('email'); ?>" />
-					<span class="text-danger"><?php echo form_error('email'); ?></span>
-				</div>
-				<div class="form-group">
-					<label for="name">Password</label>
-					<input class="form-control" name="passwd" placeholder="Password" type="password" value="<?php echo set_value('passwd'); ?>" />
-					<span class="text-danger"><?php echo form_error('passwd'); ?></span>
-				</div>
-				<div class="form-group">
-					<button name="submit" type="submit" class="btn btn-info">Login</button>
-					<a href="<?php echo base_url();?>" class="btn btn-info">Cancel</a>
-				</div>
-			<?php echo form_close(); ?>
-			<?php echo $this->session->flashdata('msg'); ?>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 text-center">	
-			New User? <a href="<?php echo base_url(); ?>auth/signup">Sign Up Here</a>
+			<div class="row">
+				<div class="col-md-6">
+					<?php $attributes = array("name" => "loginform","class" => "form-horizontal");
+						echo form_open("auth/signinauth", $attributes);?>
+					<div class="form-group">
+						<label for="email" class="col-sm-4 control-label">Email ID</label>
+						<div class="col-sm-8">
+							<input class="form-control" name="email" placeholder="Email-ID" type="text" value="<?php echo set_value('email'); ?>" />
+							<span class="text-danger"><?php echo form_error('email'); ?></span>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="passwd" class="col-sm-4 control-label">Password</label>
+						<div class="col-sm-8">
+							<input class="form-control" name="passwd" placeholder="Password" type="password" />
+							<span class="text-danger"><?php echo form_error('passwd'); ?></span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label">&nbsp;</label>
+						<div class="col-sm-8">
+							<button name="submit" type="submit" class="btn btn-info">Login</button>
+							<a href="<?php echo base_url();?>" class="btn btn-info">Cancel</a>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-4 control-label">&nbsp;</label>
+						<div class="col-sm-8">
+							<?php echo $this->session->flashdata('msg'); ?>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12 text-center">
+							New User? <a href="<?php echo base_url(); ?>auth/signup">Sign Up Here</a>
+						</div>
+					</div>
+
+					<?php echo form_close(); ?>
+				</div>
+				<div class="col-md-6">
+					<div class='whysign'>
+						<h1>Learn by Doing</h1>
+						<p>Learning to code is not magic. It is as simply as opening your browser! See in real time the changes you make to HTMl, CSS, JavaScript, HAML, and more!</p>
+						<p>Learn: 
+							<span>HTML</span>
+							<span>CSS</span>
+							<span>JavaScript</span>
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
