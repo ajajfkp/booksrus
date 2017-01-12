@@ -157,41 +157,6 @@ legend {
     padding: 10px;
 }
 
-#custom-search-input {
-	margin:0;
-	margin-top: 10px;
-	padding: 0;
-}
-
-#custom-search-input .search-query {
-	padding-right: 3px;
-	padding-right: 4px \9;
-	padding-left: 3px;
-	padding-left: 4px \9;
-	/* IE7-8 doesn't have border-radius, so don't indent the padding */
-
-	margin-bottom: 0;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-}
-
-#custom-search-input button {
-	border: 0;
-	background: none;
-	/** belows styles are working good */
-	padding: 2px 5px;
-	margin-top: 2px;
-	position: relative;
-	left: -28px;
-	/* IE7-8 doesn't have border-radius, so don't indent the padding */
-	margin-bottom: 0;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	color:#D9230F;
-}
-
 h1 { font-size: 4vw; } 
 
 @media (max-width: 767px) {    h1 { font-size: 10px; }} 
@@ -208,7 +173,22 @@ h1 { font-size: 4vw; }
     padding: 10px 0;
 }
 
+.cadr-books-list{
+	border: 1px solid lavender;
+    margin: 10px 0px;
+    padding: 10px 10px;
+}
 
+.advance-search-frm{
+    text-align: center;
+    margin: 20px 0;
+}
+
+.advance-search-frm .input-group {
+    position: relative;
+    display: -webkit-inline-box;
+    border-collapse: separate;
+}
 
 
 

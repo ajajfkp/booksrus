@@ -1,8 +1,19 @@
 $( document ).ready(function(){
-	$("#search").click(function(){
-		
+	$("#searchButton").click(function(event){
+		if(!$("#searchInput").val()){
+			event.preventDefault();
+		}
 	});
 });
+
+
+
+
+
+
+
+
+
 
 function search(searchby){
 	$.ajax({ 

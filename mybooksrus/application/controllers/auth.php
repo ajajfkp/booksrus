@@ -21,7 +21,6 @@ class Auth extends CI_Controller {
 	}
 	
 	public function signinauth() {
-		//$this->form_validation->set_rules("email", "Email-ID", "trim|required|xss_clean");
 		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|xss_clean');
 		$this->form_validation->set_rules("passwd", "Passwd", "trim|required|xss_clean|md5");
 		if ($this->form_validation->run() == FALSE) {

@@ -7,18 +7,42 @@ class Search extends CI_Controller {
 		$this->load->library('Layouts');
 		$this->load->library('sendemail');
 		$this->load->model('auth/auths');
+		$this->load->model('Search/SearchModel');
 		$this->load->helper('string');
 		
 	}
 	
 	
-	public function index($searchby='') {
+	public function index() {
 		$this->layouts->set_title('Search!');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+
+		$searchdata = array('search' => $this->input->get('search'));
+		$this->form_validation->set_data($searchdata);
 		
-		$data['searchby'] = $searchby;
+		$this->form_validation->set_rules("search", "Search", "trim|required|xss_clean");
+				
+		if ($this->form_validation->run() == FALSE) {
+			$this->layouts->set_title('Search');
+			$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+			$this->layouts->view('home/main_page');
+		} else {
+			$data['searchby'] = $searchdata['search'];
+			
+			$getBooks = $this->SearchModel->getBookList($data['searchby']);
+			
+			$this->layouts->view('search/search',$data);
+			
+		}
 		
-		$this->layouts->view('search/search',$data);
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 }
