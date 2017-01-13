@@ -67,24 +67,27 @@ class Auth extends CI_Controller {
 			$this->layouts->view('auth/signup');
         } else {
 			//insert user details into db
-			$data = array(
+			$signUpdata = array(
 				'first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
 				'email' => $this->input->post('email'),
 				'passwd' => $this->input->post('passwd'),
 				'email_verification_code' => random_string('alnum',20)
 			);
-			$insRecord = $this->auths->insert_user($data);
+			
+			$insRecord = $this->auths->insert_user($signUpdata);
 			if ($insRecord) {
 				$userDetails = $this->utilities->getUserDataById($insRecord);
 				if($userDetails){
-					$emailMsg = "Dear User,\nPlease click on below URL or paste into your browser to verify your Email Address\n\n ". EMAIL_VARIFY_URL . $userDetails['email_verification_code']."\n"."\n\nThanks\nAdmin Team";
-					
-					//print_r($emailMsg);die;
+					//$emailMsg = "Dear User,\nPlease click on below URL or paste into your browser to verify your Email Address\n\n ". EMAIL_VARIFY_URL . $userDetails['email_verification_code']."\n"."\n\nThanks\nAdmin Team";
+					$data['varifydata'] = array('name'=>$userDetails['first_name'],'verifyurl'=>EMAIL_VARIFY_URL);
+					$emailMsg = $this->load->view('auth/sendEmailVerifyCard',$data,true);
 					$emailData = array(
 						'to'=>$userDetails['email'],
 						'from'=>EMAIL_FROM,
-						'subject'=>'Email Verification - DONOT REPLY',
+						'subject'=>'Email Verification from collegebooksrus.com - DO NOT REPLY',
+						'from_name'=>'Admin Team',
+						'reply_to'=>'',
 						'message'=>$emailMsg
 					);
 					$send = $this->sendemail->emailSend($emailData);
