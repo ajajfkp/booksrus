@@ -35,7 +35,7 @@ class Auths extends CI_Model {
 		}
 		
 		if($res && $up_res){
-			return true;
+			return $res;
 		}else{
 			return false;
 		}

@@ -120,7 +120,7 @@ class commonModel extends CI_Model {
         }
     }
 	
-	function fetchLastInsertId() {
+	function getLastInsertId() {
         return $this->db->insert_id();
     }
 	

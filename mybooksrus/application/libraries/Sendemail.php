@@ -21,7 +21,9 @@ class Sendemail {
 
 		$this->CI->load->library('email', $config);
 		$this->CI->email->set_newline("\r\n");
-		$this->CI->email->from($params['from'], "Admin Team");
+		$this->CI->email->set_header('MIME-Version', '1.0; charset=utf-8'); //must add this line
+		$this->CI->email->set_header('Content-type', 'text/html'); //must add this line
+		$this->CI->email->from($params['from'], $params['from_name'], $params['reply_to']);
 		$this->CI->email->to($params['to']);  
 		$this->CI->email->subject($params['subject']);
 		$this->CI->email->message($params['message']);
