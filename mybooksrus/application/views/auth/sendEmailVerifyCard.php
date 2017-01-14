@@ -3,7 +3,7 @@
 		<div style="line-height:20px;font-size:1px">&nbsp;</div>
 	</div>
 	<div style="Margin-left: 20px;Margin-right: 20px;">
-	<h1 class="size-30" style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #565656;font-size: 26px;line-height: 34px;font-family: roboto,tahoma,sans-serif;text-align: left;" lang="x-size-30"><span class="font-roboto"><strong>Collegebooksrus.com</strong></span></h1><p style="Margin-top: 20px;Margin-bottom: 0;">&nbsp;<br>
+	<h1 class="size-30" style="Margin-top: 20;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #565656;font-size: 26px;line-height: 34px;font-family: roboto,tahoma,sans-serif;text-align: left;" lang="x-size-30"><span class="font-roboto"><strong>Collegebooksrus.com</strong></span></h1><p style="Margin-top: 20px;Margin-bottom: 0;">&nbsp;<br>
 	Hi <?php echo $varifydata['name']; ?>,</p><p style="Margin-top: 20px;Margin-bottom: 0;">Thank you signing up for collegebooksrus.com.</p><p style="Margin-top: 20px;Margin-bottom: 20px;">Please confirm your Account.</p>
 	</div>
 	<div style="Margin-left: 20px;Margin-right: 20px;">

@@ -36,6 +36,7 @@ define("MAILTYPE", "HTML");
 define("CHARSET", "iso-8859-1");
 define("WORDWRAP", "TRUE");
 define("EMAIL_FROM", "admin@collegebooksrus.com");
+define("EMAIL_FROM_NAME", "Admin Tean");
 define("EMAIL_VARIFY_URL", "http://collegebooksrus.com/mybooksrus/verifyaccount/");
  */
 
@@ -65,6 +66,7 @@ define("EMAIL_VARIFY_URL", "http://collegebooksrus.com/mybooksrus/verifyaccount/
 	define("CHARSET", "iso-8859-1");
 	define("WORDWRAP", "TRUE");
 	define("EMAIL_FROM", "admin@yourdomain.com");
+	define("EMAIL_FROM_NAME", "Admin Tean");
 	define("EMAIL_VARIFY_URL", "http://localhost/booksrus/mybooksrus/verifyaccount/");
 
 

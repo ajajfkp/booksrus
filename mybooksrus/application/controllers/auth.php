@@ -79,18 +79,22 @@ class Auth extends CI_Controller {
 			if ($insRecord) {
 				$userDetails = $this->utilities->getUserDataById($insRecord);
 				if($userDetails){
-					//$emailMsg = "Dear User,\nPlease click on below URL or paste into your browser to verify your Email Address\n\n ". EMAIL_VARIFY_URL . $userDetails['email_verification_code']."\n"."\n\nThanks\nAdmin Team";
-					$data['varifydata'] = array('name'=>$userDetails['first_name'],'verifyurl'=>EMAIL_VARIFY_URL);
+					
+					$verifyUrl = EMAIL_VARIFY_URL . $userDetails['email_verification_code'];
+					$data['varifydata'] = array('name'=>$userDetails['first_name'],'verifyurl'=>$verifyUrl);
+					
 					$emailMsg = $this->load->view('auth/sendEmailVerifyCard',$data,true);
+					
 					$emailData = array(
 						'to'=>$userDetails['email'],
 						'from'=>EMAIL_FROM,
 						'subject'=>'Email Verification from collegebooksrus.com - DO NOT REPLY',
-						'from_name'=>'Admin Team',
-						'reply_to'=>'',
+						'from_name'=>EMAIL_FROM_NAME,
 						'message'=>$emailMsg
 					);
+					
 					$send = $this->sendemail->emailSend($emailData);
+					
 					if(!$send){
 						//Error
 						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Your account has been created please <a href="">verify</a> your account</div>');
@@ -138,16 +142,21 @@ class Auth extends CI_Controller {
 			if($getRec){
 				$update = $this->commonModel->updateRecord('users',array('active_status'=>'1'),array('email_verification_code'=>$verifyId));
 				if($update){
-					echo "Accout verify success fully...!!!<br/>please login";
+					$data['msg_succ'] = 'Accout verify success fully...!!!<br/>please <a href="'.base_url('auth/signin').'">login</a>';
 				}else{
-					
+					$data['msg_fail'] = 'Somthing is worng please try Again';
 				}
 			}else{
-				echo 'link has been expireed.... :-(';
+				$data['msg_fail'] = 'Link has been expireed.... :-(';
 			}
 		}else{
-			echo "somthing is worng";die;
+			$data['msg_fail'] = 'Somthing is worng please try Again';
 		}
+		$this->layouts->set_title('SignUp');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		$this->layouts->view('auth/emailVarifyResult',$data);
+		//echo  $this->load->view('auth/emailVarifyResult',$data, true);	die;
+		
 	}
 	
 	
