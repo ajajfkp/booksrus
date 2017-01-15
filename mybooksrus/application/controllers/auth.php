@@ -39,6 +39,8 @@ class Auth extends CI_Controller {
 				$getuserdata = $this->utilities->getUserDataById($result['id']);
 				
 				if( $getuserdata['active_status']=='0' ) {
+					$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Your email not varified please '.anchor("auth/viewvarifyemail", 'Varify', array('title' => 'Varify Account!')).' your email</div>');
+						redirect('auth/signin');
 					redirect('auth/viewvarifyemail');
 				} else if( $getuserdata['active_status']=='2' ) {
 					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Wrong Email-ID or Password!</div>');
@@ -83,7 +85,7 @@ class Auth extends CI_Controller {
 				'last_name' => $this->input->post('last_name'),
 				'email' => $this->input->post('email'),
 				'passwd' => $this->input->post('passwd'),
-				'email_verification_code' => md5($this->input->post('email'))
+				'email_verification_code' => md5($this->input->post('email')).random_string('alnum', 20)
 			);
 			
 			$insRecord = $this->auths->insert_user($signUpdata);
@@ -92,8 +94,8 @@ class Auth extends CI_Controller {
 				if($userDetails){
 					
 					$verifyUrl = EMAIL_VARIFY_URL . $userDetails['email_verification_code'];
-					$msgOne = "Thank you signing up for collegebooksrus.com.";
-					$msgTwo = "Please confirm your Account.";
+					$msgOne = "Thank you for signing up with collegebooksrus.com.";
+					$msgTwo = "Please verify your account.";
 					$buttonText = "Verify your account";
 					$data['varifydata'] = array('name'=>$userDetails['first_name'],'verifyurl'=>$verifyUrl,'msgOne'=>$msgOne,'msgTwo'=>$msgTwo,'buttonText'=>$buttonText);
 					
@@ -115,7 +117,7 @@ class Auth extends CI_Controller {
 						redirect('auth/signup');
 					}else{
 						//Success
-						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"> verification email has been sent to your register email id please verify your Account...</div>');
+						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"> Verification email has been sent to your register email id please verify your account...</div>');
 						redirect('auth/signup');
 					}
 				}else{
@@ -180,14 +182,14 @@ class Auth extends CI_Controller {
 			if($getUserData){
 				$verifyUrl = EMAIL_VARIFY_URL . $getUserData['email_verification_code'];
 				$msgOne = "Thank you signing up for collegebooksrus.com.";
-				$msgTwo = "Please confirm your Account.";
+				$msgTwo = "Please confirm your account.";
 				$buttonText = "Verify your account";
 				$data['varifydata'] = array('name'=>$getUserData['first_name'],'verifyurl'=>$verifyUrl,'msgOne'=>$msgOne,'msgTwo'=>$msgTwo,'buttonText'=>$buttonText);
 				$emailMsg = $this->load->view('auth/sendEmailVerifyCard',$data,true);
 				$emailData = array(
 					'to'=>$getUserData['email'],
 					'from'=>EMAIL_FROM,
-					'subject'=>'Email Verification from collegebooksrus.com - DO NOT REPLY',
+					'subject'=>'Email verification from collegebooksrus.com - DO NOT REPLY',
 					'from_name'=>EMAIL_FROM_NAME,
 					'message'=>$emailMsg
 				);
@@ -232,15 +234,15 @@ class Auth extends CI_Controller {
 			$getUserData = $this->commonModel->getRecord('users','first_name,email,active_status,email_verification_code',array('email'=>$email));
 			if($getUserData['active_status']=='0'){
 				$verifyUrl = EMAIL_VARIFY_URL . $getUserData['email_verification_code'];
-				$msgOne = "Thank you for  connecting with collegebooksrus.com.";
-				$msgTwo = "Please confirm your Account.";
-				$buttonText = "Verify your account";
+				$msgOne = "Thank you for connecting with collegebooksrus.com.";
+				$msgTwo = "Please varify your email.";
+				$buttonText = "Verify your email";
 				$data['varifydata'] = array('name'=>$getUserData['first_name'],'verifyurl'=>$verifyUrl,'msgOne'=>$msgOne,'msgTwo'=>$msgTwo,'buttonText'=>$buttonText);
 				$emailMsg = $this->load->view('auth/sendEmailVerifyCard',$data,true);
 				$emailData = array(
 					'to'=>$getUserData['email'],
 					'from'=>EMAIL_FROM,
-					'subject'=>'Email Verification from collegebooksrus.com - DO NOT REPLY',
+					'subject'=>'Email verification from collegebooksrus.com - DO NOT REPLY',
 					'from_name'=>EMAIL_FROM_NAME,
 					'message'=>$emailMsg
 				);

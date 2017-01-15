@@ -5,7 +5,7 @@
 				<div class="panel-body">
 					<div class="text-center">
 					  <h3><i class="fa fa-lock fa-4x"></i></h3>
-					  <h2 class="text-center">Varify Account</h2>
+					  <h2 class="text-center">Varify Email</h2>
 					  <p>You can send varification email.</p>
 						<div class="panel-body">
 						  
