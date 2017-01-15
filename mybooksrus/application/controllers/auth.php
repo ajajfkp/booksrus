@@ -33,11 +33,22 @@ class Auth extends CI_Controller {
 			$email = $this->input->post("email");
 			$passwd = $this->input->post("passwd");
 			$result = $this->auths->login($email, $passwd);
+			
 			if ($result && count($result) > 0) {
+				
+				$getuserdata = $this->utilities->getUserDataById($result['id']);
+				
+				if( $getuserdata['active_status']=='0' ) {
+					redirect('auth/viewvarifyemail');
+				} else if( $getuserdata['active_status']=='2' ) {
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Wrong Email-ID or Password!</div>');
+					redirect('auth/signin');
+				} else {
 				// set session
-				$sess_data = array('login' => TRUE, 'uname' => $result['first_name'], 'uid' => $result['id'], 'active_status' => $result['active_status'], 'email' => $result['email'], 'mobile' => $result['mobile'], 'user_type' => $result['user_type'], 'user_name' => $result['user_id']);
-				$this->utilities->setSession($sess_data);
-				redirect('dashboard/index');
+					$sess_data = array('login' => TRUE, 'uname' => $result['first_name'], 'uid' => $result['id'], 'active_status' => $result['active_status'], 'email' => $result['email'], 'mobile' => $result['mobile'], 'user_type' => $result['user_type'], 'user_name' => $result['user_id']);
+					$this->utilities->setSession($sess_data);
+					redirect('dashboard/index');
+				}
 			} else {
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Wrong Email-ID or Password!</div>');
 				redirect('auth/signin');
@@ -72,7 +83,7 @@ class Auth extends CI_Controller {
 				'last_name' => $this->input->post('last_name'),
 				'email' => $this->input->post('email'),
 				'passwd' => $this->input->post('passwd'),
-				'email_verification_code' => random_string('alnum',20)
+				'email_verification_code' => md5($this->input->post('email'))
 			);
 			
 			$insRecord = $this->auths->insert_user($signUpdata);
@@ -81,7 +92,10 @@ class Auth extends CI_Controller {
 				if($userDetails){
 					
 					$verifyUrl = EMAIL_VARIFY_URL . $userDetails['email_verification_code'];
-					$data['varifydata'] = array('name'=>$userDetails['first_name'],'verifyurl'=>$verifyUrl);
+					$msgOne = "Thank you signing up for collegebooksrus.com.";
+					$msgTwo = "Please confirm your Account.";
+					$buttonText = "Verify your account";
+					$data['varifydata'] = array('name'=>$userDetails['first_name'],'verifyurl'=>$verifyUrl,'msgOne'=>$msgOne,'msgTwo'=>$msgTwo,'buttonText'=>$buttonText);
 					
 					$emailMsg = $this->load->view('auth/sendEmailVerifyCard',$data,true);
 					
@@ -93,11 +107,11 @@ class Auth extends CI_Controller {
 						'message'=>$emailMsg
 					);
 					
-					$send = $this->sendemail->emailSend($emailData);
+					//$send = $this->sendemail->emailSend($emailData);
 					
 					if(!$send){
 						//Error
-						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Your account has been created please <a href="">verify</a> your account</div>');
+						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Your account has been created please '.anchor("auth/sendvarifyemailbyCode/".$signUpdata['email_verification_code']."", 'Varify', array('title' => 'Varify Account!')).' your account</div>');
 						redirect('auth/signup');
 					}else{
 						//Success
@@ -152,23 +166,194 @@ class Auth extends CI_Controller {
 		}else{
 			$data['msg_fail'] = 'Somthing is worng please try Again';
 		}
-		$this->layouts->set_title('SignUp');
+		$this->layouts->set_title('Email varification');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$this->layouts->view('auth/emailVarifyResult',$data);
-		//echo  $this->load->view('auth/emailVarifyResult',$data, true);	die;
-		
 	}
 	
 	
+	public function sendvarifyemailbyCode($emailcode=''){
+		$this->layouts->set_title('Email varification');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		if(!empty($emailcode)){
+			$getUserData = $this->commonModel->getRecord('users','*',array('email_verification_code'=>$emailcode));
+			if($getUserData){
+				$verifyUrl = EMAIL_VARIFY_URL . $getUserData['email_verification_code'];
+				$msgOne = "Thank you signing up for collegebooksrus.com.";
+				$msgTwo = "Please confirm your Account.";
+				$buttonText = "Verify your account";
+				$data['varifydata'] = array('name'=>$getUserData['first_name'],'verifyurl'=>$verifyUrl,'msgOne'=>$msgOne,'msgTwo'=>$msgTwo,'buttonText'=>$buttonText);
+				$emailMsg = $this->load->view('auth/sendEmailVerifyCard',$data,true);
+				$emailData = array(
+					'to'=>$getUserData['email'],
+					'from'=>EMAIL_FROM,
+					'subject'=>'Email Verification from collegebooksrus.com - DO NOT REPLY',
+					'from_name'=>EMAIL_FROM_NAME,
+					'message'=>$emailMsg
+				);
+				$send = $this->sendemail->emailSend($emailData);
+				if(!$send){
+					//Error
+					$data['msg_fail'] = 'Sorry...!!!, There are technical problems in sending mail please try again '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
+					$this->layouts->view('auth/emailVarifyResult',$data);
+				}else{
+					//Success
+					$data['msg_succ'] = 'Verification email has been sent to your register email id please verify your Account... '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
+					$this->layouts->view('auth/emailVarifyResult',$data);
+				}
+			}else{
+				$data['msg_fail'] = 'Somthing is worng please try again '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
+				$this->layouts->view('auth/emailVarifyResult',$data);
+			}
+		}else{
+			$data['msg_fail'] = 'Somthing is worng please try again '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
+			$this->layouts->view('auth/emailVarifyResult',$data);
+		}	
+	}
+	
+	public function viewvarifyemail(){
+		$this->layouts->set_title('Email varification');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		$this->layouts->view('auth/sendVarifyEmailForm');
+		
+		
+	}
+	
+	public function sendvarificationemail(){
+		$this->layouts->set_title('Email varification');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		$this->form_validation->set_rules('emailInput', 'Email ID', 'trim|required|valid_email|xss_clean');
+		if ($this->form_validation->run() == FALSE) {
+			$this->layouts->set_title('SignIn');
+			$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+			$this->layouts->view('auth/sendVarifyEmailForm');
+		} else {
+			$email = $this->input->post('emailInput');
+			$getUserData = $this->commonModel->getRecord('users','first_name,email,active_status,email_verification_code',array('email'=>$email));
+			if($getUserData['active_status']=='0'){
+				$verifyUrl = EMAIL_VARIFY_URL . $getUserData['email_verification_code'];
+				$msgOne = "Thank you for  connecting with collegebooksrus.com.";
+				$msgTwo = "Please confirm your Account.";
+				$buttonText = "Verify your account";
+				$data['varifydata'] = array('name'=>$getUserData['first_name'],'verifyurl'=>$verifyUrl,'msgOne'=>$msgOne,'msgTwo'=>$msgTwo,'buttonText'=>$buttonText);
+				$emailMsg = $this->load->view('auth/sendEmailVerifyCard',$data,true);
+				$emailData = array(
+					'to'=>$getUserData['email'],
+					'from'=>EMAIL_FROM,
+					'subject'=>'Email Verification from collegebooksrus.com - DO NOT REPLY',
+					'from_name'=>EMAIL_FROM_NAME,
+					'message'=>$emailMsg
+				);
+				$send = $this->sendemail->emailSend($emailData);
+				if(!$send){
+					//Error
+					$data['msg_fail'] = 'Sorry...!!!, There are technical problems in sending mail please try again '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
+					$this->layouts->view('auth/emailVarifyResult',$data);
+				}else{
+					//Success
+					$data['msg_succ'] = 'Verification email has been sent to your register email id please verify your Account... '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
+					$this->layouts->view('auth/emailVarifyResult',$data);
+				}
+			}else {
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Somthing is worng please try Again</div>');
+				redirect('auth/viewvarifyemail');
+			}
+		}
+	}
+	
+	public function forgetpasswd(){
+		$this->layouts->set_title('Forget Password');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		$this->layouts->view('auth/forgetPasswdForm');
+	}
 	
 	
+	public function forgetpasswdemail(){
+		$this->layouts->set_title('Email varification');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		$this->form_validation->set_rules('emailInput', 'Email ID', 'trim|required|valid_email|xss_clean');
+		if ($this->form_validation->run() == FALSE) {
+			$this->layouts->set_title('SignIn');
+			$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+			$this->layouts->view('auth/forgetPasswdForm');
+		} else {
+			$email = $this->input->post('emailInput');
+			$getUserData = $this->commonModel->getRecord('users','first_name,email,active_status,email_verification_code',array('email'=>$email));
+			if($getUserData['active_status']=='1'){
+				$verifyUrl = FORGET_PASSWD_URL . $getUserData['email_verification_code'];
+				$msgOne = "Thank you for connecting with collegebooksrus.com.";
+				$msgTwo = "Please change your password by clicking below button.";
+				$buttonText = "Reset Password";
+				$data['varifydata'] = array(
+					'name'=>$getUserData['first_name'],
+					'verifyurl'=>$verifyUrl,
+					'msgOne'=>$msgOne,
+					'msgTwo'=>$msgTwo,
+					'buttonText'=>$buttonText
+				);
+				$emailMsg = $this->load->view('auth/sendEmailVerifyCard',$data,true);
+				$emailData = array(
+					'to'=>$getUserData['email'],
+					'from'=>EMAIL_FROM,
+					'subject'=>'Email Verification from collegebooksrus.com - DO NOT REPLY',
+					'from_name'=>EMAIL_FROM_NAME,
+					'message'=>$emailMsg
+				);
+				$send = $this->sendemail->emailSend($emailData);
+				if(!$send){
+					//Error
+					$data['msg_fail'] = 'Sorry...!!!, There are technical problems in sending mail please try again '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
+					$this->layouts->view('auth/emailVarifyResult',$data);
+				}else{
+					//Success
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Reset password link has been sent to your register email id... </div>');
+					redirect('auth/signin');
+					/* $data['msg_succ'] = 'Reset password email has been sent to your register email... '.anchor("auth/signin", 'Sign in', array('title' => 'Sign in'));
+					$this->layouts->view('auth/emailVarifyResult',$data); */
+				}
+			}else {
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Your account is not varified please '.anchor("auth/viewvarifyemail", 'Varify', array('title' => 'Varify your account')).' your account</div>');
+					redirect('auth/forgetpasswd');
+			}
+		}
+	}
 	
+	public function changepasswd($vfyId=''){
+		$this->layouts->set_title('Reset Password');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		if($vfyId){
+			$data['vfyId']=$vfyId;
+			$this->layouts->view('auth/resetpasswdform',$data);
+		}else{
+			$data['msg_fail'] = 'Sorry...!!!, There are technical problems in sending mail please try again '.anchor("auth/signin", 'Sign in', array('title' => 'Sign in'));
+					$this->layouts->view('auth/emailVarifyResult',$data);
+		}
+		
+	}
 	
-	
-	
-	
-	
-	
+	public function resetpasswd(){
+		$this->layouts->set_title('Reset Password');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		
+		$this->form_validation->set_rules('passwd','Password','trim|required|min_length[6]|matches[repasswd]|md5');
+		$this->form_validation->set_rules('repasswd', 'Repeat Password', 'trim|required');
+		if ($this->form_validation->run() == FALSE) {
+			$this->layouts->set_title('Reset Password');
+			$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+			$this->layouts->view('auth/resetpasswdform');
+		} else {
+			$passwd = $this->input->post('passwd');
+			$vfyId = $this->input->post('vfyId');
+			$updateRec = $this->commonModel->updateRecord('users',array('passwd'=>$passwd),array('email_verification_code'=>$vfyId));
+			if($updateRec){
+				$data['msg_succ'] = 'Your password hasbeen successfully reset please go to '.anchor("auth/signin", 'Sign in', array('title' => 'Sign in'));
+					$this->layouts->view('auth/emailVarifyResult',$data);
+			}else{
+				$data['msg_fail'] = 'Sorry...!!!, There are technical problems in sending mail please try again '.anchor("auth/signin", 'Sign in', array('title' => 'Sign in'));
+					$this->layouts->view('auth/emailVarifyResult',$data);
+			}
+		}
+	}
 	
 	
 	

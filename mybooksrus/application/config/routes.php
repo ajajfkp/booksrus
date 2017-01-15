@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['verifyaccount/(:any)'] = "/auth/verifyaccount/$1";
+$route['changepasswd/(:any)'] = "/auth/changepasswd/$1";
 
 
 

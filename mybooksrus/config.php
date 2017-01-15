@@ -38,6 +38,7 @@ define("WORDWRAP", "TRUE");
 define("EMAIL_FROM", "admin@collegebooksrus.com");
 define("EMAIL_FROM_NAME", "Admin Tean");
 define("EMAIL_VARIFY_URL", "http://collegebooksrus.com/mybooksrus/verifyaccount/");
+define("FORGET_PASSWD_URL", "http://collegebooksrus.com/mybooksrus/changepasswd/");
  */
 
 /************************************************************/
@@ -68,6 +69,7 @@ define("EMAIL_VARIFY_URL", "http://collegebooksrus.com/mybooksrus/verifyaccount/
 	define("EMAIL_FROM", "admin@yourdomain.com");
 	define("EMAIL_FROM_NAME", "Admin Tean");
 	define("EMAIL_VARIFY_URL", "http://localhost/booksrus/mybooksrus/verifyaccount/");
+	define("FORGET_PASSWD_URL", "http://localhost/booksrus/mybooksrus/changepasswd/");
 
 
 

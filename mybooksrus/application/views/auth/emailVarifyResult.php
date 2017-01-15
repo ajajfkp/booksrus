@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container varify-sucs-fail-contr">
 	<div class="row">
 		<div class="jumbotron">
 			<?php 

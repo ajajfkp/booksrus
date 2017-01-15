@@ -190,8 +190,14 @@ h1 { font-size: 4vw; }
     border-collapse: separate;
 }
 
+.varify-sucs-fail-contr{
+	margin-top: 150px;
+	margin-bottom: 150px;
+}
 
-
+.varify-email-card{
+	margin-bottom: 140px;
+}
 
 
 
