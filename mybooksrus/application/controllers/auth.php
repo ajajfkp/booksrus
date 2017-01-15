@@ -107,7 +107,7 @@ class Auth extends CI_Controller {
 						'message'=>$emailMsg
 					);
 					
-					//$send = $this->sendemail->emailSend($emailData);
+					$send = $this->sendemail->emailSend($emailData);
 					
 					if(!$send){
 						//Error
@@ -311,8 +311,11 @@ class Auth extends CI_Controller {
 					/* $data['msg_succ'] = 'Reset password email has been sent to your register email... '.anchor("auth/signin", 'Sign in', array('title' => 'Sign in'));
 					$this->layouts->view('auth/emailVarifyResult',$data); */
 				}
-			}else {
+			} else if($getUserData['active_status']=='0'){
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Your account is not varified please '.anchor("auth/viewvarifyemail", 'Varify', array('title' => 'Varify your account')).' your account</div>');
+					redirect('auth/forgetpasswd');
+			} else {
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">You are not registered with us please '.anchor("auth/signup", 'Signup', array('title' => 'Varify your account')).' first</div>');
 					redirect('auth/forgetpasswd');
 			}
 		}

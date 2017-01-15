@@ -24,10 +24,7 @@
 									<input class="btn btn-lg btn-primary btn-block" value="Send Email" type="submit">
 								</div>
 								<div class="form-group">
-									<label class="col-sm-4 control-label">&nbsp;</label>
-									<div class="col-sm-8">
-										<?php echo $this->session->flashdata('msg'); ?>
-									</div>
+									<?php echo $this->session->flashdata('msg'); ?>
 								</div>
 							</fieldset>
 						<?php echo form_close(); ?>
