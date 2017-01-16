@@ -297,7 +297,7 @@ class Auth extends CI_Controller {
 				$emailData = array(
 					'to'=>$getUserData['email'],
 					'from'=>EMAIL_FROM,
-					'subject'=>'Email Verification from collegebooksrus.com - DO NOT REPLY',
+					'subject'=>'Email verification from collegebooksrus.com - DO NOT REPLY',
 					'from_name'=>EMAIL_FROM_NAME,
 					'message'=>$emailMsg
 				);
