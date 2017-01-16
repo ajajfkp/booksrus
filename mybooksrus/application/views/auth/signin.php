@@ -41,7 +41,7 @@
 					<div class="form-group">
 						<div class="col-md-12 text-center">
 							New User ? <a href="<?php echo base_url(); ?>auth/signup">Sign Up Here</a>
-							<a href="<?php echo base_url(); ?>auth/forgetpasswd" class="pull-right">Forget Password ?</a>
+							<a href="<?php echo base_url(); ?>auth/forgetpasswd" class="pull-right">Forgot Password ?</a>
 						</div>
 					</div>
 					<div class="form-group">
