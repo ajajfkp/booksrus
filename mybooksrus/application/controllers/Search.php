@@ -7,7 +7,7 @@ class Search extends CI_Controller {
 		$this->load->library('Layouts');
 		$this->load->library('sendemail');
 		$this->load->model('auth/auths');
-		$this->load->model('Search/SearchModel');
+		$this->load->model('search/SearchModel');
 		$this->load->helper('string');
 		
 	}
@@ -34,16 +34,15 @@ class Search extends CI_Controller {
 			$this->layouts->view('search/search',$data);
 			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
+	
+	public function searchBooks(){
+		$this->layouts->set_title('Search!');
+		$this->layouts->set_page_title('Home','<i class="glyphicon glyphicon-search"></i>');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		$this->layouts->dbview('search/innersearch');
+	}
+	
 	
 }
 

@@ -2,9 +2,71 @@
 <div class="row">
 <div class="col-sm-3">
 	<!-- Left column -->
-	<a href="<?php base_url('dashboard/index')?>"><strong><i class="glyphicon glyphicon-home"></i> Home</strong></a>
+	<a href="<?php echo base_url('dashboard/index')?>"><strong><i class="glyphicon glyphicon-dashboard"></i> Dashboard</strong></a>
 	<hr>
-	<ul class="nav nav-stacked">
+	
+	<nav class="navbar navbar-default sidebar" role="navigation">
+		<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>      
+		</div>
+		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active">
+					<a href="<?php echo base_url('dashboard/index')?>">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a>
+				</li>
+				<li>
+					<a href="<?php echo base_url('search/searchBooks'); ?>">Search & buy<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-search"></a>
+				</li>
+				<li>
+					<a href="<?php echo base_url('dashboard/index')?>">Buy Books<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-book"></a>
+				</li>
+				<li>
+				<a href="#">Sell books<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-usd"></a>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">User aria <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
+					<ul class="dropdown-menu forAnimate" role="menu">
+						<li><a href="{{URL::to('createusuario')}}">Crear</a></li>
+						<li><a href="#">Modificar</a></li>
+						<li><a href="#">Reportar</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Informes</a></li>
+					</ul>
+				</li>          
+				<li ><a href="#">Libros<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></li>        
+				<li ><a href="#">Tags<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a></li>
+			</ul>
+		</div>
+		</div>
+	</nav>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--<ul class="nav nav-stacked">
 		<?php 
 		$getuserAuth = $this->utilities->getUserTypeAndStatus();
 		if ($getuserAuth['user_type']=='admin') { ?>
@@ -32,11 +94,12 @@
 		<?php } else { ?>
 		<li class="nav-header">
 			<a href="#" data-toggle="collapse" data-target="#userMenu">
-				<span class="glyphicon glyphicon-cog"></span> Settings 
-				<i class="glyphicon glyphicon-chevron-down"></i>
+				Dashboard <i class="glyphicon glyphicon-chevron-down"></i>
 			</a>
 			<ul class="nav nav-stacked collapse in" id="userMenu">
 				<li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+				<li><a href="#"><i class="glyphicon glyphicon-book"></i> Buy Books</a></li>
+				<li><a href="#"><i class="glyphicon glyphicon-usd"></i> Sell books</a></li>
 				<li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
 				<li><a href="#"><i class="glyphicon glyphicon-cog"></i> Options</a></li>
 				<li><a href="#"><i class="glyphicon glyphicon-comment"></i> Shoutbox</a></li>
@@ -69,12 +132,11 @@
 				<li><a href=""><i class="glyphicon glyphicon-circle"></i> Twitter</a></li>
 			</ul>
 		</li>
-	</ul>
-	<hr>
+	</ul>-->
 </div>
 <!-- /col-3 -->
 <div class="col-sm-9">
-<a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
+<a><strong><?php echo $title_for_page; ?></strong></a>
 <hr>
 <div class="row">
 <!-- center left-->

@@ -11,6 +11,7 @@ class Layouts {
 
 	// Will hold a title for the page, NULL by default 
 	private $title_for_layout = NULL; 
+	private $title_for_page = NULL; 
 
 	// The title separator, ' | ' by default 
 	private $title_separator = ' | '; 
@@ -23,7 +24,11 @@ class Layouts {
     
 	public function set_title($title) { 
 		$this->title_for_layout = $title; 
-	} 
+	}
+	
+	public function set_page_title($title,$icontext) { 
+		$this->title_for_page= $icontext." ".$title; 
+	}
     
 	public function view($view_name, $params = array(), $layout = 'default') {
 		// Handle the site's title. If NULL, don't add anything. If not, add a  
@@ -47,7 +52,13 @@ class Layouts {
 		// separator and append the title. 
 		if ($this->title_for_layout !== NULL) { 
 			$separated_title_for_layout = $this->title_separator . $this->title_for_layout; 
-		} 
+		}
+		
+		if ($this->title_for_page !== NULL) { 
+			$separated_title_for_page = $this->title_for_page; 
+		}else{
+			$separated_title_for_page = '';
+		}
 		  
 		// Load the view's content, with the params passed 
 		$view_content = $this->CI->load->view($view_name, $params, TRUE); 
@@ -55,7 +66,8 @@ class Layouts {
 		// Now load the layout, and pass the view we just rendered 
 		$this->CI->load->view('dblayouts/' . $layout, array( 
 		  'content_for_layout' => $view_content, 
-		  'title_for_layout' => $separated_title_for_layout
+		  'title_for_layout' => $separated_title_for_layout,
+		  'title_for_page' => $separated_title_for_page
 		)); 
 	}
     

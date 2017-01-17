@@ -11,6 +11,7 @@ class Dashboard extends CI_Controller {
 	
 	public function index() {
 		$this->layouts->set_title('Dashboard!');
+		$this->layouts->set_page_title('Home','<i class="glyphicon glyphicon-home"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$this->layouts->dbview('dashboard/dashboard');
 	}
