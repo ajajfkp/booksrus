@@ -36,39 +36,39 @@ class Auth extends CI_Controller {
 			}else{
 				$this->session->set_flashdata('msg', '');
 			}
-			$this->layouts->view('auth/signin');die;
+			$this->layouts->view('auth/signin');
 		} else {
 			
 			$result = $this->recaptcha->captcha(array('recaptcha'=>$recaptcha));
 			if(!$result) {
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Please re-enter your reCAPTCHA.</div>');
-				$this->layouts->view('auth/signin');die;
-			}
-			
-			// check for user credentials
-			$email = $this->input->post("email");
-			$passwd = $this->input->post("passwd");
-			$result = $this->auths->login($email, $passwd);
-			
-			if ($result && count($result) > 0) {
+				$this->layouts->view('auth/signin');
+			}else{
+				// check for user credentials
+				$email = $this->input->post("email");
+				$passwd = $this->input->post("passwd");
+				$result = $this->auths->login($email, $passwd);
 				
-				$getuserdata = $this->utilities->getUserDataById($result['id']);
-				
-				if( $getuserdata['active_status']=='0' ) {
-					$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Your email not varified please '.anchor("auth/viewvarifyemail", 'Varify', array('title' => 'Varify Account!')).' your email</div>');
+				if ($result && count($result) > 0) {
+					
+					$getuserdata = $this->utilities->getUserDataById($result['id']);
+					
+					if( $getuserdata['active_status']=='0' ) {
+						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Your email not varified please '.anchor("auth/viewvarifyemail", 'Varify', array('title' => 'Varify Account!')).' your email</div>');
+							redirect('auth/signin');
+					} else if( $getuserdata['active_status']=='2' ) {
+						$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Wrong Email-ID or Password!</div>');
 						redirect('auth/signin');
-				} else if( $getuserdata['active_status']=='2' ) {
+					} else {
+					// set session
+						$sess_data = array('login' => TRUE, 'uname' => $result['first_name'], 'uid' => $result['id'], 'active_status' => $result['active_status'], 'email' => $result['email'], 'mobile' => $result['mobile'], 'user_type' => $result['user_type'], 'user_name' => $result['user_id']);
+						$this->utilities->setSession($sess_data);
+						redirect('dashboard/index');
+					}
+				} else {
 					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Wrong Email-ID or Password!</div>');
 					redirect('auth/signin');
-				} else {
-				// set session
-					$sess_data = array('login' => TRUE, 'uname' => $result['first_name'], 'uid' => $result['id'], 'active_status' => $result['active_status'], 'email' => $result['email'], 'mobile' => $result['mobile'], 'user_type' => $result['user_type'], 'user_name' => $result['user_id']);
-					$this->utilities->setSession($sess_data);
-					redirect('dashboard/index');
 				}
-			} else {
-				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Wrong Email-ID or Password!</div>');
-				redirect('auth/signin');
 			}
 		}
 	}
@@ -76,7 +76,7 @@ class Auth extends CI_Controller {
 	public function signup() {
 		$this->layouts->set_title('SignUp');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);
-		$this->layouts->view('auth/signup');die;
+		$this->layouts->view('auth/signup');
 	}
 	
 	public function signupauth() {
@@ -101,65 +101,65 @@ class Auth extends CI_Controller {
 			} else {
 				$this->session->set_flashdata('msg', '');
 			}
-			$this->layouts->view('auth/signup');die;
+			$this->layouts->view('auth/signup');
         } else {
 			
 			$result = $this->recaptcha->captcha(array('recaptcha'=>$recaptcha));
 			if(!$result) {
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Please re-enter your reCAPTCHA.</div>');
-				$this->layouts->view('auth/signup');die;
-			}
-
-			//insert user details into db
-			$signUpdata = array(
-				'first_name' => $this->input->post('first_name'),
-				'last_name' => $this->input->post('last_name'),
-				'email' => $this->input->post('email'),
-				'passwd' => $this->input->post('passwd'),
-				'email_verification_code' => md5($this->input->post('email')).random_string('alnum', 20)
-			);
-			
-			$insRecord = $this->auths->insert_user($signUpdata);
-			if ($insRecord) {
-				$userDetails = $this->utilities->getUserDataById($insRecord);
-				if($userDetails){
-					
-					$verifyUrl = EMAIL_VARIFY_URL . $userDetails['email_verification_code'];
-					$msgOne = "Thank you for signing up with collegebooksrus.com.";
-					$msgTwo = "Please verify your account.";
-					$buttonText = "Verify your account";
-					$data['varifydata'] = array('name'=>$userDetails['first_name'],'verifyurl'=>$verifyUrl,'msgOne'=>$msgOne,'msgTwo'=>$msgTwo,'buttonText'=>$buttonText);
-					
-					$emailMsg = $this->load->view('auth/sendEmailVerifyCard',$data,true);
-					
-					$emailData = array(
-						'to'=>$userDetails['email'],
-						'from'=>EMAIL_FROM,
-						'subject'=>'Email Verification from collegebooksrus.com - DO NOT REPLY',
-						'from_name'=>EMAIL_FROM_NAME,
-						'message'=>$emailMsg
-					);
-					
-					$send = $this->sendemail->emailSend($emailData);
-					
-					if(!$send){
-						//Error
-						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Your account has been created please '.anchor("auth/sendvarifyemailbyCode/".$signUpdata['email_verification_code']."", 'Varify', array('title' => 'Varify Account!')).' your account</div>');
-						redirect('auth/signup');
+				$this->layouts->view('auth/signup');
+			}else{
+				//insert user details into db
+				$signUpdata = array(
+					'first_name' => $this->input->post('first_name'),
+					'last_name' => $this->input->post('last_name'),
+					'email' => $this->input->post('email'),
+					'passwd' => $this->input->post('passwd'),
+					'email_verification_code' => md5($this->input->post('email')).random_string('alnum', 20)
+				);
+				
+				$insRecord = $this->auths->insert_user($signUpdata);
+				if ($insRecord) {
+					$userDetails = $this->utilities->getUserDataById($insRecord);
+					if($userDetails){
+						
+						$verifyUrl = EMAIL_VARIFY_URL . $userDetails['email_verification_code'];
+						$msgOne = "Thank you for signing up with collegebooksrus.com.";
+						$msgTwo = "Please verify your account.";
+						$buttonText = "Verify your account";
+						$data['varifydata'] = array('name'=>$userDetails['first_name'],'verifyurl'=>$verifyUrl,'msgOne'=>$msgOne,'msgTwo'=>$msgTwo,'buttonText'=>$buttonText);
+						
+						$emailMsg = $this->load->view('auth/sendEmailVerifyCard',$data,true);
+						
+						$emailData = array(
+							'to'=>$userDetails['email'],
+							'from'=>EMAIL_FROM,
+							'subject'=>'Email Verification from collegebooksrus.com - DO NOT REPLY',
+							'from_name'=>EMAIL_FROM_NAME,
+							'message'=>$emailMsg
+						);
+						
+						$send = $this->sendemail->emailSend($emailData);
+						
+						if(!$send){
+							//Error
+							$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Your account has been created please '.anchor("auth/sendvarifyemailbyCode/".$signUpdata['email_verification_code']."", 'Varify', array('title' => 'Varify Account!')).' your account</div>');
+							redirect('auth/signup');
+						}else{
+							//Success
+							$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"> Verification email sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.</div>');
+							redirect('auth/signup');
+						}
 					}else{
-						//Success
-						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"> Verification email sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.</div>');
+						// error
+						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!!</div>');
 						redirect('auth/signup');
 					}
-				}else{
+				} else {
 					// error
-					$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!!</div>');
+					$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
 					redirect('auth/signup');
 				}
-			} else {
-				// error
-				$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Please try again later!!!</div>');
-				redirect('auth/signup');
 			}
 		}
 	}
