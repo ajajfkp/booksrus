@@ -7,6 +7,7 @@ class Auth extends CI_Controller {
 		//$this->utilities->validateSession();
 		$this->load->library('Layouts');
 		$this->load->library('sendemail');
+		$this->load->library('recaptcha');
 		$this->load->model('auth/auths');
 		$this->load->helper('string');
 		
@@ -21,37 +22,29 @@ class Auth extends CI_Controller {
 	}
 	
 	public function signinauth() {
+		
+		$this->layouts->set_title('SignIn');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);
+		
 		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|xss_clean');
 		$this->form_validation->set_rules("passwd", "Passwd", "trim|required|xss_clean|md5");
 		$recaptcha = $this->input->post("g-recaptcha-response");
 		if ($this->form_validation->run() == FALSE || !$recaptcha) {
-			// validation fail
-			$this->layouts->set_title('SignIn');
-			$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);
-			
+			// validation fail			
 			if(!$recaptcha){
-				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Prove that you are not a robot.</div>');
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Please re-enter your reCAPTCHA.</div>');
 			}else{
 				$this->session->set_flashdata('msg', '');
 			}
-			$this->layouts->view('auth/signin');
+			$this->layouts->view('auth/signin');die;
 		} else {
 			
-			//varify recaptcha
-			$q = http_build_query(array(
-				'secret'    => '6LcGQRIUAAAAAM-9FuOVnew2LDgJkrw5Wn3E-I71',
-				'response'  => $recaptcha,
-				'remoteip'  => $_SERVER['REMOTE_ADDR'],
-			));
-		
-			$result = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?'.$q));
-
-			if(!$result->success) {
-				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Prove that you are not a robot.</div>');
-				$this->layouts->view('auth/signin');
+			$result = $this->recaptcha->captcha(array('recaptcha'=>$recaptcha));
+			if(!$result) {
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Please re-enter your reCAPTCHA.</div>');
+				$this->layouts->view('auth/signin');die;
 			}
 			
-
 			// check for user credentials
 			$email = $this->input->post("email");
 			$passwd = $this->input->post("passwd");
@@ -64,7 +57,6 @@ class Auth extends CI_Controller {
 				if( $getuserdata['active_status']=='0' ) {
 					$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Your email not varified please '.anchor("auth/viewvarifyemail", 'Varify', array('title' => 'Varify Account!')).' your email</div>');
 						redirect('auth/signin');
-					redirect('auth/viewvarifyemail');
 				} else if( $getuserdata['active_status']=='2' ) {
 					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Wrong Email-ID or Password!</div>');
 					redirect('auth/signin');
@@ -84,7 +76,7 @@ class Auth extends CI_Controller {
 	public function signup() {
 		$this->layouts->set_title('SignUp');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);
-		$this->layouts->view('auth/signup');
+		$this->layouts->view('auth/signup');die;
 	}
 	
 	public function signupauth() {
@@ -105,25 +97,19 @@ class Auth extends CI_Controller {
 		if ($this->form_validation->run() == FALSE || !$recaptcha) {
 			// fails			
 			if(!$recaptcha){
-				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Prove that you are not a robot.</div>');
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Please re-enter your reCAPTCHA.</div>');
 			} else {
 				$this->session->set_flashdata('msg', '');
 			}
-			
-			$this->layouts->view('auth/signup');
+			$this->layouts->view('auth/signup');die;
         } else {
 			
-			$q = http_build_query(array(
-				'secret'    => '6LcGQRIUAAAAAM-9FuOVnew2LDgJkrw5Wn3E-I71',
-				'response'  => $recaptcha,
-				'remoteip'  => $_SERVER['REMOTE_ADDR'],
-			));
-			$result = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?'.$q),true);
-						
-			if(empty($result['success'])) {
-				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Prove that you are not a robot.</div>');
-				$this->layouts->view('auth/signup');
+			$result = $this->recaptcha->captcha(array('recaptcha'=>$recaptcha));
+			if(!$result) {
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Please re-enter your reCAPTCHA.</div>');
+				$this->layouts->view('auth/signup');die;
 			}
+
 			//insert user details into db
 			$signUpdata = array(
 				'first_name' => $this->input->post('first_name'),
@@ -162,7 +148,7 @@ class Auth extends CI_Controller {
 						redirect('auth/signup');
 					}else{
 						//Success
-						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"> Verification email has been sent to your register email id please verify your account...</div>');
+						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"> Verification email sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.</div>');
 						redirect('auth/signup');
 					}
 				}else{
@@ -245,7 +231,7 @@ class Auth extends CI_Controller {
 					$this->layouts->view('auth/emailVarifyResult',$data);
 				}else{
 					//Success
-					$data['msg_succ'] = 'Verification email has been sent to your register email id please verify your Account... '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
+					$data['msg_succ'] = 'Verification email sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.'.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
 					$this->layouts->view('auth/emailVarifyResult',$data);
 				}
 			}else{
@@ -298,7 +284,7 @@ class Auth extends CI_Controller {
 					$this->layouts->view('auth/emailVarifyResult',$data);
 				}else{
 					//Success
-					$data['msg_succ'] = 'Verification email has been sent to your register email id please verify your Account... '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
+					$data['msg_succ'] = '"Verification email sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.'.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
 					$this->layouts->view('auth/emailVarifyResult',$data);
 				}
 			}else {
@@ -353,7 +339,7 @@ class Auth extends CI_Controller {
 					$this->layouts->view('auth/emailVarifyResult',$data);
 				}else{
 					//Success
-					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Reset password link has been sent to your register email id... </div>');
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">"Reset password linl sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.</div>');
 					redirect('auth/signin');
 					/* $data['msg_succ'] = 'Reset password email has been sent to your register email... '.anchor("auth/signin", 'Sign in', array('title' => 'Sign in'));
 					$this->layouts->view('auth/emailVarifyResult',$data); */

@@ -27,7 +27,7 @@
 					<div class="form-group">
 						<label for="email" class="col-sm-4 control-label">&nbsp;</label>
 						<div class="col-sm-8">
-							<div class="g-recaptcha" data-sitekey="6LcGQRIUAAAAAFIizfT0hjD2dfraJd43OsvZdEO9"></div>
+							<div class="g-recaptcha" data-sitekey="<?php echo RE_CAPTCHA_SITEKEY; ?>"></div>
 						</div>
 					</div>
 					

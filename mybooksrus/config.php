@@ -4,7 +4,7 @@
 
 *	It will autometically get the all path relative to root folder of webserver.
 *	Written By	:- Aijaz Ahmad
-*	DATE		:- 04/01/201&
+*	DATE		:- 04/01/2017
 */
 
 /************************************************************/
@@ -39,7 +39,16 @@ define("EMAIL_FROM", "admin@collegebooksrus.com");
 define("EMAIL_FROM_NAME", "Admin Tean");
 define("EMAIL_VARIFY_URL", "http://collegebooksrus.com/mybooksrus/verifyaccount/");
 define("FORGET_PASSWD_URL", "http://collegebooksrus.com/mybooksrus/changepasswd/");
- */
+
+/****************************************************************/
+/*********************|RECAPTCHA Configuration|******************/
+/****************************************************************/
+/*	
+define("RE_CAPTCHA_SITEKEY", "6LfbXRIUAAAAADCFVh5aCTkRXLrJU1GZbjRiSw1F");
+define("RE_CAPTCHA_SECRET", "6LfbXRIUAAAAAEhpct9JGOvBRxx1UxxmA4R7SyMV");
+define("REMOTE_IP", $_SERVER['REMOTE_ADDR']);
+
+*/
 
 /************************************************************/
 /*************************   LOCAL  *************************/
@@ -49,33 +58,42 @@ define("FORGET_PASSWD_URL", "http://collegebooksrus.com/mybooksrus/changepasswd/
 /********************|Database Configuration|****************/
 /************************************************************/
 
-	define("CH_DB_HOST", "localhost");
-	define("CH_DB_USER", "root");
-	define("CH_DB_PASSWORD", "");
-	define("CH_DB_NAME", "booksrus");
-	define('BASE_URL', 'http://localhost/booksrus/mybooksrus/');
+define("CH_DB_HOST", "localhost");
+define("CH_DB_USER", "root");
+define("CH_DB_PASSWORD", "");
+define("CH_DB_NAME", "booksrus");
+define('BASE_URL', 'http://localhost/booksrus/mybooksrus/');
+
 /************************************************************/
 /*********************|Email Configuration|******************/
 /************************************************************/
 
-	define("PROTOCOL", "SMTP");
-	define("SMTP_HOST", "smtp.gmail.com");
-	define("SMTP_PORT", "465");
-	define("SMTP_USER", "aijaz.fkp@gmail.com");
-	define("SMTP_PASS", "!@#romio_75");
-	define("MAILTYPE", "HTML");
-	define("CHARSET", "iso-8859-1");
-	define("WORDWRAP", "TRUE");
-	define("EMAIL_FROM", "admin@yourdomain.com");
-	define("EMAIL_FROM_NAME", "Admin Tean");
-	define("EMAIL_VARIFY_URL", "http://localhost/booksrus/mybooksrus/verifyaccount/");
-	define("FORGET_PASSWD_URL", "http://localhost/booksrus/mybooksrus/changepasswd/");
+define("PROTOCOL", "SMTP");
+define("SMTP_HOST", "smtp.gmail.com");
+define("SMTP_PORT", "465");
+define("SMTP_USER", "aijaz.fkp@gmail.com");
+define("SMTP_PASS", "!@#romio_75");
+define("MAILTYPE", "HTML");
+define("CHARSET", "iso-8859-1");
+define("WORDWRAP", "TRUE");
+define("EMAIL_FROM", "admin@yourdomain.com");
+define("EMAIL_FROM_NAME", "Admin Tean");
+define("EMAIL_VARIFY_URL", "http://localhost/booksrus/mybooksrus/verifyaccount/");
+define("FORGET_PASSWD_URL", "http://localhost/booksrus/mybooksrus/changepasswd/");
+
+/****************************************************************/
+/*********************|RECAPTCHA Configuration|******************/
+/****************************************************************/
+
+define("RE_CAPTCHA_SITEKEY", "6LcGQRIUAAAAAFIizfT0hjD2dfraJd43OsvZdEO9");
+define("RE_CAPTCHA_SECRET", "6LcGQRIUAAAAAM-9FuOVnew2LDgJkrw5Wn3E-I71");
+define("REMOTE_IP", $_SERVER['REMOTE_ADDR']);
 
 
 
-/************************************************************/
-/*********************|Common Configuration|*****************/
-/************************************************************/
+/****************************************************************/
+/*********************|Common Configuration|*********************/
+/****************************************************************/
 
 define("CH_DB_PORT", "3306");
 define("CH_SITE_KEY", "_dev");
