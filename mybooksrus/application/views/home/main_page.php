@@ -10,9 +10,9 @@
 				<?php $attributes = array("name" => "searchform","method"=>"get");
 					echo form_open("search/index", $attributes);?>
 				<div class="input-group col-md-offset-2 col-md-8">
-					<input type="text" name="search" class="search-query form-control" placeholder="Search by Books name, ISBN, Author, university" id="searchInput" value="<?php echo set_value('search'); ?>"/>
+					<input type="text" name="search" class="search-query form-control" placeholder="Search by Books name, ISBN, Author, university" id="searchInput" value="<?php echo set_value('search'); ?>" style="height:60px;"/>
 					<span class="input-group-btn">
-						<button class="btn btn-danger" type="submit" id="searchButton">
+						<button class="btn btn-danger" type="submit" id="searchButton" style="height:60px;width:60px;">
 							<span class=" glyphicon glyphicon-search"></span>
 						</button>
 					</span>

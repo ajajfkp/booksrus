@@ -2,7 +2,7 @@
 <div class="row">
 <div class="col-sm-3">
 	<!-- Left column -->
-	<a href="<?php echo base_url('dashboard/index')?>"><strong><i class="glyphicon glyphicon-dashboard"></i> Dashboard</strong></a>
+	<a href="<?php echo base_url('dashboard/index'); ?>"><strong><i class="glyphicon glyphicon-dashboard"></i> Dashboard</strong></a>
 	<hr>
 	
 	<nav class="navbar navbar-default sidebar" role="navigation">
@@ -32,13 +32,17 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">User aria <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
 					<ul class="dropdown-menu forAnimate" role="menu">
-						<li><a href="{{URL::to('createusuario')}}">Crear</a></li>
-						<li><a href="#">Modificar</a></li>
-						<li><a href="#">Reportar</a></li>
+						<li><a href="<?php echo base_url('users/changenamae'); ?>">Change Name</a></li>
 						<li class="divider"></li>
-						<li><a href="#">Separated link</a></li>
+						<li><a href="<?php echo base_url('users/changecontact'); ?>">Change address details</a></li>
 						<li class="divider"></li>
-						<li><a href="#">Informes</a></li>
+						<li><a href="#">Change phone</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Change password</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Change email</a></li>
+						<li class="divider"></li>
+						<li><a href="#">Email notifications</a></li>
 					</ul>
 				</li>          
 				<li ><a href="#">Libros<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></li>        

@@ -1,5 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller {
 	function __construct(){
@@ -18,3 +17,5 @@ class Dashboard extends CI_Controller {
 	
 	
 }
+
+?>

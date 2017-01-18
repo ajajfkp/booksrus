@@ -299,9 +299,10 @@ class commonModel extends CI_Model {
      * 	@return			Resultset/false
      */
     function getAllCountry() {
+		$this->db->select('id,name',false);
         $this->db->where('active_flag', '1');
-        $this->db->order_by('country_name','asc');
-        $result_set = $this->db->get(TBL_COUNTRY);
+        $this->db->order_by('name','asc');
+        $result_set = $this->db->get('countries');
         if ($result_set->num_rows() > 0)
             return $result_set->result();
         else
@@ -316,12 +317,13 @@ class commonModel extends CI_Model {
      * 	@return			Resultset/false
      */
     function getAllState($country_id = 0) {
+		$this->db->select('id,name',false);
         $this->db->where('active_flag', '1');
-        $this->db->order_by('state_name','asc');
+        $this->db->order_by('name','asc');
         if ($country_id != 0) {
             $this->db->where('country_id', $country_id);
         }
-        $result_set = $this->db->get(TBL_STATE);
+        $result_set = $this->db->get(states);
         if ($result_set->num_rows() > 0)
             return $result_set->result();
         else

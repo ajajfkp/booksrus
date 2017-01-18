@@ -80,7 +80,25 @@ class Utilities {
 		}
 	}
 	
+	function getAllCountry(){
+		$result = $this->CI->commonModel->getAllCountry();
+		if($result){
+			return $result;
+		}else{
+			return false;
+		}
+		
+	}
 	
+	function getAllState($countryId='231'){
+		$result = $this->CI->commonModel->getAllCountry($countryId);
+		if($result){
+			return $result;
+		}else{
+			return false;
+		}
+		
+	}
 	
 	
 }

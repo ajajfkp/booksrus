@@ -50,6 +50,13 @@
 					</div>
 					
 					<div class="form-group">
+						<label for="email" class="col-sm-4 control-label">&nbsp;</label>
+						<div class="col-sm-8">
+							<div class="g-recaptcha" data-sitekey="6LcGQRIUAAAAAFIizfT0hjD2dfraJd43OsvZdEO9"></div>
+						</div>
+					</div>
+					
+					<div class="form-group">
 						<label class="col-sm-4 control-label">&nbsp;</label>
 						<div class="col-sm-8">
 							<button name="submit" type="submit" class="btn btn-info">Signup</button>
@@ -69,7 +76,6 @@
 							<a href="<?php echo base_url(); ?>auth/signin">Login Here</a>
 						</div>
 					</div>
-
 					<?php echo form_close(); ?>
 				</div>
 				<div class="col-md-6">

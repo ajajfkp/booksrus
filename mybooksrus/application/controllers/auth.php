@@ -16,19 +16,42 @@ class Auth extends CI_Controller {
 	public function signin() {
 		$this->layouts->set_title('SignIn');
 		//$res = $this->auth->login('admin','admin');
-		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);
 		$this->layouts->view('auth/signin');
 	}
 	
 	public function signinauth() {
 		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|xss_clean');
 		$this->form_validation->set_rules("passwd", "Passwd", "trim|required|xss_clean|md5");
-		if ($this->form_validation->run() == FALSE) {
+		$recaptcha = $this->input->post("g-recaptcha-response");
+		if ($this->form_validation->run() == FALSE || !$recaptcha) {
 			// validation fail
 			$this->layouts->set_title('SignIn');
-			$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+			$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);
+			
+			if(!$recaptcha){
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Prove that you are not a robot.</div>');
+			}else{
+				$this->session->set_flashdata('msg', '');
+			}
 			$this->layouts->view('auth/signin');
 		} else {
+			
+			//varify recaptcha
+			$q = http_build_query(array(
+				'secret'    => '6LcGQRIUAAAAAM-9FuOVnew2LDgJkrw5Wn3E-I71',
+				'response'  => $recaptcha,
+				'remoteip'  => $_SERVER['REMOTE_ADDR'],
+			));
+		
+			$result = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?'.$q));
+
+			if(!$result->success) {
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Prove that you are not a robot.</div>');
+				$this->layouts->view('auth/signin');
+			}
+			
+
 			// check for user credentials
 			$email = $this->input->post("email");
 			$passwd = $this->input->post("passwd");
@@ -60,11 +83,15 @@ class Auth extends CI_Controller {
 	
 	public function signup() {
 		$this->layouts->set_title('SignUp');
-		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);
 		$this->layouts->view('auth/signup');
 	}
 	
 	public function signupauth() {
+		
+		$this->layouts->set_title('SignUp');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);
+		
 		// set form validation rules
 		$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|alpha|min_length[3]|max_length[30]|xss_clean');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|alpha|min_length[3]|max_length[30]|xss_clean');
@@ -72,13 +99,31 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('cpasswd', 'Confirm Password', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|is_unique[users.email]');
 		/* |callback_cust_email_check */
+		$recaptcha = $this->input->post("g-recaptcha-response");
+		
 		// submit
-		if ($this->form_validation->run() == FALSE) {
-			// fails
-			$this->layouts->set_title('SignUp');
-			$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		if ($this->form_validation->run() == FALSE || !$recaptcha) {
+			// fails			
+			if(!$recaptcha){
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Prove that you are not a robot.</div>');
+			} else {
+				$this->session->set_flashdata('msg', '');
+			}
+			
 			$this->layouts->view('auth/signup');
         } else {
+			
+			$q = http_build_query(array(
+				'secret'    => '6LcGQRIUAAAAAM-9FuOVnew2LDgJkrw5Wn3E-I71',
+				'response'  => $recaptcha,
+				'remoteip'  => $_SERVER['REMOTE_ADDR'],
+			));
+			$result = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?'.$q),true);
+						
+			if(empty($result['success'])) {
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Prove that you are not a robot.</div>');
+				$this->layouts->view('auth/signup');
+			}
 			//insert user details into db
 			$signUpdata = array(
 				'first_name' => $this->input->post('first_name'),
