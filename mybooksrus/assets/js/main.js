@@ -31,7 +31,7 @@ function getCityByStateId(id){
 	if(stateId){
 		$.ajax({ 
 			type: "POST",
-			url: base_url+'common/commonCtrl/getCityByStateIdDd',
+			url: base_url+'common/commonctrl/getCityByStateIdDd',
 			data: {
 				'stateid':stateId
 			},
@@ -54,7 +54,7 @@ function getUniListByStateId(id){
 	if(stateId){
 		$.ajax({ 
 			type: "POST",
-			url: base_url+'common/commonCtrl/getUniListByStateId',
+			url: base_url+'common/commonctrl/getUniListByStateId',
 			data: {
 				'stateid':stateId
 			},
@@ -77,7 +77,7 @@ function openuserunivaddform(id){
 	if(univId==-2){
 		$.ajax({ 
 			type: "POST",
-			url: base_url+'common/commonCtrl/openuserunivaddform',
+			url: base_url+'common/commonctrl/openuserunivaddform',
 			data: {
 				'stateid':univId
 			},
@@ -114,7 +114,7 @@ function addunivbyuser(){
 	}else{
 		$.ajax({ 
 			type: "POST",
-			url: base_url+'common/commonCtrl/addunivbyuser',
+			url: base_url+'common/commonctrl/addunivbyuser',
 			data: {
 				'name':uniName,
 				'nickname':nickname,
@@ -138,54 +138,26 @@ function addunivbyuser(){
 	}
 }
 
-function setUiMessege(type,message,title){
-	switch (type){
-		case 'err':
-			toastr.error(message, title, {
-				"timeOut": "0",
-				"extendedTImeout": "0"
-			});
-		break;
-		
-		case 'suc':
-		toastr.success(message);
-		break;
-		
-		case 'inf':
-		toastr.info(message, title);
-		break;
-		
-		case 'war':
-		toastr.warning(message);
-		break;
-	}
-}
 
-function validateinput(inputarray){
-	var errors=[];
-	if(typeof inputarray =='object'){
-		for(var i in inputarray){
-			splitArr = inputarray[i].split(',');
-			if($('#'+splitArr[0]).val()){
-				$('#'+splitArr[0]+'_error').html('');
-			}else{
-				msg = splitArr[1] ? splitArr[1]:splitArr[0].ucfirst()+' field is required';
-				$('#'+splitArr[0]+'_error').html(msg);
-				errors=i;
-			}
-		}
-		if(errors.length>0){
-			return true;
-		}else{
-			return false;
+function activateHeadMeanu(idArr){
+	$("#navbar >ul >li").removeClass("active");
+	if(idArr.length>0){
+		var targetId = idArr.split(',');
+		for(var i in targetId){
+			$("#"+targetId[i]).addClass("active");
 		}
 	}
 }
 
-String.prototype.ucfirst = function(){
-    return this.charAt(0).toUpperCase() + this.substr(1);
+function activateLeftMeanu(idArr){
+	$("#bs-sidebar-navbar-collapse-1 >ul >li").removeClass("active");
+	if(idArr.length>0){
+		var targetId = idArr.split(',');
+		for(var i in targetId){
+			$("#"+targetId[i]).addClass("active");
+		}
+	}
 }
-
 
 
 

@@ -1,3 +1,8 @@
+<nav class="navbar navbar-default" role="navigation" style="min-height: 0;border-radius: 5px;">
+	<a class="btn btn-lg btn-success" href="<?php echo base_url('postyouradd')?>">
+		<i class="glyphicon glyphicon-plus"></i>&nbsp;Post your AD
+	</a>
+</nav>
 <div class="well">
 	Inbox Messages 
 	<span class="badge pull-right">3</span>

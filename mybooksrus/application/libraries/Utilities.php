@@ -54,13 +54,13 @@ class Utilities {
 		$sesdata = $this->CI->session->userdata('login');
 		if (isset($sesdata) && $sesdata === true) {
 			if($_SERVER['REQUEST_URI']=='/auth/signin'){
-				redirect('dashboard/index');
+				redirect('dashboard');
 			}else if($_SERVER['REQUEST_URI']=='/auth/signup'){
-				redirect('dashboard/index');
+				redirect('dashboard');
 			}else if($_SERVER['REQUEST_URI']=='/auth/signupauth'){
-				redirect('dashboard/index');
+				redirect('dashboard');
 			}else if($_SERVER['REQUEST_URI']=='/auth/signinauth'){
-				redirect('dashboard/index');
+				redirect('dashboard');
 			}
         } else {
 			$this->destroySession();
@@ -137,8 +137,14 @@ class Utilities {
 		if($getuserdata['uf']){
 			return true;
 		}else{
-			redirect('common/commonCtrl/adduseruniv');
+			redirect('common/commonctrl/adduseruniv');
 		}
 	}
+	
+	
+	
+	
+	
+	
 	
 }

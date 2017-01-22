@@ -19,3 +19,52 @@ $( document ).ready(function(){
 
 });
 
+
+function setUiMessege(type,message,title){
+	switch (type){
+		case 'err':
+			toastr.error(message, title, {
+				"timeOut": "0",
+				"extendedTImeout": "0"
+			});
+		break;
+		
+		case 'suc':
+		toastr.success(message);
+		break;
+		
+		case 'inf':
+		toastr.info(message, title);
+		break;
+		
+		case 'war':
+		toastr.warning(message);
+		break;
+	}
+}
+
+function validateinput(inputarray){
+	var errors=[];
+	if(typeof inputarray =='object'){
+		for(var i in inputarray){
+			splitArr = inputarray[i].split(',');
+			if($('#'+splitArr[0]).val()){
+				$('#'+splitArr[0]+'_error').html('');
+			}else{
+				msg = splitArr[1] ? splitArr[1]:splitArr[0].ucfirst()+' field is required';
+				$('#'+splitArr[0]+'_error').html(msg);
+				errors=i;
+			}
+		}
+		if(errors.length>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+}
+
+String.prototype.ucfirst = function(){
+    return this.charAt(0).toUpperCase() + this.substr(1);
+}
+

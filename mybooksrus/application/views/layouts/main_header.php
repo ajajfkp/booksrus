@@ -12,24 +12,24 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 			<?php if ($this->session->userdata('login')){ ?>
-				<li class="active">
-					<a href="<?php echo base_url('dashboard/index');?>">
+				<li id="topdashboard" class="active">
+					<a href="<?php echo base_url('dashboard');?>">
 						<span class="glyphicon glyphicon-dashboard"></span> Dashboard
 					</a>
 				</li>
 			<?php } else { ?>
-				<li class="active">
+				<li id="topdashboard" class="active">
 					<a href="<?php echo base_url();?>">
 						<span class="glyphicon glyphicon-home"></span> Home
 					</a>
 				</li>
 			<?php } ?>
-				<li>
+				<li id="topabout">
 					<a href="<?php echo base_url('index/about');?>">
 						About Us
 					</a>
 				</li>
-				<li>
+				<li id="topcontact">
 					<a href="<?php echo base_url('index/contact');?>">
 						Contact Us
 					</a>
@@ -37,7 +37,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<!--<li>
-					<a href="<?php echo base_url('dashboard/index');?>">
+					<a href="<?php echo base_url('dashboard');?>">
 						<span class="glyphicon glyphicon-shopping-cart"></span> 4
 					</a>
 				</li>-->
@@ -53,12 +53,12 @@
 					</a>
 				</li>
 				<?php } else { ?>
-				<li>
+				<li id="topsignup">
 					<a href="<?php echo base_url('auth/signup');?>">
 						<span class="glyphicon glyphicon-user"></span> Sign Up
 					</a>
 				</li>
-				<li>
+				<li id="topsignin">
 					<a href="<?php echo base_url('auth/signin');?>">
 						<span class="glyphicon glyphicon-log-in"></span> Login
 					</a>

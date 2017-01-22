@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CommonCtrl extends CI_Controller {
+class Commonctrl extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->utilities->validateSession();
@@ -86,7 +86,7 @@ class CommonCtrl extends CI_Controller {
 				if($updRec){
 					$updRec = $this->commonModel->updateRecord('users',array("university_flag"=>'1'),array("id"=>$this->session->userdata('uid')));
 					if($updRec){
-						redirect('dashboard/index');
+						redirect('dashboard');
 					}else{
 						$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">ERROR!..Something is wrong!</div>');
 					redirect('common/commonctrl/adduseruniv');
@@ -138,13 +138,6 @@ class CommonCtrl extends CI_Controller {
 			echo "fail";
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

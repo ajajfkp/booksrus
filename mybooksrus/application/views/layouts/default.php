@@ -19,8 +19,10 @@
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/ui_msg/style.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/sweetalert/dist/sweetalert.css" type="text/css">
 		<script src="<?php echo base_url();?>assets/js/jquery/jquery.js"></script>
-		<?php echo $this->layouts->print_includes(); ?>
-		
+		<script type="text/javascript">
+			var base_url = '<?php echo base_url(); ?>'
+		</script>
+		<?php echo $this->layouts->print_includes(); ?>		
 	</head>
 	
 	<body>
@@ -34,5 +36,6 @@
 		<script src="<?php echo base_url();?>assets/js/common.js"></script>
 		<script src="<?php echo base_url();?>assets/js/bootstrap/bootstrap.min.js"></script>
 		<script src="<?php echo base_url();?>assets/sweetalert/dist/sweetalert.min.js"></script>
+		<script><?php echo $extra_head ?></script>
 	</body> 
 </html>

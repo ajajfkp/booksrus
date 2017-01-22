@@ -14,6 +14,9 @@ class Auth extends CI_Controller {
 	
 	
 	public function signin() {
+		$extraHead = "activateHeadMeanu('topsignin')";
+		$this->layouts->set_extra_head($extraHead);
+		
 		$this->layouts->set_title('SignIn');
 		//$res = $this->auth->login('admin','admin');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);
@@ -21,6 +24,8 @@ class Auth extends CI_Controller {
 	}
 	
 	public function signinauth() {
+		$extraHead = "activateHeadMeanu('topsignin')";
+		$this->layouts->set_extra_head($extraHead);
 		
 		$this->layouts->set_title('SignIn');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);
@@ -65,7 +70,7 @@ class Auth extends CI_Controller {
 					// set session
 						$sess_data = array('login' => TRUE, 'uname' => $result['first_name'], 'uid' => $result['id'], 'active_status' => $result['active_status'], 'email' => $result['email'], 'mobile' => $result['mobile'], 'user_type' => $result['user_type'], 'user_name' => $result['user_id']);
 						$this->utilities->setSession($sess_data);
-						redirect('dashboard/index');
+						redirect('dashboard');
 					}
 				} else {
 					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Wrong Email-ID or Password!</div>');
@@ -77,12 +82,17 @@ class Auth extends CI_Controller {
 	}
 	
 	public function signup() {
+		$extraHead = "activateHeadMeanu('topsignup')";
+		$this->layouts->set_extra_head($extraHead);
+		
 		$this->layouts->set_title('SignUp');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);
 		$this->layouts->view('auth/signup');
 	}
 	
 	public function signupauth() {
+		$extraHead = "activateHeadMeanu('topsignup')";
+		$this->layouts->set_extra_head($extraHead);
 		
 		$this->layouts->set_title('SignUp');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);

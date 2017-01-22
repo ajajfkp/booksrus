@@ -36,7 +36,11 @@ class Search extends CI_Controller {
 		}
 	}
 	
-	public function searchBooks(){
+	public function searchbooks(){
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('leftsearcby');";
+		$this->layouts->set_extra_head($extraHead);
+		
 		$this->layouts->set_title('Search!');
 		$this->layouts->set_page_title('Home','<i class="glyphicon glyphicon-search"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
