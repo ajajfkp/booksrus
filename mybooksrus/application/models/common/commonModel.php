@@ -303,10 +303,11 @@ class commonModel extends CI_Model {
         $this->db->where('active_flag', '1');
         $this->db->order_by('name','asc');
         $result_set = $this->db->get('countries');
-        if ($result_set->num_rows() > 0)
+        if ($result_set->num_rows() > 0){
             return $result_set->result();
-        else
+        }else{
             return false;
+		}
     }
 
     /**
@@ -316,18 +317,22 @@ class commonModel extends CI_Model {
      * 	@param			optional (Country Id)
      * 	@return			Resultset/false
      */
-    function getAllState($country_id = 0) {
+    function getAllState($country_id = 0,$stateId=0) {
 		$this->db->select('id,name',false);
         $this->db->where('active_flag', '1');
         $this->db->order_by('name','asc');
         if ($country_id != 0) {
             $this->db->where('country_id', $country_id);
         }
-        $result_set = $this->db->get(states);
-        if ($result_set->num_rows() > 0)
+		if ($stateId != 0) {
+            $this->db->where('id', $stateId);
+        }
+        $result_set = $this->db->get('states');
+        if ($result_set->num_rows() > 0){
             return $result_set->result();
-        else
+        }else{
             return false;
+		}
     }
 
     /**
@@ -338,15 +343,40 @@ class commonModel extends CI_Model {
      * 	@return			Resultset/false
      */
     function getAllCity($state_id = 0) {
+		$this->db->select('id,name',false);
         $this->db->where('active_flag', '1');
+		$this->db->order_by('name','asc');
         if ($state_id != 0) {
             $this->db->where('state_id', $state_id);
         }
-        $result_set = $this->db->get(TBL_CITY);
-        if ($result_set->num_rows() > 0)
+        $result_set = $this->db->get('cities');
+        if ($result_set->num_rows() > 0){
             return $result_set->result();
-        else
+        }else{
             return false;
+		}
+    }
+	
+	/**
+     * 	Function		getAllCity
+     * 	Author			Aijaz Ahmad <aijaz@collegebooksrus.com>
+     * 	Description		This Function will get all the City from the database
+     * 	@param			optional (State Id)
+     * 	@return			Resultset/false
+     */
+    function getListUnivesityByStatteId($state_id = 0) {
+		$this->db->select('id,name',false);
+        $this->db->where('active_flag', '1');
+		$this->db->order_by('name','asc');
+        if ($state_id != 0) {
+            $this->db->where('state', $state_id);
+        }
+        $result_set = $this->db->get('universities');
+        if ($result_set->num_rows() > 0){
+            return $result_set->result();
+        }else{
+            return false;
+		}
     }
 	
 	function getUserDataById($userId){
@@ -355,6 +385,8 @@ class commonModel extends CI_Model {
 		t1.passwd,
 		t1.email_verification_code,
 		t1.active_status,
+		t1.profile_complete_flag pcf,
+		t1.university_flag uf,
 		t2.username,
 		t2.first_name,
 		t2.middle_name,

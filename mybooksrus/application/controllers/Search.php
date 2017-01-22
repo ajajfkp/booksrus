@@ -9,7 +9,7 @@ class Search extends CI_Controller {
 		$this->load->model('auth/auths');
 		$this->load->model('search/SearchModel');
 		$this->load->helper('string');
-		
+		$this->utilities->checkUnivApr();
 	}
 	
 	

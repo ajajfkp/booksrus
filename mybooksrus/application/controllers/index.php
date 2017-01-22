@@ -35,13 +35,7 @@ class Index extends CI_Controller {
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$this->layouts->view('home/contact');
 	}
-
 	
-
-	
-
-	
-
 	
 
 }

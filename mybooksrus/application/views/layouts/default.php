@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap/font-awesome.min.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/ui_msg/style.css" type="text/css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/sweetalert/dist/sweetalert.css" type="text/css">
 		<script src="<?php echo base_url();?>assets/js/jquery/jquery.js"></script>
 		<?php echo $this->layouts->print_includes(); ?>
 		
@@ -32,5 +33,6 @@
 		<script src="<?php echo base_url();?>assets/js/ui_msg/jQuery.miniNoty.js"></script>
 		<script src="<?php echo base_url();?>assets/js/common.js"></script>
 		<script src="<?php echo base_url();?>assets/js/bootstrap/bootstrap.min.js"></script>
+		<script src="<?php echo base_url();?>assets/sweetalert/dist/sweetalert.min.js"></script>
 	</body> 
 </html>

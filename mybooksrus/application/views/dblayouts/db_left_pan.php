@@ -21,13 +21,13 @@
 					<a href="<?php echo base_url('dashboard/index')?>">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a>
 				</li>
 				<li>
+				<a href="#">Sell books<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-usd"></a>
+				</li>
+				<li>
 					<a href="<?php echo base_url('search/searchBooks'); ?>">Search & buy<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-search"></a>
 				</li>
 				<li>
 					<a href="<?php echo base_url('dashboard/index')?>">Buy Books<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-book"></a>
-				</li>
-				<li>
-				<a href="#">Sell books<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-usd"></a>
 				</li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">User aria <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>

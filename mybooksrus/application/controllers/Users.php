@@ -6,6 +6,7 @@ class Users extends CI_Controller {
 		$this->load->library('Layouts');
 		$this->utilities->validateSession();
 		$this->load->model('users/usersModel');
+		$this->utilities->checkUnivApr();
 	}
 	
 	public function changecontact() {

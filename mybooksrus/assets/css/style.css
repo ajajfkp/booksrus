@@ -322,8 +322,31 @@ body,html{
 	margin-top:15px;
 } 
 
+.rg-recaptcha {
+	transform:scale(0.88);
+	-webkit-transform:scale(0.88);
+	transform-origin:0 0;
+	-webkit-transform-origin:0 0;
+}
 
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
 
-
+.univ-pop-cross{
+    width: 30px;
+    height: 30px;
+    border: 2px solid #2e6da4;
+    float: right;
+    border-radius: 50%;
+    padding: 0px 0 0 6px;
+    font-size: 20px;
+    color: #000;
+    background: #337ab7;
+	cursor: pointer;
+}
 
 

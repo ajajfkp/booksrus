@@ -90,8 +90,17 @@ class Utilities {
 		
 	}
 	
-	function getAllState($countryId='231'){
-		$result = $this->CI->commonModel->getAllCountry($countryId);
+	function getAllState($countryId='231',$stateId='0'){
+		$result = $this->CI->commonModel->getAllState($countryId,$stateId);
+		if($result){
+			return $result;
+		} else {
+			return false;
+		}
+	}
+	
+	function getAllCity($stateId='3926'){ //colorado
+		$result = $this->CI->commonModel->getAllCity($stateId);
 		if($result){
 			return $result;
 		}else{
@@ -100,5 +109,36 @@ class Utilities {
 		
 	}
 	
+	function getListUnivesityByStatteId($stateId='3926'){ //colorado
+		$result = $this->CI->commonModel->getListUnivesityByStatteId($stateId);
+		if($result){
+			return $result;
+		}else{
+			return false;
+		}
+	}
+	
+	function getWrongPasswdAtempt(){
+		return $this->CI->session->userdata('wrong_pass');
+	}
+	
+	function setWrongPasswdAtempt($reset=false){
+		$getCount = $this->CI->session->userdata('wrong_pass');
+		$counter = $getCount+1;
+		$this->CI->session->set_userdata('wrong_pass',$counter);
+		
+		if($reset){
+			$this->CI->session->set_userdata('wrong_pass',0);
+		}
+	}
+	
+	function checkUnivApr(){
+		$getuserdata = $this->getUserDataById($this->CI->session->userdata('uid'));
+		if($getuserdata['uf']){
+			return true;
+		}else{
+			redirect('common/commonCtrl/adduseruniv');
+		}
+	}
 	
 }

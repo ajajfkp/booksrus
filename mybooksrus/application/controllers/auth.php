@@ -1,5 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
 	function __construct(){
@@ -29,19 +28,22 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|xss_clean');
 		$this->form_validation->set_rules("passwd", "Passwd", "trim|required|xss_clean|md5");
 		$recaptcha = $this->input->post("g-recaptcha-response");
-		if ($this->form_validation->run() == FALSE || !$recaptcha) {
+		$attempt = $this->utilities->getWrongPasswdAtempt();
+		if ($this->form_validation->run() == FALSE || (!$recaptcha && $attempt>3)) {
 			// validation fail			
-			if(!$recaptcha){
+			if(!$recaptcha && $attempt>3){
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Please re-enter your reCAPTCHA.</div>');
 			}else{
 				$this->session->set_flashdata('msg', '');
 			}
+			$this->utilities->setWrongPasswdAtempt();
 			$this->layouts->view('auth/signin');
 		} else {
 			
 			$result = $this->recaptcha->captcha(array('recaptcha'=>$recaptcha));
-			if(!$result) {
+			if(!$result && $attempt>3) {
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Please re-enter your reCAPTCHA.</div>');
+				$this->utilities->setWrongPasswdAtempt();
 				$this->layouts->view('auth/signin');
 			}else{
 				// check for user credentials
@@ -67,6 +69,7 @@ class Auth extends CI_Controller {
 					}
 				} else {
 					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Wrong Email-ID or Password!</div>');
+					$this->utilities->setWrongPasswdAtempt();
 					redirect('auth/signin');
 				}
 			}
