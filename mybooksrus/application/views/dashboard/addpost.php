@@ -7,119 +7,103 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<form name="adduniv" class="form-horizontal" method="post">
+			<?php $attributes = array("name" => "addpost","class"=>"form-horizontal");
+						echo form_open("postyouradd/postadd", $attributes);?>
 					<div class="form-group row">
-						<label for="name" class="col-sm-3 control-label">University Name</label>
+						<label for="name" class="col-sm-3 control-label">ISBN10</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="name" name="name" placeholder="University name" value="<?php echo set_value('name'); ?>">
-							<span class="text-danger" id="name_error"></span>
+							<input type="text" class="form-control" id="isbn10" name="isbn10" placeholder="ISBN10" value="<?php echo set_value('isbn10'); ?>">
+							<span class="text-danger"><?php echo form_error('isbn10'); ?></span>
 						</div>
-					</div>	
+					</div>
 
-					<div class="form-group row"> 
-						<label for="nickname" class="col-sm-3 control-label">Nick Name</label>
+					<div class="form-group row">
+						<label for="name" class="col-sm-3 control-label">ISBN13</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="nickname" name="nickname" placeholder="Nick name" value="<?php echo set_value('nickname'); ?>">
-							<span class="text-danger" id="inckname_error"></span>
-						</div>
-					</div>
-					
-					<!--<div class="form-group row"> 
-						<label for="year_establis" class="col-sm-3 control-label">Year Establis</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="year_establis" name="year_establis" placeholder="Year establis" value="<?php echo set_value('year_establis'); ?>">
-							<span class="text-danger"><?php echo form_error('year_establis'); ?></span>
-						</div>
-					</div>-->
-					
-					<div class="form-group row"> 
-						<label for="website" class="col-sm-3 control-label">Website</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="website" name="website" placeholder="www.example.com" value="<?php echo set_value('website'); ?>">
-							<span class="text-danger"></span>
-						</div>
-					</div>
-					
-					<!--<div class="form-group row"> 
-						<label for="address_one" class="col-sm-3 control-label">Street Address 1</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="address_one" name="address_one" placeholder="Address line one" value="<?php echo set_value('address_one'); ?>">
-							<span class="text-danger"><?php echo form_error('address_one'); ?></span>
+							<input type="text" class="form-control" id="isbn13" name="isbn13" placeholder="ISBN13" value="<?php echo set_value('isbn13'); ?>">
+							<span class="text-danger"><?php echo form_error('isbn13'); ?></span>
 						</div>
 					</div>
 					
 					<div class="form-group row"> 
-						<label for="address_two" class="col-sm-3 control-label">Street Address 2</label>
+						<label for="website" class="col-sm-3 control-label">Title</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="address_two" name="address_two" placeholder="JAddress line one" value="<?php echo set_value('address_one'); ?>">
-							<span class="text-danger"><?php echo form_error('address_two'); ?></span>
+							<input type="text" class="form-control" id="name" name="name" placeholder="Title" value="<?php echo set_value('name'); ?>">
+							<span class="text-danger"><?php echo form_error('name'); ?></span>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="name" class="col-sm-3 control-label">Author</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="authors" name="authors" placeholder="Author" value="<?php echo set_value('authors'); ?>">
+							<span class="text-danger"><?php echo form_error('authors'); ?></span>
 						</div>
 					</div>
 					
 					<div class="form-group row"> 
-						<label for="full_name_id" class="col-sm-3 control-label">Country</label>
+						<label for="website" class="col-sm-3 control-label">Price</label>
 						<div class="col-sm-9">
-							<select placeholder="Country" class="form-control" id="countery" name="countery">
-								<?php 
-								$option = '';//'<option value="">Select Country</option>';
-									$listCountery = $this->utilities->getAllCountry();
-									if($listCountery){
-										foreach($listCountery as $countrie){
-											$option.="<option value='". $countrie->id ."'>".$countrie->name."</option>";
-										}
-										echo $option;
-									}
-								?>
+							<input type="text" class="form-control" id="price" name="price" placeholder="Price" value="<?php echo set_value('price'); ?>">
+							<span class="text-danger"><?php echo form_error('price'); ?></span>
+						</div>
+					</div>
+					
+					<div class="form-group row"> 
+						<label for="full_name_id" class="col-sm-3 control-label">Condition of book</label>
+						<div class="col-sm-9">
+							<select placeholder="Condition" class="form-control" id="condition" name="condition">
+								<option value="">Select Condition</option>
+								<option value="1">New</option>
+								<option value="2">Like new</option>
+								<option value="3">Very good</option>
+								<option value="4">Good</option>
+								<option value="5">Acceptable</option>
 							</select>
-							<span class="text-danger"><?php echo form_error('countery'); ?></span>
-						</div>
-					</div>-->
-					
-					<div class="form-group row"> 
-						<label for="full_name_id" class="col-sm-3 control-label">State</label>
-						<div class="col-sm-9">
-							<select placeholder="Satate" class="form-control" id="states" name="state" onchange="getCityByStateId(this)">
-								<?php 
-								$stateOption = '<option value="">Select state</option>';
-									$listState = $this->utilities->getAllState('231');
-									if($listState){
-										foreach($listState as $state){
-											$stateOption.="<option value='".$state->id . "'" . set_select('state', $state->id) . ">".$state->name."</option>";
-										}
-										echo $stateOption;
-									}
-								?>
-							</select>
-							<span class="text-danger" id="states_error"></span>
+							<span class="text-danger"><?php echo form_error('condition'); ?></span>
 						</div>
 					</div>
 					
 					<div class="form-group row"> 
-						<label for="full_name_id" class="col-sm-3 control-label">City</label>
+						<label for="website" class="col-sm-3 control-label">Description</label>
 						<div class="col-sm-9">
-							<select placeholder="City" class="form-control" id="city" name="city">
-								<?php 
-								$cityOption = '<option value="">Select City</option>';
-									$listCity = $this->utilities->getAllCity('3926');
-									if($listCity){
-										foreach($listCity as $city){
-											$cityOption.="<option value='". $city->id ."'>".$city->name."</option>";
-										}
-										echo $cityOption;
-									}
-								?>
-							</select>
-							<span class="text-danger" id="city_error"></span>
+						<textarea class="form-control" rows="5" id="discription" name="discription"><?php echo set_value('discription'); ?></textarea>
+							<span class="text-danger"><?php echo form_error('discription'); ?></span>
+						</div>
+					</div>
+					<div class="form-group row"> 
+						<label for="website" class="col-sm-3 control-label">&nbsp;</label>
+						<div class="col-sm-9">
+							<div class="phpto-area">
+								<span class="imgarea">
+									<a href="javascript:void(0);" class="imgblock" title="Add photo">
+										<span class="imgview"><div class="glyphicon glyphicon-plus"style="font-size: 3em;"></div></span>
+									</a>
+								</span>
+								<span class="prog-comp-body">
+									<span class="prog-comp-inner"></span>
+								</span>
+							</div>
+							<input type="hidden" name="imgname" id="imgname" value=""/>
 						</div>
 					</div>
 					
+					<div class="form-group row">
+						<label class="col-sm-4 control-label">&nbsp;</label>
+						<div class="col-sm-8">
+							<?php echo $this->session->flashdata('msg'); ?>
+						</div>
+					</div>
 					<div class="form-group row"> 
 						<label for="full_name_id" class="col-sm-3 control-label"></label>
 						<div class="col-sm-9">
-							<button type="button" class="btn btn-md btn-primary" onclick="addunivbyuser();">Add university</button>
+							<button type="submit" class="btn btn-md btn-primary">Post Ad</button>
 						</div>
 					</div>    
-				</form>
+				<?php echo form_close(); ?>
+					<form id="imageform" method="post" enctype="multipart/form-data" action="<?php echo base_url('postyouradd/uploadimages');?>" style="display:none;">
+						<input type="file" name="photoimg" id="photoimg" accept="image/jpeg, image/jpg" />
+					</form>
 			</div>
 		</div>
 	<fieldset>

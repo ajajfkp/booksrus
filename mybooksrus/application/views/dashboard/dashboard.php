@@ -3,10 +3,6 @@
 		<i class="glyphicon glyphicon-plus"></i>&nbsp;Post your AD
 	</a>
 </nav>
-<div class="well">
-	Inbox Messages 
-	<span class="badge pull-right">3</span>
-</div>
 <hr>
 <div class="btn-group btn-group-justified">
 	<a href="#" class="btn btn-primary col-sm-3">

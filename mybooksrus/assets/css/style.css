@@ -349,4 +349,46 @@ body,html{
 	cursor: pointer;
 }
 
+.phpto-area{
+    border: 1px dotted #ccc;
+    width: 120px;
+    padding: 40px;
+}
+
+.prog-comp-body{
+    width: 120px;
+    height: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+}
+
+.prog-comp-inner{
+    width: 0px;
+    height: 10px;
+    position: absolute;
+    background: red;
+}
+.img-close{
+	position: absolute;
+    top: -12px;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ccc;
+    left: 119px;
+    background: #ccc;
+    border-radius: 50%;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
 

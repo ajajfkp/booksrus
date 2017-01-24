@@ -6,6 +6,48 @@ $( document ).ready(function(){
 	});
 	//swal("Here's a message!")
 	//alert("Here's a message!")
+	$(document).on('click','.imgblock',function(){
+		$('#photoimg').click();
+	});
+	
+	$('#photoimg').change(function(){
+		$("#imageform").ajaxForm({
+			beforeSend: function() {
+			 	var percentVal = '0%';
+				$('.prog-comp-inner').width(percentVal);
+			},
+			uploadProgress: function(event, position, total, percentComplete) {
+				var percentVal = percentComplete + '%';
+				$('.prog-comp-inner').width(percentVal);
+			},
+			complete: function(msg,status) {
+				$('.prog-comp-inner').width('0%');
+				var returnData = $.parseJSON(msg.responseText);
+				if(returnData.error){
+					setUiMessege('err',returnData.error);
+				}else{
+				$('.phpto-area').css({'padding':0});
+				var imgHtml = '<span id="img-close" class="img-close">x</span><img src="'+base_url+'uploads/booksimg/'+returnData.file_name+'" alt="'+returnData.file_name+'" width="100%"/>';
+				$('.imgarea').html(imgHtml);
+				$('#imgname').val(returnData.file_name);
+				console.log(returnData)
+				}
+			},error: function(xhr, textStatus, errorThrown) {
+				setUiMessege('err',errorThrown);
+			}
+		}).submit();
+	});
+	
+	$(document).on('click','#img-close',function(){
+		 $('.phpto-area').css({'padding':40});
+		 $('.imgarea').html(
+			 '<a href="javascript:void(0);" class="imgblock" title="Add photo">'+
+			 '<span class="imgview">'+
+			 '<div class="glyphicon glyphicon-plus"style="font-size:3em;"></div>'+
+			 '</span>'+'</a>'
+		 );
+		 $('#imgname').val('');
+	});
 	
 });
 

@@ -140,6 +140,15 @@
 </div>
 <!-- /col-3 -->
 <div class="col-sm-9">
+<ul class="list-inline pull-right">
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="glyphicon glyphicon-comment"></i><span class="badge badge-info">3</span></a>
+	<ul class="dropdown-menu" role="menu" style="left: -150px;">
+		<li><a href="#">1. Is there a way..</a></li>
+		<li><a href="#">2. Hello, admin. I would..</a></li>
+		<li><a href="#"><strong>All messages</strong></a></li>
+	</ul>
+</li>
+</ul>
 <a><strong><?php echo $title_for_page; ?></strong></a>
 <hr>
 <div class="row">

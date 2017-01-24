@@ -36,6 +36,7 @@
 		<script src="<?php echo base_url();?>assets/js/common.js"></script>
 		<script src="<?php echo base_url();?>assets/js/bootstrap/bootstrap.min.js"></script>
 		<script src="<?php echo base_url();?>assets/sweetalert/dist/sweetalert.min.js"></script>
+		<script src="<?php echo base_url();?>assets/js/jquery.form.js"></script>
 		<script><?php echo $extra_head ?></script>
 	</body> 
 </html>
