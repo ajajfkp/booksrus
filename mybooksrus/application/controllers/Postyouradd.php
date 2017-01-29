@@ -45,11 +45,11 @@ class Postyouradd extends CI_Controller {
 			$bookData = $this->input->post();
 			$bookData['added_by'] = $this->utilities->getSessionUserData('uid'); 
 			$bookData['date_added'] = date('Y-m-d H:i:s');
+			$bookData['language'] = '1';
 			$this->db->trans_start();
 			$insBookData = $this->commonModel->insertRecord('books',$bookData);
 			$bookTran = $this->commonModel->insertRecord('books_transaction',array('book_id'=>$insBookData,'user_id'=>$this->utilities->getSessionUserData('uid'),
 				'transaction_typt'=>'1',
-				'language'=>'1',
 				'transaction_date'=>date('Y-m-d'),
 				'added_by'=>$this->utilities->getSessionUserData('uid'),
 				'date_added'=>date('Y-m-d H:i:s')));
@@ -57,7 +57,7 @@ class Postyouradd extends CI_Controller {
 			
 			if($insBookData && $bookTran){
 				$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"> Post has been added successfully.</div>');
-				redirect('dashboard/addpost');
+				redirect('postyouradd');
 			}else{
 				$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Some technical error!!!</div>');
 				$this->layouts->dbview('dashboard/addpost');
@@ -125,6 +125,7 @@ class Postyouradd extends CI_Controller {
 		$extraHead = "activateHeadMeanu('topdashboard');";
 		$extraHead .= "activateLeftMeanu('');";
 		$extraHead .= "setusermenu('listad');";
+		$extraHead .= "$('#published').datepicker({'dateFormat':'mm-dd-yy'})";
 		$this->layouts->set_extra_head($extraHead);
 		$this->layouts->set_title('Book list!');
 		$this->layouts->set_page_title('Book list','<i class="glyphicon glyphicon-plus"></i>');
@@ -167,6 +168,7 @@ class Postyouradd extends CI_Controller {
 		}else{
 			$bookData = $this->input->post();
 			$bookData['date_updated'] = date('Y-m-d H:i:s');
+			$bookData['published'] = $this->utilities->convertDateFormatForDbase($bookData['published']);
 			$bookData['updated_by'] = $this->utilities->getSessionUserData('uid');
 			$bookUpdate = $this->commonModel->updateRecord('books',$bookData,array('id'=>$bookId));
 			if($bookUpdate){

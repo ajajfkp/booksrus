@@ -59,7 +59,7 @@
 					</div>
 					<div class="col-sm-6 form-group">
 						<label for="Published" class="control-label">Published date</label>
-						<input type="text" class="form-control" id="published" name="published" placeholder="Published" value="<?php echo (($boodata['published'] && $boodata['published'] !="0000-00-00")?$boodata['published']:""); ?>">
+						<input type="text" class="form-control" id="published" name="published" placeholder="Published" value="<?php echo (($boodata['published'] && $boodata['published'] !="0000-00-00")?$this->utilities->showDateForSpecificTimeZone($boodata['published'],'m-d-Y'):""); ?>">
 						<span class="text-danger"><?php echo form_error('published'); ?></span>
 					</div>
 					<div class="clearfix"></div>

@@ -38,6 +38,7 @@ class Booksad extends CI_Model {
 				case 
 				when t1.language =1 then 'English'
 				else 'English' end as langs,
+				t1.language,
 				t1.added_by,
 				case  
 				when t1.condition = '1' then 'new'
