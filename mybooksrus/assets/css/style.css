@@ -384,11 +384,44 @@ body,html{
     cursor: pointer;
 }
 
+.list-book-cntnr{
+	margin: 10px 0;
+}
 
+.list-book-cntnr .img-cntnr{
+	border: 1px solid #ccc;
+    padding: 5px 5px;
+}
 
+.disc-area h3{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 
+.orig-price{
+	text-decoration: line-through;
+    color: #ccc;
+}
 
+.cleart10{
+	margin-top:10px;
+}
 
+.clearr10{
+	margin-right:10px;
+}
 
+.clearb10{
+	margin-bottom:10px;
+}
 
+.clearl10{
+	margin-left:10px;
+}
 
+.divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}

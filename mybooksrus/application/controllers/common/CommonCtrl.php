@@ -55,7 +55,7 @@ class Commonctrl extends CI_Controller {
 		$this->layouts->set_page_title('University','<i class="glyphicon glyphicon-home"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		
-		$data['name']=ucfirst($this->session->userdata('uname'));
+		$data['name']=ucfirst($this->utilities->getSessionUserData('uname'));
 		
 		$this->layouts->dbview('users/adduserUniv',$data);
 	}
@@ -70,21 +70,21 @@ class Commonctrl extends CI_Controller {
 		$this->form_validation->set_rules("university", "University", "trim|required|xss_clean");
 
 		if ($this->form_validation->run() == FALSE) {
-			$data['name']=ucfirst($this->session->userdata('uname'));
+			$data['name']=ucfirst($this->utilities->getSessionUserData('uname'));
 			$this->layouts->dbview('users/adduserUniv', $data);
 		}else{
 			$getInpDataArr = $this->input->post();
 			if($getInpDataArr){
 				$dataArr = array(
-					'university'=>$this->session->userdata('uid'),
-					'updated_by'=>$getInpDataArr['university'],
+					'university'=>$getInpDataArr['university'],
+					'updated_by'=>$this->utilities->getSessionUserData('uid'),
 					'updated_by'=>date("Y-m-d H:i:s")
 				);
 				
-				$updRec = $this->commonModel->updateRecord('user_profile',$dataArr,array("users_id"=>$this->session->userdata('uid')));
+				$updRec = $this->commonModel->updateRecord('user_profile',$dataArr,array("users_id"=>$this->utilities->getSessionUserData('uid')));
 				
 				if($updRec){
-					$updRec = $this->commonModel->updateRecord('users',array("university_flag"=>'1'),array("id"=>$this->session->userdata('uid')));
+					$updRec = $this->commonModel->updateRecord('users',array("university_flag"=>'1'),array("id"=>$this->utilities->getSessionUserData('uid')));
 					if($updRec){
 						redirect('dashboard');
 					}else{
@@ -116,7 +116,7 @@ class Commonctrl extends CI_Controller {
 				"state"=>$inputData['uni_state'],
 				"city"=>$inputData['city'],
 				"active_flag"=>'1',
-				"added_by"=>$this->session->userdata('uid'),
+				"added_by"=>$this->utilities->getSessionUserData('uid'),
 				'date_added'=>date("Y-m-d H:i:s")
 			);
 			

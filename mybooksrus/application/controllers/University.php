@@ -37,7 +37,7 @@ class University extends CI_Controller {
 			$inputDataArr = $this->input->post();
 			
 			if($inputDataArr){
-				$inputDataArr['added_by'] = $this->session->userdata('uid');
+				$inputDataArr['added_by'] = $this->utilities->getSessionUserData('uid');
 				$inputDataArr['date_added'] = date("Y-m-d H:i:s");
 				$inputDataArr['active_flag'] = '1';
 				$inputDataArr['approved'] = '1';

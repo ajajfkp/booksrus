@@ -10,6 +10,10 @@
 			<?php $attributes = array("name" => "addpost","class"=>"form-horizontal");
 						echo form_open("postyouradd/postadd", $attributes);?>
 					<div class="form-group row">
+						<!--<label class="col-sm-4 control-label"></label>-->
+						<div class="col-sm-8"><?php echo $this->session->flashdata('msg'); ?></div>
+					</div>
+					<div class="form-group row">
 						<label for="name" class="col-sm-3 control-label">ISBN10</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="isbn10" name="isbn10" placeholder="ISBN10" value="<?php echo set_value('isbn10'); ?>">
@@ -84,7 +88,8 @@
 									<span class="prog-comp-inner"></span>
 								</span>
 							</div>
-							<input type="hidden" name="imgname" id="imgname" value=""/>
+							<input type="hidden" name="image" id="imgname" value=""/>
+							<span class="text-danger"><?php echo form_error('image'); ?></span>
 						</div>
 					</div>
 					

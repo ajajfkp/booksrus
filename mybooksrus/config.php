@@ -97,6 +97,7 @@ define("REMOTE_IP", $_SERVER['REMOTE_ADDR']);
 
 define("CH_DB_PORT", "3306");
 define("CH_SITE_KEY", "_dev");
+define("DEFAULT_DATE_FORMATE", "m-d-Y H:i:s");
 /*define("CH_DB_UPDATE", "1");*/
 
 

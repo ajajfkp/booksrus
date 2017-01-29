@@ -9,7 +9,7 @@
 			<div class="col-sm-4 col-sm-offset-4 panel panel-default panel-body">
 				<p class="text-center">Use the form below to change your password.</p>
 				<?php $attributes = array("name" => "sendvarifyemail");
-						echo form_open("auth/resetpasswd", $attributes);?>
+						echo form_open("auth/resetpasswd/".$vfyId, $attributes);?>
 					<div class="form-group">
 							<input type="password" class="input-lg form-control" name="passwd" id="passwd" placeholder="New Password" autocomplete="off">
 							<span class="text-danger"><?php echo form_error('passwd'); ?></span>

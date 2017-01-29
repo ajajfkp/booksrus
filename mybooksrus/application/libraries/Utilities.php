@@ -27,7 +27,7 @@ class Utilities {
 	 * 		@return 		none
 	 */
 	function setSession($sess_data) {
-		$this->CI->session->set_userdata($sess_data);
+		$this->CI->session->set_userdata('userdata',$sess_data);
 	}
 
 	function setAccessSession($setAceess) {
@@ -35,24 +35,23 @@ class Utilities {
 	}
 	
 	function getUserTypeAndStatus(){
-			if($this->CI->session->userdata('user_type')=='1'){
+			if($this->getSessionUserData('user_type')=='1'){
 				$return['user_type'] = 'admin';
-			}elseif($this->CI->session->userdata('user_type')=='0'){
+			}elseif($this->getSessionUserData('user_type')=='0'){
 				$return['user_type'] = 'user';
 			}
-			if($this->CI->session->userdata('active_status')=='0'){
+			if($this->getSessionUserData('active_status')=='0'){
 				$return['active_status'] = 'active';
-			}elseif($this->CI->session->userdata('active_status')=='1'){
+			}elseif($this->getSessionUserData('active_status')=='1'){
 				$return['active_status'] = 'inactive';
-			}elseif($this->CI->session->userdata('active_status')=='2'){
+			}elseif($this->getSessionUserData('active_status')=='2'){
 				$return['active_status'] = 'delete';
 			}
 		return $return;
 	}
 	
 	public function validateSession() {
-		$sesdata = $this->CI->session->userdata('login');
-		if (isset($sesdata) && $sesdata === true) {
+		if ($this->isAuth()) {
 			if($_SERVER['REQUEST_URI']=='/auth/signin'){
 				redirect('dashboard');
 			}else if($_SERVER['REQUEST_URI']=='/auth/signup'){
@@ -67,6 +66,14 @@ class Utilities {
 		}
 	}
 	
+	function isAuth(){
+		$sesdata = $this->CI->session->userdata('userdata');
+		if (isset($sesdata) && $sesdata['login'] === true) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 	function destroySession() {
         $this->CI->session->sess_destroy();
         redirect('auth/signin');
@@ -133,7 +140,8 @@ class Utilities {
 	}
 	
 	function checkUnivApr(){
-		$getuserdata = $this->getUserDataById($this->CI->session->userdata('uid'));
+		$uid = $this->getSessionUserData('uid');
+		$getuserdata = $this->getUserDataById($uid);
 		if($getuserdata['uf']){
 			return true;
 		}else{
@@ -141,10 +149,126 @@ class Utilities {
 		}
 	}
 	
+	function getSessionUserData($key=""){
+		$sesdata = $this->CI->session->userdata('userdata');
+		if (isset($sesdata) && $sesdata['login'] === true) {
+			if($key){
+				return $sesdata[$key];
+			}else{
+				return $sesdata;
+			}
+		}else{
+			return false;
+		}
+	}
 	
+	function getSessionData($type="",$key=""){
+		$sesdata = $this->CI->session->userdata('userdata');
+		if (isset($sesdata) && $sesdata['login'] === true) {
+			if($type){
+				$specData = $this->CI->session->userdata($type);
+				if($key){
+					return $specData[$key];
+				}else{
+					return $specData;
+				}
+			}else{
+				return $this->CI->session->userdata();
+			}
+		}else{
+			return false;
+		}
+	}
 	
+	function listuserad($userId=""){
+		if($userId){
+			$coun = $this->CI->commonModle->getRecord('books','count(*) as count',array('added_by'=>$userId));
+			if($coun){
+				return $coun['count'];
+			}else{
+				return false;
+			}
+		}else{
+			$coun = $this->CI->commonModel->getRecord('books','count(*) as count',array('added_by'=>$this->getSessionUserData('uid')));
+			if($coun){
+				return $coun['count'];
+			}else{
+				return false;
+			}
+		}
+	}
 	
+	function getDiscountPrice($price=0,$dis=0){
+		if($price){
+			if($dis){
+				$price = $price - (($price*$dis)/100);
+				return number_format((float)$price, 2, '.', '');
+			}else{
+				return number_format((float)$price, 2, '.', '');
+			}
+		}else{
+			return  number_format((float)$price, 2, '.', '');
+		}
+	}
 	
+	function getFormatedPrice($price=0){
+		if($price){
+			return number_format((float)$price, 2, '.', '');
+		}else{
+			return  number_format((float)$price, 2, '.', '');
+		}
+	}
 	
+	function convertDateFormatForDbase($suppliedDate, $format = "Y-m-d") {
+        /* If we have any general setting in which we have defined the date format
+          or in session then we can extract that here and pass the following funtion
+         */
+		 if((empty($suppliedDate) or $suppliedDate=='0000-00-00' or strlen($suppliedDate)<10)){
+			return false; 
+		}
+		if(DEFAULT_DATE_FORMATE =='d-m-Y'){
+			$dmystring = explode("-",$suppliedDate);
+			$suppliedDate = $dmystring[1]."-".$dmystring[0]."-".$dmystring[2];
+		}
+		if($suppliedDate!=''){
+			$suppliedDate = str_replace("-", "/", $suppliedDate);
+			if (!isset($suppliedDate) or $suppliedDate == "") {
+				$date = date("m-d-Y"); //put current date 
+			}
+			$dateObj = new DateTime($suppliedDate);
+			$dateForDbase = $dateObj->format('Y-m-d');
+			return $dateForDbase;
+		}else{
+			return false;
+		}
+    }
 	
+	function showDateForSpecificTimeZone($dateTime, $userDefinedDateFormat = '',$mdyTo=false,$userDefinedTimeZone='') {
+		if($dateTime=='0000-00-00' || $dateTime=='0000-00-00 00:00:00' || $dateTime=='' || $dateTime=='0'){
+			return "";
+		}
+		if($mdyTo){
+			$dateTime=str_replace('-','/',$dateTime);
+		}else{
+			$dateTime=str_replace('/','-',$dateTime);
+		}
+        $this->CI->load->helper('date');
+		$dt1 = new DateTime($dateTime);
+        $defaultDateFormat = '';
+        if (empty($userDefinedDateFormat)) {
+            if (!DEFAULT_DATE_FORMATE) {
+                $defaultDateFormat = DATE_W3C; //set default 
+            } else {
+                $defaultDateFormat = DEFAULT_DATE_FORMATE;
+            }
+        } else {
+            $defaultDateFormat = $userDefinedDateFormat;
+        }
+        if(!empty($userDefinedTimeZone)){
+            $timezone=$userDefinedTimeZone;
+        }else{
+            $timezone = 'UTC';        
+        }
+		return $dt1->format($defaultDateFormat);
+	}
 }

@@ -12,7 +12,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-			<?php if ($this->session->userdata('login')){ ?>
+			<?php if ($this->utilities->isAuth()){ ?>
 				<li id="topdashboard" class="active">
 					<a href="<?php echo base_url('dashboard');?>">
 						<span class="glyphicon glyphicon-dashboard"></span> Dashboard
@@ -37,10 +37,10 @@
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<?php if ($this->session->userdata('login')){ ?>
+				<?php if ($this->utilities->isAuth()){ ?>
 				<li>
 					<a>
-						Hello <?php echo $this->session->userdata('uname'); ?>
+						Hello <?php echo $this->utilities->getSessionUserData('uname'); ?>
 					</a>
 				</li>
 				<li>

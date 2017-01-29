@@ -9,7 +9,6 @@ class Search extends CI_Controller {
 		$this->load->model('auth/auths');
 		$this->load->model('search/SearchModel');
 		$this->load->helper('string');
-		$this->utilities->checkUnivApr();
 	}
 	
 	
@@ -37,6 +36,7 @@ class Search extends CI_Controller {
 	}
 	
 	public function searchbooks(){
+		$this->utilities->checkUnivApr();
 		$extraHead = "activateHeadMeanu('topdashboard');";
 		$extraHead .= "activateLeftMeanu('leftsearcby');";
 		$this->layouts->set_extra_head($extraHead);

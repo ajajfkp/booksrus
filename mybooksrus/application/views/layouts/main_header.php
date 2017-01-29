@@ -11,7 +11,7 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-			<?php if ($this->session->userdata('login')){ ?>
+			<?php if ($this->utilities->isAuth()){ ?>
 				<li id="topdashboard" class="active">
 					<a href="<?php echo base_url('dashboard');?>">
 						<span class="glyphicon glyphicon-dashboard"></span> Dashboard
@@ -41,10 +41,10 @@
 						<span class="glyphicon glyphicon-shopping-cart"></span> 4
 					</a>
 				</li>-->
-				<?php if ($this->session->userdata('login')){ ?>
+				<?php if ($this->utilities->isAuth()){ ?>
 				<li>
 					<p class="navbar-text">
-						Hello <?php echo $this->session->userdata('uname'); ?>
+						Hello <?php echo $this->utilities->getSessionUserData('uname'); ?>
 					</p>
 				</li>
 				<li>

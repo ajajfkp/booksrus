@@ -70,6 +70,7 @@ class Auth extends CI_Controller {
 					// set session
 						$sess_data = array('login' => TRUE, 'uname' => $result['first_name'], 'uid' => $result['id'], 'active_status' => $result['active_status'], 'email' => $result['email'], 'mobile' => $result['mobile'], 'user_type' => $result['user_type'], 'user_name' => $result['user_id']);
 						$this->utilities->setSession($sess_data);
+						$this->utilities->setWrongPasswdAtempt(true);
 						redirect('dashboard');
 					}
 				} else {
@@ -178,7 +179,7 @@ class Auth extends CI_Controller {
 	}
 	
 	public function logout() {
-		$sesdata = $this->session->userdata('login');
+		$sesdata = $this->utilities->getSessionUserData('login');
 		if (isset($sesdata) && $sesdata === true) {
 			$this->session->sess_destroy();
 			redirect('/');
@@ -352,7 +353,7 @@ class Auth extends CI_Controller {
 					$this->layouts->view('auth/emailVarifyResult',$data);
 				}else{
 					//Success
-					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">"Reset password linl sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.</div>');
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">"Reset password link sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.</div>');
 					redirect('auth/signin');
 					/* $data['msg_succ'] = 'Reset password email has been sent to your register email... '.anchor("auth/signin", 'Sign in', array('title' => 'Sign in'));
 					$this->layouts->view('auth/emailVarifyResult',$data); */
@@ -380,16 +381,17 @@ class Auth extends CI_Controller {
 		
 	}
 	
-	public function resetpasswd(){
+	public function resetpasswd($vfyId=''){
 		$this->layouts->set_title('Reset Password');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		
 		$this->form_validation->set_rules('passwd','Password','trim|required|min_length[6]|matches[repasswd]|md5');
 		$this->form_validation->set_rules('repasswd', 'Repeat Password', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
+			$data['vfyId']=$vfyId;
 			$this->layouts->set_title('Reset Password');
 			$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
-			$this->layouts->view('auth/resetpasswdform');
+			$this->layouts->view('auth/resetpasswdform',$data);
 		} else {
 			$passwd = $this->input->post('passwd');
 			$vfyId = $this->input->post('vfyId');

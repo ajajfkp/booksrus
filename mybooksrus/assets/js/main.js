@@ -37,6 +37,37 @@ $( document ).ready(function(){
 			}
 		}).submit();
 	});
+	$(document).on('click','.imgblock',function(){
+		$('#photoimgupload').click();
+	});
+	$('#photoimgupload').change(function(){
+		console.log('ddd')
+		$("#imageform").ajaxForm({
+			beforeSend: function() {
+			 	var percentVal = '0%';
+				$('.prog-comp-inner').width(percentVal);
+			},
+			uploadProgress: function(event, position, total, percentComplete) {
+				var percentVal = percentComplete + '%';
+				$('.prog-comp-inner').width(percentVal);
+			},
+			complete: function(msg,status) {
+				$('.prog-comp-inner').width('0%');
+				var returnData = $.parseJSON(msg.responseText);
+				if(returnData.error){
+					setUiMessege('err',returnData.error);
+				}else{
+				$('.phpto-area').css({'padding':0});
+				var imgHtml = '<span id="img-close" class="img-close" style="top: 12px;">x</span><img src="'+base_url+'uploads/booksimg/'+returnData.file_name+'" alt="'+returnData.file_name+'" width="100%"/>';
+				$('.imgarea').html(imgHtml);
+				$('#imgname').val(returnData.file_name);
+				console.log(returnData)
+				}
+			},error: function(xhr, textStatus, errorThrown) {
+				setUiMessege('err',errorThrown);
+			}
+		}).submit();
+	});
 	
 	$(document).on('click','#img-close',function(){
 		 $('.phpto-area').css({'padding':40});
@@ -201,7 +232,11 @@ function activateLeftMeanu(idArr){
 	}
 }
 
-
+function setusermenu(id){
+	$("#leftuseraria").addClass("open");
+	$("#leftuseraria > a").attr("aria-expanded",true);
+	$("#"+id+" >a ").css({'color':'#ccc'});
+}
 
 
 

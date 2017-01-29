@@ -26,23 +26,32 @@
 				<li id="leftsearcby">
 					<a href="<?php echo base_url('search/searchbooks'); ?>">Search & buy<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-search"></a>
 				</li>
-				<li id="leftbybook">
+				<!--<li id="leftbybook">
 					<a href="<?php echo base_url('dashboard')?>">Buy Books<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-book"></a>
-				</li>
+				</li>-->
 				<li id="leftuseraria" class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">User aria <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
 					<ul class="dropdown-menu forAnimate" role="menu">
-						<li><a href="<?php echo base_url('users/changenamae'); ?>">Change Name</a></li>
+						<?php if( $count = $this->utilities->listuserad()){?>
+						<li id="listad">
+							<a href="<?php echo base_url('postyouradd/listuserAdDetails'); ?>">
+								List your Ads
+								<span class="badge badge-info pull-right"><?php echo $count; ?></span>
+							</a>
+						</li>
+						<?php } ?>
 						<li class="divider"></li>
-						<li><a href="<?php echo base_url('users/changecontact'); ?>">Change address details</a></li>
+						<li id="changename"><a href="<?php echo base_url('users/changenamae'); ?>">Change Name</a></li>
 						<li class="divider"></li>
-						<li><a href="#">Change phone</a></li>
+						<li id="changeaddr"><a href="<?php echo base_url('users/changecontact'); ?>">Change address details</a></li>
 						<li class="divider"></li>
-						<li><a href="#">Change password</a></li>
+						<li id="changephone"><a href="#">Change phone</a></li>
 						<li class="divider"></li>
-						<li><a href="#">Change email</a></li>
+						<li id="changepasswd"><a href="#">Change password</a></li>
 						<li class="divider"></li>
-						<li><a href="#">Email notifications</a></li>
+						<li id="changeemail"><a href="#">Change email</a></li>
+						<li class="divider"></li>
+						<li id="changenotyfy"><a href="#">Email notifications</a></li>
 					</ul>
 				</li>          
 				<li ><a href="#">Libros<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></li>        

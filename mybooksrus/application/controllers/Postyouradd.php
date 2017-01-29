@@ -6,6 +6,7 @@ class Postyouradd extends CI_Controller {
 		$this->load->library('Layouts');
 		$this->utilities->validateSession();
 		$this->load->model('users/usersModel');
+		$this->load->model('books/booksad');
 		$this->utilities->checkUnivApr();
 	}
 	
@@ -37,11 +38,30 @@ class Postyouradd extends CI_Controller {
 		$this->form_validation->set_rules('price', 'Price', 'trim|numeric|required|xss_clean');
 		$this->form_validation->set_rules('condition', 'Condition of book', 'trim|numeric|required|xss_clean');
 		$this->form_validation->set_rules('discription', 'Description', 'trim|required|xss_clean');
-		
+		$this->form_validation->set_rules('image', 'Image', 'trim|required|xss_clean');
 		if ($this->form_validation->run() == FALSE) {
 			$this->layouts->dbview('dashboard/addpost');
 		}else{
-			echo "success";
+			$bookData = $this->input->post();
+			$bookData['added_by'] = $this->utilities->getSessionUserData('uid'); 
+			$bookData['date_added'] = date('Y-m-d H:i:s');
+			$this->db->trans_start();
+			$insBookData = $this->commonModel->insertRecord('books',$bookData);
+			$bookTran = $this->commonModel->insertRecord('books_transaction',array('book_id'=>$insBookData,'user_id'=>$this->utilities->getSessionUserData('uid'),
+				'transaction_typt'=>'1',
+				'language'=>'1',
+				'transaction_date'=>date('Y-m-d'),
+				'added_by'=>$this->utilities->getSessionUserData('uid'),
+				'date_added'=>date('Y-m-d H:i:s')));
+			$this->db->trans_complete();
+			
+			if($insBookData && $bookTran){
+				$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"> Post has been added successfully.</div>');
+				redirect('dashboard/addpost');
+			}else{
+				$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops! Error.  Some technical error!!!</div>');
+				$this->layouts->dbview('dashboard/addpost');
+			}
 		}
 		
 	}
@@ -67,5 +87,94 @@ class Postyouradd extends CI_Controller {
         }
     }
 	
+	function listuserAdDetails(){
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('');";
+		$extraHead .= "setusermenu('listad');";
+		$this->layouts->set_extra_head($extraHead);
+		$this->layouts->set_title('Book list!');
+		$this->layouts->set_page_title('Book list','<i class="glyphicon glyphicon-plus"></i>');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		
+		$getData = $this->booksad->getListUserAd($this->utilities->getSessionUserData('uid'),'1');
+		$getBuyData = $this->booksad->getListUserAd($this->utilities->getSessionUserData('uid'),'2');
+		$data['userbooks'] = $getData;
+		$data['userbuybooks'] = $getBuyData;
+		$this->layouts->dbview('dashboard/userbooklist',$data);
+	}
+	
+	function bookdetails($bookId=''){
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('');";
+		$extraHead .= "setusermenu('listad');";
+		$this->layouts->set_extra_head($extraHead);
+		$this->layouts->set_title('Book list!');
+		$this->layouts->set_page_title('Book list','<i class="glyphicon glyphicon-plus"></i>');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		
+		if($bookId){
+			$getData = $this->booksad->getBookDetails($bookId);
+			$data['boodata'] = $getData;
+			$this->layouts->dbview('dashboard/viewbookdetails',$data);
+		}else{
+			redirect('postyouradd/listuserAdDetails');
+		}
+	}
+	
+	function updatebookform($bookId=''){
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('');";
+		$extraHead .= "setusermenu('listad');";
+		$this->layouts->set_extra_head($extraHead);
+		$this->layouts->set_title('Book list!');
+		$this->layouts->set_page_title('Book list','<i class="glyphicon glyphicon-plus"></i>');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		
+		if($bookId){
+			$getData = $this->booksad->getBookDetails($bookId);
+			$data['boodata'] = $getData;
+			$this->layouts->dbview('dashboard/updatebookdetails',$data);
+		}else{
+			redirect('postyouradd/listuserAdDetails');
+		}
+	}
+	
+	function updatebookdata($bookId=""){
+		$getData = $this->booksad->getBookDetails($bookId);
+		$data['boodata'] = $getData;
+		
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('leftsellbooks');";
+		$this->layouts->set_extra_head($extraHead);
+
+		$this->layouts->set_title('Add your post!');
+		$this->layouts->set_page_title('Post your ad','<i class="glyphicon glyphicon-plus"></i>');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		
+		// set form validation rules
+		$this->form_validation->set_rules('name', 'Title', 'trim|required|xss_clean|max_length[255]');
+		$this->form_validation->set_rules('isbn10', 'ISBN 10', 'trim|integer|required|xss_clean|max_length[11]');
+		$this->form_validation->set_rules('isbn13', 'ISBN 13', 'trim|integer|required|xss_clean|max_length[11]');
+		$this->form_validation->set_rules('authors', 'Authors', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('price', 'Price', 'trim|numeric|required|xss_clean');
+		$this->form_validation->set_rules('condition', 'Condition of book', 'trim|numeric|required|xss_clean');
+		$this->form_validation->set_rules('discription', 'Description', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('image', 'Image', 'trim|required|xss_clean');
+		if ($this->form_validation->run() == FALSE) {
+			$getData = $this->booksad->getBookDetails($bookId);
+			$data['boodata'] = $getData;
+			$this->layouts->dbview('dashboard/updatebookdetails',$data);
+		}else{
+			$bookData = $this->input->post();
+			$bookData['date_updated'] = date('Y-m-d H:i:s');
+			$bookData['updated_by'] = $this->utilities->getSessionUserData('uid');
+			$bookUpdate = $this->commonModel->updateRecord('books',$bookData,array('id'=>$bookId));
+			if($bookUpdate){
+				redirect('postyouradd/bookdetails/'.$bookId.'/'.$getData['title']);
+			}else{
+				$this->layouts->dbview('dashboard/updatebookdetails',$data);
+			}
+		}
+	}
 	
 }
