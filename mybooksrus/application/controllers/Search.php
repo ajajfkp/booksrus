@@ -44,7 +44,25 @@ class Search extends CI_Controller {
 		$this->layouts->set_title('Search!');
 		$this->layouts->set_page_title('Home','<i class="glyphicon glyphicon-search"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
-		$this->layouts->dbview('search/innersearch');
+		
+		if($this->input->get('inputsearch')){
+			$getRec = $this->SearchModel->getBookList($this->input->post('inputsearch'));
+			$data['booksdata'] = $getRec;
+			$data['inputsearch'] = $this->input->get('inputsearch');
+			$this->layouts->dbview('search/innersearch',$data);
+			
+		}else{
+			$this->layouts->dbview('search/innersearch');
+		}
+		
+		
+	}
+	
+	public function searchbookslist(){
+		$input = $this->input->post('input');
+		$getRec = $this->SearchModel->getBookList($input);
+		$data['booksdata'] = $getRec;
+		$this->load->view('search/innersearchview',$data);
 	}
 	
 	

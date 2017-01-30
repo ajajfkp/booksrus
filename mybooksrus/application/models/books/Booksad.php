@@ -32,7 +32,7 @@ class Booksad extends CI_Model {
 	}
 	
 	function getBookDetails($bookId=""){
-		$sql = "select t1.id bookid,t1.isbn10,t1.isbn13,t1.name title,t1.discription,t1.authors,
+			$sql = "select t1.id bookid,t1.isbn10,t1.isbn13,t1.name title,t1.discription,t1.authors,
 				t1.edition,t1.binding,t1.publisher,t1.published,t1.price,t1.copyright_year,
 				t1.pages,t1.image,t1.size,t1.size_unit,t1.weight,t1.weight_unit,
 				case 
@@ -48,7 +48,7 @@ class Booksad extends CI_Model {
 				when t1.condition = '5' then 'Acceptable' else '' end as conditions,t1.condition,
 				t1.discount,t2.transaction_typt from books t1 
 				inner join books_transaction t2 on t1.id=t2.book_id
-				where t2.active_status ='1' and t2.transaction_typt and t1.id='".$bookId."'";
+				where t2.active_status ='1' and t2.transaction_typt='1' and t1.id='".$bookId."'";
 		if($bookId){
 			$data = $this->db->query($sql);
 			if ($data->num_rows() > 0) {

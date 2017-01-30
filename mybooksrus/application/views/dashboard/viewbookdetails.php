@@ -32,7 +32,18 @@
 				<p><b>Language - </b><?php echo (($boodata['langs'])?$boodata['langs']:''); ?></p>
 				<p><b>Condition - </b><?php echo (($boodata['conditions'])?$boodata['conditions']:''); ?></p>
 				<p><b>Description - </b><?php echo (($boodata['discription'])?$boodata['discription']:''); ?></p>
-				<p><a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".$boodata['title']); ?>" class="btn btn-md btn-primary pull-right">Edit</a></p>
+				<p>
+				<?php
+				if($boodata['added_by'] == $this->utilities->getSessionUserData('uid')){
+				?>
+				<a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".$boodata['title']); ?>" class="btn btn-md btn-primary pull-right">Edit</a></p>
+				<?php
+				}else{
+				?>
+				<a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".$boodata['title']); ?>" class="btn btn-md btn-primary pull-right">Buy this book</a></p>
+				<?php
+				}
+				?>
 			</div>
 		</div>
 	</div>

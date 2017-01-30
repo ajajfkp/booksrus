@@ -238,7 +238,52 @@ function setusermenu(id){
 	$("#"+id+" >a ").css({'color':'#ccc'});
 }
 
+function booksearchkeyup(){
+	window.setTimeout(function(){
+		var input  = $('#inputsearch').val();
+		$.ajax({
+			type: "POST",
+			url: base_url+'search/searchbookslist',
+			data: {
+				'input':input
+			},
+			success: function(msg){
+				if(input){
+					$('#innersearchdd').html('');
+					$('#innersearchdd').html(msg);
+				}else{
+					$('#innersearchdd').html('');
+				}
+				
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				setUiMessege('err',errorThrown);
+			}
+		});
+	},1000);
+}
 
+function booksearch(){
+	var input  = $('#inputsearch').val();
+	if(!input){
+		return false;
+	}else{
+		$.ajax({
+			type: "POST",
+			url: base_url+'search/searchbookslist',
+			data: {
+				'input':input
+			},
+			success: function(msg){
+				$('#innersearchres').html('');
+				$('#innersearchres').html(msg);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				setUiMessege('err',errorThrown);
+			}
+		});
+	}
+}
 
 
 
