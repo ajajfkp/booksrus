@@ -87,7 +87,7 @@ class Postyouradd extends CI_Controller {
         }
     }
 	
-	function listuserAdDetails(){
+	function listuseradsetails(){
 		$extraHead = "activateHeadMeanu('topdashboard');";
 		$extraHead .= "activateLeftMeanu('');";
 		$extraHead .= "setusermenu('listad');";
@@ -117,7 +117,7 @@ class Postyouradd extends CI_Controller {
 			$data['boodata'] = $getData;
 			$this->layouts->dbview('dashboard/viewbookdetails',$data);
 		}else{
-			redirect('postyouradd/listuserAdDetails');
+			redirect('postyouradd/listuseradsetails');
 		}
 	}
 	
@@ -136,7 +136,7 @@ class Postyouradd extends CI_Controller {
 			$data['boodata'] = $getData;
 			$this->layouts->dbview('dashboard/updatebookdetails',$data);
 		}else{
-			redirect('postyouradd/listuserAdDetails');
+			redirect('postyouradd/listuseradsetails');
 		}
 	}
 	

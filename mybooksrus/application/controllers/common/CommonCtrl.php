@@ -76,15 +76,14 @@ class Commonctrl extends CI_Controller {
 			$getInpDataArr = $this->input->post();
 			if($getInpDataArr){
 				$dataArr = array(
-					'university'=>$getInpDataArr['university'],
+					'university_id'=>$getInpDataArr['university'],
+					'university_flag'=>'1',
 					'updated_by'=>$this->utilities->getSessionUserData('uid'),
-					'updated_by'=>date("Y-m-d H:i:s")
+					'date_updated'=>date("Y-m-d H:i:s")
 				);
 				
-				$updRec = $this->commonModel->updateRecord('user_profile',$dataArr,array("users_id"=>$this->utilities->getSessionUserData('uid')));
-				
+				$updRec = $this->commonModel->updateRecord('users',$dataArr,array("id"=>$this->utilities->getSessionUserData('uid')));
 				if($updRec){
-					$updRec = $this->commonModel->updateRecord('users',array("university_flag"=>'1'),array("id"=>$this->utilities->getSessionUserData('uid')));
 					if($updRec){
 						redirect('dashboard');
 					}else{

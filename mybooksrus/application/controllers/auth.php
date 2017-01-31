@@ -128,6 +128,7 @@ class Auth extends CI_Controller {
 					'first_name' => $this->input->post('first_name'),
 					'last_name' => $this->input->post('last_name'),
 					'email' => $this->input->post('email'),
+					'university_email' => $this->input->post('email'),
 					'passwd' => $this->input->post('passwd'),
 					'email_verification_code' => md5($this->input->post('email')).random_string('alnum', 20)
 				);
@@ -161,7 +162,7 @@ class Auth extends CI_Controller {
 							redirect('auth/signup');
 						}else{
 							//Success
-							$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"> Verification email sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.</div>');
+							$this->session->set_flashdata('msg','<div class="alert alert-danger text-center"> Verification email sent to the edu address, may take up to 30 mins. Please check your Inbox / Spam for the email.</div>');
 							redirect('auth/signup');
 						}
 					}else{
@@ -245,7 +246,7 @@ class Auth extends CI_Controller {
 					$this->layouts->view('auth/emailVarifyResult',$data);
 				}else{
 					//Success
-					$data['msg_succ'] = 'Verification email sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.'.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
+					$data['msg_succ'] = 'Verification email sent to the edu address, may take up to 30mins. Please check your Inbox / Spam for the email.'.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
 					$this->layouts->view('auth/emailVarifyResult',$data);
 				}
 			}else{
@@ -262,8 +263,6 @@ class Auth extends CI_Controller {
 		$this->layouts->set_title('Email varification');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$this->layouts->view('auth/sendVarifyEmailForm');
-		
-		
 	}
 	
 	public function sendvarificationemail(){
@@ -294,12 +293,12 @@ class Auth extends CI_Controller {
 				$send = $this->sendemail->emailSend($emailData);
 				if(!$send){
 					//Error
-					$data['msg_fail'] = 'Sorry...!!!, There are technical problems in sending mail please try again '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
-					$this->layouts->view('auth/emailVarifyResult',$data);
+					$this->session->set_flashdata('msg','Sorry...!!!, There are technical problems in sending mail please try again '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home')));
+					redirect('auth/viewvarifyemail');
 				}else{
 					//Success
-					$data['msg_succ'] = '"Verification email sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.'.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
-					$this->layouts->view('auth/emailVarifyResult',$data);
+					$this->session->set_flashdata('msg','Verification email sent to the edu address, may take up to 30mins. Please check your Inbox / Spam for the email.'.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home')));
+					redirect('auth/viewvarifyemail');
 				}
 			}else {
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Somthing is worng please try Again</div>');
@@ -349,14 +348,12 @@ class Auth extends CI_Controller {
 				$send = $this->sendemail->emailSend($emailData);
 				if(!$send){
 					//Error
-					$data['msg_fail'] = 'Sorry...!!!, There are technical problems in sending mail please try again '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home'));
-					$this->layouts->view('auth/emailVarifyResult',$data);
+					$this->session->set_flashdata('msg','Sorry...!!!, There are technical problems in sending mail please try again '.anchor("index/index", 'Go back to home page', array('title' => 'Go back to home')));
+					redirect('auth/forgetpasswd');
 				}else{
 					//Success
-					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">"Reset password link sent to the edu address, may take up to 30mins" . Please check your Inbox/ Spam for the email.</div>');
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Reset password link sent to the edu address, may take up to 30mins. Please check your Inbox / Spam for the email.</div>');
 					redirect('auth/signin');
-					/* $data['msg_succ'] = 'Reset password email has been sent to your register email... '.anchor("auth/signin", 'Sign in', array('title' => 'Sign in'));
-					$this->layouts->view('auth/emailVarifyResult',$data); */
 				}
 			} else if($getUserData['active_status']=='0'){
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Your account is not varified please '.anchor("auth/viewvarifyemail", 'Varify', array('title' => 'Varify your account')).' your account</div>');

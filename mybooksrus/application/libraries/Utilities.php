@@ -182,19 +182,14 @@ class Utilities {
 	
 	function listuserad($userId=""){
 		if($userId){
-			$coun = $this->CI->commonModle->getRecord('books','count(*) as count',array('added_by'=>$userId));
+			$coun = $this->CI->commonModel->getRecord('books_transaction','count(*) as count',array('user_id'=>$userId));
 			if($coun){
 				return $coun['count'];
 			}else{
 				return false;
 			}
 		}else{
-			$coun = $this->CI->commonModel->getRecord('books','count(*) as count',array('added_by'=>$this->getSessionUserData('uid')));
-			if($coun){
-				return $coun['count'];
-			}else{
-				return false;
-			}
+			return false;
 		}
 	}
 	
