@@ -46,13 +46,13 @@ class Search extends CI_Controller {
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		
 		if($this->input->get('inputsearch')){
-			$getRec = $this->SearchModel->getBookList($this->input->post('inputsearch'));
+			$getRec = $this->SearchModel->getBookList($this->input->get('inputsearch'));
 			$data['booksdata'] = $getRec;
 			$data['inputsearch'] = $this->input->get('inputsearch');
 			$this->layouts->dbview('search/innersearch',$data);
-			
 		}else{
-			$this->layouts->dbview('search/innersearch');
+			$data['booksdata'] = '';
+			$this->layouts->dbview('search/innersearch',$data);
 		}
 		
 		

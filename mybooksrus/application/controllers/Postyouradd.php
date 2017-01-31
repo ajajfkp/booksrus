@@ -43,9 +43,13 @@ class Postyouradd extends CI_Controller {
 			$this->layouts->dbview('dashboard/addpost');
 		}else{
 			$bookData = $this->input->post();
+			$useruniv = $this->commonModel->getRecord('users','university_id',array('id'=>$this->utilities->getSessionUserData('uid')));
+			
 			$bookData['added_by'] = $this->utilities->getSessionUserData('uid'); 
 			$bookData['date_added'] = date('Y-m-d H:i:s');
 			$bookData['language'] = '1';
+			$bookData['university_id'] = $useruniv['university_id'];
+			
 			$this->db->trans_start();
 			$insBookData = $this->commonModel->insertRecord('books',$bookData);
 			$bookTran = $this->commonModel->insertRecord('books_transaction',array('book_id'=>$insBookData,'user_id'=>$this->utilities->getSessionUserData('uid'),
@@ -172,7 +176,7 @@ class Postyouradd extends CI_Controller {
 			$bookData['updated_by'] = $this->utilities->getSessionUserData('uid');
 			$bookUpdate = $this->commonModel->updateRecord('books',$bookData,array('id'=>$bookId));
 			if($bookUpdate){
-				redirect('postyouradd/bookdetails/'.$bookId.'/'.$getData['title']);
+				redirect('postyouradd/bookdetails/'.$bookId.'/'.preg_replace('/[ ,]+/', '-', trim($getData['title'])));
 			}else{
 				$this->layouts->dbview('dashboard/updatebookdetails',$data);
 			}

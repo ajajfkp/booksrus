@@ -36,11 +36,11 @@
 				<?php
 				if($boodata['added_by'] == $this->utilities->getSessionUserData('uid')){
 				?>
-				<a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".$boodata['title']); ?>" class="btn btn-md btn-primary pull-right">Edit</a></p>
+				<a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".preg_replace('/[ ,]+/', '-', trim($boodata['title']))); ?>" class="btn btn-md btn-primary pull-right">Edit</a></p>
 				<?php
 				}else{
 				?>
-				<a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".$boodata['title']); ?>" class="btn btn-md btn-primary pull-right">Buy this book</a></p>
+				<a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".preg_replace('/[ ,]+/', '-', trim($boodata['title']))); ?>" class="btn btn-md btn-primary pull-right">Buy this book</a></p>
 				<?php
 				}
 				?>

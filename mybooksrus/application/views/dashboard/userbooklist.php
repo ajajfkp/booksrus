@@ -23,6 +23,8 @@
 					<div class="col-lg-8 disc-area">
 						<h3><?php echo (($userbook['title'])?$userbook['title']:'Title'); ?></h3>
 						<p>By - <?php echo (($userbook['authors'])?$userbook['authors']:'Authors'); ?></p>
+						<p>ISBN 10 - <?php echo (($userbook['isbn10'])?$userbook['isbn10']:''); ?></p>
+						<p>ISBN 13 - <?php echo (($userbook['isbn13'])?$userbook['isbn13']:''); ?></p>
 						<p>$ <?php echo $this->utilities->getDiscountPrice($userbook['price'],$userbook['discount']); ?>
 						<?php
 						if($userbook['discount']){
@@ -30,7 +32,7 @@
 						}
 						?>
 						</p>
-						<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$userbook['bookid'].'/'.$userbook['title']); ?>" class="btn btn-md btn-primary">view & update</a></p>
+						<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$userbook['bookid'].'/'.preg_replace('/[ ,]+/', '-', trim($userbook['title']))); ?>" class="btn btn-md btn-primary">view & update</a></p>
 					</div>
 				</div>
 				<div class="divider"></div>
@@ -51,6 +53,8 @@
 					<div class="col-lg-8 disc-area">
 						<h3><?php echo (($userbuybook['title'])?$userbuybook['title']:'Title'); ?></h3>
 						<p>By - <?php echo (($userbuybook['authors'])?$userbuybook['authors']:'Authors'); ?></p>
+						<p>ISBN 10 - <?php echo (($userbuybook['isbn10'])?$userbuybook['isbn10']:''); ?></p>
+						<p>ISBN 13 - <?php echo (($userbuybook['isbn13'])?$userbuybook['isbn13']:''); ?></p>
 						<p>$ <?php echo $this->utilities->getDiscountPrice($userbuybook['price'],$userbuybook['discount']); ?>
 						<?php
 						if($userbuybook['discount']){
@@ -58,7 +62,7 @@
 						}
 						?>
 						</p>
-						<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$userbuybook['bookid']); ?>" class="btn btn-md btn-primary">view & update</a></p>
+						<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$userbuybook['bookid'].'/'.preg_replace('/[ ,]+/', '-', trim($userbuybook['title']))); ?>" class="btn btn-md btn-primary">view & update</a></p>
 					</div>
 				</div>
 				<div class="divider"></div>

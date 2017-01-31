@@ -25,7 +25,7 @@
 	</div>
 	<div class="panel-body" id="innersearchres">
 		<?php 
-	if(isset($booksdata)){
+	if($booksdata){
 		foreach($booksdata as $bookdata){
 ?>
 	<div class="row list-book-cntnr">
@@ -44,7 +44,7 @@
 			}
 			?>
 			</p>
-			<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$bookdata['bookid'].'/'.$bookdata['title']); ?>" class="btn btn-md btn-primary">view details</a></p>
+			<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$bookdata['bookid'].'/'.preg_replace('/[ ,]+/', '-', trim($bookdata['title']))); ?>" class="btn btn-md btn-primary">view details</a></p>
 		</div>
 	</div>
 	<div class="divider"></div>
