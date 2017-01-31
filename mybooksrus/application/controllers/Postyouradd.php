@@ -176,7 +176,7 @@ class Postyouradd extends CI_Controller {
 			$bookData['updated_by'] = $this->utilities->getSessionUserData('uid');
 			$bookUpdate = $this->commonModel->updateRecord('books',$bookData,array('id'=>$bookId));
 			if($bookUpdate){
-				redirect('postyouradd/bookdetails/'.$bookId.'/'.preg_replace('/[ ,]+/', '-', trim($getData['title'])));
+				redirect('postyouradd/bookdetails/'.$bookId.'/'.$this->utilities->cleanurl($getData['title']));
 			}else{
 				$this->layouts->dbview('dashboard/updatebookdetails',$data);
 			}

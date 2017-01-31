@@ -266,4 +266,13 @@ class Utilities {
         }
 		return $dt1->format($defaultDateFormat);
 	}
+	
+	function cleanurl($input){
+		if($input){
+			return preg_replace('/[ ,!@#$%^&*()+<>?\/\~"\']+/', '-', trim($input));
+		}else{
+			return false;
+		}
+	}
+	
 }

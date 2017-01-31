@@ -32,7 +32,7 @@
 						}
 						?>
 						</p>
-						<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$userbook['bookid'].'/'.preg_replace('/[ ,]+/', '-', trim($userbook['title']))); ?>" class="btn btn-md btn-primary">view & update</a></p>
+						<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$userbook['bookid'].'/'.$this->utilities->cleanurl($userbook['title'])); ?>" class="btn btn-md btn-primary">view & update</a></p>
 					</div>
 				</div>
 				<div class="divider"></div>
@@ -62,7 +62,7 @@
 						}
 						?>
 						</p>
-						<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$userbuybook['bookid'].'/'.preg_replace('/[ ,]+/', '-', trim($userbuybook['title']))); ?>" class="btn btn-md btn-primary">view & update</a></p>
+						<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$userbuybook['bookid'].'/'.$this->utilities->cleanurl($userbuybook['title'])); ?>" class="btn btn-md btn-primary">view & update</a></p>
 					</div>
 				</div>
 				<div class="divider"></div>

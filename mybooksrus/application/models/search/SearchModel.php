@@ -7,7 +7,7 @@ class SearchModel extends CI_Model {
 	}
 	
 	function getBookList($searchBy){
-		$sql = "select t1.id bookid,t1.isbn10,t1.isbn13,t1.name title,t1.discription,t1.authors,
+		$sql = "select distinct t1.id bookid,t1.isbn10,t1.isbn13,t1.name title,t1.discription,t1.authors,
 			t1.edition,t1.binding,t1.publisher,t1.published,t1.price,t1.copyright_year,
 			t1.pages,t1.image,t1.size,t1.size_unit,t1.weight,t1.weight_unit,
 			case 
@@ -15,6 +15,7 @@ class SearchModel extends CI_Model {
 			else 'English' end as langs,
 			t1.language,
 			t1.added_by,
+			t1.university_id,
 			case  
 			when t1.condition = '1' then 'new'
 			when t1.condition = '2' then 'Like new'

@@ -44,7 +44,7 @@
 			}
 			?>
 			</p>
-			<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$bookdata['bookid'].'/'.preg_replace('/[ ,]+/', '-', trim($bookdata['title']))); ?>" class="btn btn-md btn-primary">view details</a></p>
+			<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$bookdata['bookid'].'/'.$this->utilities->cleanurl($bookdata['title'])); ?>" class="btn btn-md btn-primary">view details</a></p>
 		</div>
 	</div>
 	<div class="divider"></div>
