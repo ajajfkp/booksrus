@@ -5,20 +5,56 @@
 	<p>
 	<div class="container">
 		<div class="row">
-			<h2>Search Books</h2>
-			<div id="custom-search-input">
-				<?php $attributes = array("name" => "searchform","method"=>"get");
-					echo form_open("search/index", $attributes);?>
-				<div class="input-group col-md-offset-2 col-md-8">
-					<input type="text" name="search" class="search-query form-control" placeholder="Search by Books name, ISBN, Author, university" id="searchInput" value="<?php echo set_value('search'); ?>" style="height:60px;"/>
-					<span class="input-group-btn">
-						<button class="btn btn-danger" type="submit" id="searchButton" style="height:60px;width:60px;">
-							<span class=" glyphicon glyphicon-search"></span>
-						</button>
-					</span>
+			<?php $attributes = array("name" => "searchform","method"=>"get","class"=>"form-horizontal");
+					echo form_open("search", $attributes);?>
+				<div class="form-group">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="glyphicon glyphicon-home"></i>
+									</span>
+									<select name="university" id="university" class="form-control selectpicker">
+										<option value="">Select University</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+									<select name="state" class="form-control selectpicker" onchange="getUniListByStateId(this)" >
+									    <?php 
+											$stateOption = '<option value="">Select State</option>';
+											$listState = $this->utilities->getAllState('','3926');
+											if($listState){
+												foreach($listState as $state){
+													$stateOption.="<option value='". $state->id ."'" . set_select('state', $state->id) . ">".$state->name."</option>";
+												}
+												echo $stateOption;
+											}
+										?>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<?php echo form_close(); ?>
-			</div>
+				<div class="form-group">
+					<div class="col-lg-8 col-lg-offset-2">
+						<div class="row" style="margin:0 0;">
+							<div class="input-group">
+								<input type="text" name="search" class="search-query form-control" placeholder="Search by Books name, ISBN, Author, university" id="searchInput" value="<?php echo set_value('search'); ?>" style="height:60px;"/>
+								<span class="input-group-btn">
+									<button class="btn btn-danger" type="submit" id="searchButton" style="height:60px;width:60px;">
+										<span class=" glyphicon glyphicon-search"></span>
+									</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php echo form_close(); ?>
 		</div>
 	</div>
 	</p>
@@ -27,21 +63,6 @@
 </div>
 
 <div class="container">
-<!-- Example row of columns -->
-	<div class="row">
-		<div class="form-group"> 
-			<label class="col-md-4 control-label"></label>
-			<div class="col-md-4 selectContainer">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-					<select name="state" class="form-control selectpicker" >
-					  <option value=" " >Please select your state</option>
-					  <option >Colorado</option>
-					</select>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="row">
 		<div class="col-md-4">
 		  <h2>Heading</h2>

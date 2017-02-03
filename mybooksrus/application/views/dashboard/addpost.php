@@ -13,6 +13,15 @@
 						<!--<label class="col-sm-4 control-label"></label>-->
 						<div class="col-sm-8"><?php echo $this->session->flashdata('msg'); ?></div>
 					</div>
+					
+					<div class="form-group row"> 
+						<label for="website" class="col-sm-3 control-label">Title</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="name" name="name" placeholder="Title" value="<?php echo set_value('name'); ?>">
+							<span class="text-danger"><?php echo form_error('name'); ?></span>
+						</div>
+					</div>
+					
 					<div class="form-group row">
 						<label for="name" class="col-sm-3 control-label">ISBN10</label>
 						<div class="col-sm-9">
@@ -29,19 +38,19 @@
 						</div>
 					</div>
 					
-					<div class="form-group row"> 
-						<label for="website" class="col-sm-3 control-label">Title</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="name" name="name" placeholder="Title" value="<?php echo set_value('name'); ?>">
-							<span class="text-danger"><?php echo form_error('name'); ?></span>
-						</div>
-					</div>
-					
 					<div class="form-group row">
 						<label for="name" class="col-sm-3 control-label">Author</label>
 						<div class="col-sm-9">
 							<input type="text" class="form-control" id="authors" name="authors" placeholder="Author" value="<?php echo set_value('authors'); ?>">
 							<span class="text-danger"><?php echo form_error('authors'); ?></span>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="Edition" class="col-sm-3 control-label">Edition</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="edition" name="edition" placeholder="Edition" value="<?php echo set_value('edition'); ?>">
+							<span class="text-danger"><?php echo form_error('edition'); ?></span>
 						</div>
 					</div>
 					

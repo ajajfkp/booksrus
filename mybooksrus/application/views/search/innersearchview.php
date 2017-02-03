@@ -8,6 +8,8 @@
 		</div>
 		<div class="col-lg-8 disc-area">
 			<h3><?php echo (($bookdata['title'])?$bookdata['title']:'Title'); ?></h3>
+			<p>ISBN 10 - <?php echo (($bookdata['isbn10'])?$bookdata['isbn10']:''); ?></p>
+			<p>ISBN 13 - <?php echo (($bookdata['isbn13'])?$bookdata['isbn13']:''); ?></p>
 			<p>By - <?php echo (($bookdata['authors'])?$bookdata['authors']:'Authors'); ?></p>
 			<p>$ <?php echo $this->utilities->getDiscountPrice($bookdata['price'],$bookdata['discount']); ?>
 			<?php
@@ -16,7 +18,21 @@
 			}
 			?>
 			</p>
-			<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$bookdata['bookid'].'/'.$this->utilities->cleanurl($bookdata['title'])); ?>" class="btn btn-md btn-primary">view details</a></p>
+			<?php
+				if($boodata['added_by'] == $this->utilities->getSessionUserData('uid')){
+			?>
+			<p>
+				<a href="<?php echo base_url('postyouradd/bookdetails/'.$bookdata['bookid'].'/'.$this->utilities->cleanurl($bookdata['title'])); ?>" class="btn btn-md btn-primary">view details</a>
+			</p>
+			<?php
+				}else{
+				?>
+			<p>
+				<a href="<?php echo base_url('postyouradd/bookdetails/'.$bookdata['bookid'].'/'.$this->utilities->cleanurl($bookdata['title'])); ?>" class="btn btn-md btn-primary">view and Buy</a>
+			</p>	
+			<?php
+				}
+				?>
 		</div>
 	</div>
 	<div class="divider"></div>

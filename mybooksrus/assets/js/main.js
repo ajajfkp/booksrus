@@ -1,6 +1,6 @@
 $( document ).ready(function(){
 	$("#searchButton").click(function(event){
-		if(!$("#searchInput").val()){
+		if(!$("#searchInput").val() || !$("#university").val()){
 			event.preventDefault();
 		}
 	});
@@ -127,7 +127,7 @@ function getUniListByStateId(id){
 	if(stateId){
 		$.ajax({ 
 			type: "POST",
-			url: base_url+'common/commonctrl/getUniListByStateId',
+			url: base_url+'search/getUniListByStateId',
 			data: {
 				'stateid':stateId
 			},

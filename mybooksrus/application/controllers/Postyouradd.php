@@ -35,6 +35,7 @@ class Postyouradd extends CI_Controller {
 		$this->form_validation->set_rules('isbn13', 'ISBN 13', 'trim|numeric|required|xss_clean');
 		$this->form_validation->set_rules('name', 'Title', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('authors', 'Authors', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('edition', 'Edition', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('price', 'Price', 'trim|numeric|required|xss_clean');
 		$this->form_validation->set_rules('condition', 'Condition of book', 'trim|numeric|required|xss_clean');
 		$this->form_validation->set_rules('discription', 'Description', 'trim|required|xss_clean');

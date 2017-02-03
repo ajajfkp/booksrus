@@ -170,7 +170,8 @@ h1 { font-size: 4vw; }
 
 .search-paging-head{
 	background: lightblue;
-    padding: 10px 0;
+    padding: 0px 0;
+	height:60px;
 }
 
 .cadr-books-list{
@@ -425,3 +426,18 @@ body,html{
     overflow: hidden;
     background-color: #e5e5e5;
 }
+
+.search-paging-head .pagination{
+	 margin: 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+
