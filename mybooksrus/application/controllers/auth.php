@@ -9,7 +9,6 @@ class Auth extends CI_Controller {
 		$this->load->library('recaptcha');
 		$this->load->model('auth/auths');
 		$this->load->helper('string');
-		
 	}
 	
 	
@@ -68,10 +67,15 @@ class Auth extends CI_Controller {
 						redirect('auth/signin');
 					} else {
 					// set session
-						$sess_data = array('login' => TRUE, 'uname' => $result['first_name'], 'uid' => $result['id'], 'active_status' => $result['active_status'], 'email' => $result['email'], 'mobile' => $result['mobile'], 'user_type' => $result['user_type'], 'user_name' => $result['user_id']);
+						$sess_data = array('login' => TRUE, 'uname' => $result['first_name'], 'uid' => $result['id'], 'active_status' => $result['active_status'], 'email' => $result['email'], 'mobile' => $result['mobile'], 'user_type' => $result['user_type'], 'user_name' => $result['username'], 'university_id' => $result['university_id']);
+						$saveurl = $this->utilities->getserchurl();
 						$this->utilities->setSession($sess_data);
 						$this->utilities->setWrongPasswdAtempt(true);
-						redirect('dashboard');
+						if(!$saveurl){
+							redirect('dashboard');
+						}else{
+							redirect($saveurl);
+						}
 					}
 				} else {
 					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Wrong Email-ID or Password!</div>');
@@ -128,7 +132,6 @@ class Auth extends CI_Controller {
 					'first_name' => $this->input->post('first_name'),
 					'last_name' => $this->input->post('last_name'),
 					'email' => $this->input->post('email'),
-					'university_email' => $this->input->post('email'),
 					'passwd' => $this->input->post('passwd'),
 					'email_verification_code' => md5($this->input->post('email')).random_string('alnum', 20)
 				);
@@ -137,7 +140,6 @@ class Auth extends CI_Controller {
 				if ($insRecord) {
 					$userDetails = $this->utilities->getUserDataById($insRecord);
 					if($userDetails){
-						
 						$verifyUrl = EMAIL_VARIFY_URL . $userDetails['email_verification_code'];
 						$msgOne = "Thank you for signing up with collegebooksrus.com.";
 						$msgTwo = "Please verify your account.";
@@ -181,6 +183,7 @@ class Auth extends CI_Controller {
 	
 	public function logout() {
 		$sesdata = $this->utilities->getSessionUserData('login');
+		$this->utilities->setserchurl('',true);
 		if (isset($sesdata) && $sesdata === true) {
 			$this->session->sess_destroy();
 			redirect('/');

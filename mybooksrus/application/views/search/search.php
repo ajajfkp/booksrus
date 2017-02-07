@@ -1,3 +1,7 @@
+<?php
+//echo "<pre>";
+//print_r($_SERVER);die;
+?>
 <div class="container" style="margin-top: 60px;">
 	<div class="container search-container">
 		<div class="row">
@@ -80,7 +84,7 @@
 				</div>
 				<div class="col-lg-8 disc-area">
 					<h3><?php echo (($bookdata['title'])?$bookdata['title']:'Title'); ?></h3>
-					<p>By - <?php echo (($bookdata['authors'])?$bookdata['authors']:'Authors'); ?></p>
+					<p>By - <a href="<?php echo base_url('search?university='.$university.'&state='.$state.'&search='.$bookdata['authors'])?>"><?php echo (($bookdata['authors'])?$bookdata['authors']:''); ?></a></p>
 					<p>ISBN 10 - <?php echo (($bookdata['isbn10'])?$bookdata['isbn10']:''); ?></p>
 					<p>ISBN 13 - <?php echo (($bookdata['isbn13'])?$bookdata['isbn13']:''); ?></p>
 					<p>$ <?php echo $this->utilities->getDiscountPrice($bookdata['price'],$bookdata['discount']); ?>
@@ -93,7 +97,7 @@
 					<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$bookdata['bookid'].'/'.$this->utilities->cleanurl($bookdata['title'])); ?>" class="btn btn-md btn-primary">view details</a></p>
 				</div>
 			</div>
-			<div class="divider"></div>
+			<!--<div class="divider"></div>-->
 		</div>
 	<?php 
 			}

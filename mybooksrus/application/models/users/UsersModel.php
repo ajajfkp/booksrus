@@ -9,7 +9,7 @@ class UsersModel extends CI_Model {
 	}
 	
 	function login($userId,$paswd){
-		$where = "(user_id = '".$userId."' or  email='".$userId."') and passwd='".$paswd."'";
+		$where = "(username = '".$userId."' or  email='".$userId."') and passwd='".$paswd."'";
 		$res  = $this->commonModel->getRecord('users','*',$where,'','','','array',0);
 		if($res){
 			return $res;

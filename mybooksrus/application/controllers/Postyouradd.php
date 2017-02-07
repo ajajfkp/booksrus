@@ -4,6 +4,10 @@ class Postyouradd extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->library('Layouts');
+		if(!$this->utilities->isAuth()){
+			$url = $_SERVER['PATH_INFO'];
+			$this->utilities->setserchurl($url);
+		}
 		$this->utilities->validateSession();
 		$this->load->model('users/usersModel');
 		$this->load->model('books/booksad');
@@ -109,12 +113,13 @@ class Postyouradd extends CI_Controller {
 	}
 	
 	function bookdetails($bookId=''){
+		$this->utilities->setserchurl('',true);
 		$extraHead = "activateHeadMeanu('topdashboard');";
 		$extraHead .= "activateLeftMeanu('');";
-		$extraHead .= "setusermenu('listad');";
+		//$extraHead .= "setusermenu('listad');";
 		$this->layouts->set_extra_head($extraHead);
-		$this->layouts->set_title('Book list!');
-		$this->layouts->set_page_title('Book list','<i class="glyphicon glyphicon-plus"></i>');
+		$this->layouts->set_title('Book details!');
+		$this->layouts->set_page_title('Book details','<i class="glyphicon glyphicon-book"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		
 		if($bookId){

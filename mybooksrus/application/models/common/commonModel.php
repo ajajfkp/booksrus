@@ -385,22 +385,24 @@ class commonModel extends CI_Model {
 		t1.passwd,
 		t1.email_verification_code,
 		t1.active_status,
-		t1.profile_complete_flag pcf,
 		t1.university_flag uf,
 		t1.university_id,
-		t1.university_email,
+		t1.email,
 		t2.username,
 		t2.first_name,
 		t2.middle_name,
 		t2.last_name,
-		t2.email,
+		t2.email_univ,
+		t2.email_personal,
 		t2.mobile,
 		t2.phone,
 		t2.address_one,
+		t2.address_two,
+		t2.pincode,
 		t2.city_id,
 		t2.state_id,
 		t2.countery_id,
-		t2.profile_complete
+		t2.profile_complete pcf
 		FROM users t1 
 		INNER JOIN user_profile t2 on t1.id=t2.users_id WHERE t1.id="'.$userId.'"';
 		
@@ -413,7 +415,21 @@ class commonModel extends CI_Model {
 		
 	}
 	
-	
+	function getUnivByUserId($userId=""){
+		if($userId){
+			$sql = "select t2.id,t2.name from users t1
+					inner join universities t2 on t1.university_id=t2.id
+					where t1.id=".$userId;
+			$query = $this->db->query($sql);
+			if($query->num_rows() > 0){
+				return $query->row_array();
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	}
 	
 	
 	

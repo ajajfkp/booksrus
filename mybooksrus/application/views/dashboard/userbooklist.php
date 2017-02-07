@@ -38,6 +38,12 @@
 				<div class="divider"></div>
 			<?php 
 					}
+				}else{
+			?>
+			<div class="text-center cleart10">
+					No record found
+			</div>
+			<?php
 				}
 			?>
 		</div>
@@ -71,7 +77,7 @@
 				}else{
 			?>
 				<div class="text-center cleart10">
-					No books found
+					No record found
 				</div>
 			<?php
 				}

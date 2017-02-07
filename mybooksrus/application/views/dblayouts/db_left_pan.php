@@ -41,15 +41,11 @@
 						</li>
 						<?php } ?>
 						<li class="divider"></li>
-						<li id="changename"><a href="<?php echo base_url('users/changenamae'); ?>">Change Name</a></li>
+						<li id="changename"><a href="<?php echo base_url('users/updateprofile'); ?>">Update profile</a></li>
 						<li class="divider"></li>
-						<li id="changeaddr"><a href="<?php echo base_url('users/changecontact'); ?>">Change address details</a></li>
+						<li id="changeaddr"><a href="<?php echo base_url('users/updateaddress'); ?>">Update address</a></li>
 						<li class="divider"></li>
-						<li id="changephone"><a href="#">Change phone</a></li>
-						<li class="divider"></li>
-						<li id="changepasswd"><a href="#">Change password</a></li>
-						<li class="divider"></li>
-						<li id="changeemail"><a href="#">Change email</a></li>
+						<li id="changepasswd"><a href="<?php echo base_url('users/updatepasswd'); ?>">Change password</a></li>
 						<li class="divider"></li>
 						<li id="changenotyfy"><a href="#">Email notifications</a></li>
 					</ul>

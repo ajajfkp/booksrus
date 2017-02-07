@@ -65,7 +65,6 @@ class Commonctrl extends CI_Controller {
 		$this->layouts->set_page_title('University','<i class="glyphicon glyphicon-home"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		
-		
 		$this->form_validation->set_rules('state', 'State', 'trim|required|xss_clean');
 		$this->form_validation->set_rules("university", "University", "trim|required|xss_clean");
 
@@ -81,11 +80,16 @@ class Commonctrl extends CI_Controller {
 					'updated_by'=>$this->utilities->getSessionUserData('uid'),
 					'date_updated'=>date("Y-m-d H:i:s")
 				);
-				
+				$saveurl = $this->utilities->getserchurl();
 				$updRec = $this->commonModel->updateRecord('users',$dataArr,array("id"=>$this->utilities->getSessionUserData('uid')));
 				if($updRec){
 					if($updRec){
-						redirect('dashboard');
+						$saveurl = $this->utilities->getserchurl();
+						if(!$saveurl){
+							redirect('dashboard');
+						}else{
+							redirect($saveurl);
+						}
 					}else{
 						$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">ERROR!..Something is wrong!</div>');
 					redirect('common/commonctrl/adduseruniv');

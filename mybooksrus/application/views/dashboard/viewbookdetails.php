@@ -36,14 +36,38 @@
 				<?php
 				if($boodata['added_by'] == $this->utilities->getSessionUserData('uid')){
 				?>
-				<a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".$this->utilities->cleanurl($boodata['title'])); ?>" class="btn btn-md btn-primary pull-right">Edit</a></p>
+				<a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".$this->utilities->cleanurl($boodata['title'])); ?>" class="btn btn-md btn-primary pull-right">Edit</a>
 				<?php
 				}else{
 				?>
-				<a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".$this->utilities->cleanurl($boodata['title'])); ?>" class="btn btn-md btn-primary pull-right">Buy this book</a></p>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<?php $attributes = array("name" => "sendtoseller","method"=>"post","class"=>"form-horizontal");
+								echo form_open("users/messagetosellar/".$boodata['bookid'], $attributes);?>
+							<!--<form class="form form-vertical">-->
+								<div class="control-group">
+									<label>Message to seller</label>
+									<div class="controls">
+										<textarea class="form-control" placeholder="Type your message here..." id="message" name="message"></textarea>
+										<span class="text-danger"><?php echo form_error('message'); ?></span>
+									</div>
+								</div>
+								<div class="control-group pull-right">
+									<label></label>
+									<div class="controls">
+										<button type="submit" class="btn btn-primary">
+										Send <i class="glyphicon glyphicon-send"></i>
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<!--/panel content-->
+					</div>
 				<?php
 				}
 				?>
+				</p>
 			</div>
 		</div>
 	</div>

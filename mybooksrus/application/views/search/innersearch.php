@@ -21,7 +21,20 @@
 </div>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h4>Search results</h4>
+		<div class="row">
+			<div class="col-lg-6">
+				<h4>Search results</h4>
+			</div>
+			<div class="col-lg-6">
+				<span id="innersearch-paging">
+					<?php
+						if($links){
+							echo $links;
+						}
+					?>
+				</span>
+			</div>
+		</div>
 	</div>
 	<div class="panel-body" id="innersearchres">
 		<?php 

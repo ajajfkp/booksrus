@@ -431,7 +431,9 @@ body,html{
 	 margin: 0 0;
 }
 
-
+#innersearch-paging > .pull-right > .pagination{
+	margin: 0px 0;
+}
 
 
 

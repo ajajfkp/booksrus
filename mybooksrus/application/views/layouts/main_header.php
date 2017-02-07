@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a href="<?php echo base_url();?>" class="navbar-brand" >Collegebooksrus.com</a>
+			<a href="<?php echo base_url();?>" class="navbar-brand" ><img src="<?php echo base_url('assets/images/logo.png');?>" alt="collegeboohsrus.com" width="85%" /></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">

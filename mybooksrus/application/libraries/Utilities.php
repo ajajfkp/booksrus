@@ -17,6 +17,7 @@ class Utilities {
 	public function __construct() {
         $this->CI = & get_instance();
 		$this->CI->load->model('common/commonModel');
+		$this->CI->load->helper('cookie');
     }
 	
 	/**
@@ -275,4 +276,69 @@ class Utilities {
 		}
 	}
 	
+	function setserchurl($url,$reset=false){
+		if($reset){
+			$cookie= array(
+				'name'   => 'seturl',
+				'value'  => '',
+				'expire' => '0'
+			);
+			delete_cookie($cookie);
+		}else{
+			$cookie= array(
+				'name'   => 'seturl',
+				'value'  => $url,
+				'expire' => '3600'
+			);
+			set_cookie($cookie);
+		}
+	}
+	function getserchurl(){
+		if(get_cookie('seturl')){
+			return get_cookie('seturl');
+		}else{
+			return false;
+		}
+	}
+	
+	function getpagination($url,$total,$limit=20,$numlink=5){
+		$config = array();
+			$limit='2';
+			$config["base_url"] = $url;
+			$config['page_query_string'] = TRUE;
+			$config["total_rows"] = $total;
+			$config["per_page"] = $limit;
+			$config['display_pages'] = True;
+			$config['num_links'] = $numlink;
+			//$config['use_page_numbers'] = FALSE;
+			$config['full_tag_open'] = '<div class="pull-right"> <ul class="pagination">';
+			$config['full_tag_close'] = '</div></ul>';
+			$config['num_tag_open'] = '<li>';
+			$config['num_tag_close'] = '</li>';
+			$config['next_link'] = '→';
+			$config['next_tag_open'] = '<li>';
+			$config['next_tag_close'] = '</li>';
+			$config['prev_link'] = '←';
+			$config['cur_tag_open'] = '<li class="active"><a>';
+			$config['cur_tag_close'] = '</li></a>';
+			$config['prev_tag_open'] = '<li>';
+			$config['prev_tag_close'] = '</li>';
+			$config['last_link'] = '»';
+			$config['last_tag_open'] = '<li>';
+			$config['last_tag_close'] = '</li>';
+			$config['first_link'] = '«';
+			$config['first_tag_open'] = '<li>';
+			$config['first_tag_close'] = '</li>';
+			$config['first_link'] = false;
+			$config['last_link'] = false;
+			$this->CI->pagination->initialize($config);
+	}
+	
+	function getUnivByUserId($userId=""){
+		if($userId){
+			return $this->CI->commonModel->getUnivByUserId($userId);
+		}else{
+			return false;
+		}
+	}
 }
