@@ -431,35 +431,20 @@ class commonModel extends CI_Model {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	function getunreadcount($userId){
+		if($userId){
+			$sql = "select count(t1.id) as urcount from messages t1
+				inner join messages_maped t2 on t2.message_id = t1.id
+				where message_type = '0' and is_read = '1' and to_addr =".$userId;
+				$result = $this->db->query($sql);
+				if($result->num_rows()>0){
+					return $result->row()->urcount;
+				}
+		}else{
+			return false;
+		}
+	}
+		
 	
 }
 

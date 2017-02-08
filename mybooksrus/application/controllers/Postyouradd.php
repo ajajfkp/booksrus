@@ -5,7 +5,7 @@ class Postyouradd extends CI_Controller {
 		parent::__construct();
 		$this->load->library('Layouts');
 		if(!$this->utilities->isAuth()){
-			$url = $_SERVER['PATH_INFO'];
+			$url = uri_string();
 			$this->utilities->setserchurl($url);
 		}
 		$this->utilities->validateSession();

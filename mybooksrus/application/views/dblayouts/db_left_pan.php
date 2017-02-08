@@ -32,6 +32,19 @@
 				<li id="leftuseraria" class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">User aria <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
 					<ul class="dropdown-menu forAnimate" role="menu">
+						<li id="listad">
+							<a href="<?php echo base_url('message'); ?>">
+								Messages
+								<?php 
+								$urcount = $this->utilities->getunreadcount($this->utilities->getSessionUserData('uid'));
+								if($urcount){
+								?>
+								<span class="badge badge-info pull-right"><?php echo $urcount; ?></span>
+								<?php
+								}
+								?>
+							</a>
+						</li>
 						<?php if( $count = $this->utilities->listuserad($this->utilities->getSessionUserData('uid'))){?>
 						<li id="listad">
 							<a href="<?php echo base_url('postyouradd/listuseradsetails'); ?>">

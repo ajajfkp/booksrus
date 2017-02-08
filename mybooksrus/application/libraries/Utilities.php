@@ -341,4 +341,12 @@ class Utilities {
 			return false;
 		}
 	}
+	
+	function getunreadcount($userId=""){
+		if($userId){
+			return $this->CI->commonModel->getunreadcount($userId);
+		}else{
+			return false;
+		}
+	}
 }
