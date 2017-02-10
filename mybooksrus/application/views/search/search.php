@@ -19,12 +19,12 @@
 							<span class="input-group-addon">
 								<i class="glyphicon glyphicon-home"></i>
 							</span>
-							<select name="university" id="university" class="form-control selectpicker">
-								<?php
-									$stateOption = '<option value="">Select University</option>';
-									if($univList){
-										foreach($univList as $univ){
-											$stateOption.="<option value='". $univ->id ."'" . (($univ->id == $university )?'selected':'') . ">".$univ->name."</option>";
+							<select name="state" class="form-control selectpicker" onchange="getUniListByStateId(this)" >
+								<?php 
+									$stateOption = '<option value="">Select State</option>';
+									if($listState){
+										foreach($listState as $states){
+											$stateOption.="<option value='". $states->id ."'" . (($states->id == $state )?'selected':'') . ">".$states->name."</option>";
 										}
 									}
 									echo $stateOption;
@@ -35,12 +35,12 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-							<select name="state" class="form-control selectpicker" onchange="getUniListByStateId(this)" >
-								<?php 
-									$stateOption = '<option value="">Select State</option>';
-									if($listState){
-										foreach($listState as $states){
-											$stateOption.="<option value='". $states->id ."'" . (($states->id == $state )?'selected':'') . ">".$states->name."</option>";
+							<select name="university" id="university" class="form-control selectpicker">
+								<?php
+									$stateOption = '<option value="">Select University</option>';
+									if($univList){
+										foreach($univList as $univ){
+											$stateOption.="<option value='". $univ->id ."'" . (($univ->id == $university )?'selected':'') . ">".$univ->name."</option>";
 										}
 									}
 									echo $stateOption;

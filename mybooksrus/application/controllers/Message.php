@@ -20,7 +20,24 @@ class Message extends CI_Controller {
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$data['test'] = "";
 		$data['inboxMsgs'] = $this->messages->inbox($this->utilities->getSessionUserData('uid'));
+		$data['sentMsgs'] = $this->messages->sent($this->utilities->getSessionUserData('uid'));
 		$this->layouts->dbview('messages/listmessages',$data);
+		
+	}
+	
+	function send(){
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('');";
+		$extraHead .= "setusermenu('listad');";
+		$extraHead .= "$('#published').datepicker({'dateFormat':'mm-dd-yy'})";
+		$this->layouts->set_extra_head($extraHead);
+		$this->layouts->set_title('Book list!');
+		$this->layouts->set_page_title('Book list','<i class="glyphicon glyphicon-plus"></i>');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		$data['test'] = "";
+		$data['inboxMsgs'] = $this->messages->inbox($this->utilities->getSessionUserData('uid'));
+		$data['sentMsgs'] = $this->messages->sent($this->utilities->getSessionUserData('uid'));	
+		$this->layouts->dbview('messages/listsentmessages',$data);
 		
 	}
 	

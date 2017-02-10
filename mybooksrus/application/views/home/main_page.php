@@ -12,16 +12,6 @@
 						<div class="row">
 							<div class="col-lg-6 col-md-6">
 								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="glyphicon glyphicon-home"></i>
-									</span>
-									<select name="university" id="university" class="form-control selectpicker">
-										<option value="">Select University</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
 									<select name="state" class="form-control selectpicker" onchange="getUniListByStateId(this)" >
 									    <?php 
@@ -34,6 +24,16 @@
 												echo $stateOption;
 											}
 										?>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="glyphicon glyphicon-home"></i>
+									</span>
+									<select name="university" id="university" class="form-control selectpicker">
+										<option value="">Select University</option>
 									</select>
 								</div>
 							</div>

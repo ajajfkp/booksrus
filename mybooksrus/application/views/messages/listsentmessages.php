@@ -1,11 +1,20 @@
+<?php
+//print_r($sentMsgs);die;
+?>
 <div class="row">
 	<div class="col-lg-12">
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="#inbox" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
-			</span>Inbox</a></li>
-			<li><a href="#sent" data-toggle="tab"><span class="glyphicon glyphicon-user"></span>
-				Sent</a></li>
+			<li>
+				<a href="<?php echo base_url('message');?>">
+					<span class="glyphicon glyphicon-inbox"></span> Inbox
+				</a>
+			</li>
+			<li class="active">
+				<a href="">
+					<span class="glyphicon glyphicon-user"></span> Sent
+				</a>
+			</li>
 			<li><a href="#archive" data-toggle="tab"><span class="glyphicon glyphicon-briefcase"></span>
 				Archve</a></li>
 			<!--<li><a href="#settings" data-toggle="tab"><span class="glyphicon glyphicon-plus no-margin">
@@ -51,7 +60,7 @@
 			</div>
 			<div class="tab-pane fade in" id="sent">
 				<div class="list-group">
-					<div class="list-group">
+					<div class="list-group">dddddddddddd
 			<?php
 				if($sentMsgs){
 					foreach($sentMsgs as $sentMsg){

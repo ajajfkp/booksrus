@@ -20,6 +20,14 @@
 		<div class="panel-body chat-container">
 			<ul class="chat">
 				<li class="left clearfix">
+					<a href="#">
+						<span class="glyphicon glyphicon-chevron-left"></span> Back
+					</a>
+					<a href="#" class="pull-right">
+						<span class="glyphicon glyphicon-trash"></span>
+					</a>
+				</li>
+				<li class="left clearfix">
 					<span class="chat-img pull-left">
 						<img src="<?php echo base_url('uploads/booksimg/'.$transdetail['image']); ?>" alt="User Avatar" class="" width="75%"/>
 					</span>
@@ -96,8 +104,7 @@
 			<div class="input-group">
 				<input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
 				<span class="input-group-btn">
-					<button class="btn btn-warning btn-sm" id="btn-chat">
-						Send</button>
+					<button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
 				</span>
 			</div>
 		</div>

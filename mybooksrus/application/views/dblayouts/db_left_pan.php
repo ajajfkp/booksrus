@@ -45,6 +45,7 @@
 								?>
 							</a>
 						</li>
+						<li class="divider"></li>
 						<?php if( $count = $this->utilities->listuserad($this->utilities->getSessionUserData('uid'))){?>
 						<li id="listad">
 							<a href="<?php echo base_url('postyouradd/listuseradsetails'); ?>">
