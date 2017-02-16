@@ -80,6 +80,35 @@ $( document ).ready(function(){
 		 $('#imgname').val('');
 	});
 	
+	$('#btn-chat').click(function(){
+		var errObj = [];
+		var inputmsg = $('#reply-message').val();
+		var transId = $('#transId').val();
+		errObj.push('reply-message,This field is required.');
+		if(validateinput(errObj)){
+			return false;
+		}else{
+			$.ajax({
+				type: "POST",
+				url: base_url+'message/replymsg',
+				data: {
+					'transId':transId,
+					'inputmsg':inputmsg
+				},
+				success: function(msg){
+					if(msg!='false'){
+						$('.chat').append(msg);
+					}else{
+						setUiMessege('err','Error!...Message not sent.');
+					}
+					//window.location=data.successMsg.redirect;
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					//setUiMessege('err',errorThrown);
+				}
+			});
+		}
+	});
 });
 
 function search(searchby){
@@ -285,7 +314,44 @@ function booksearch(){
 	}
 }
 
-
+function deletemessage(transId,types){
+	if(transId){
+		swal({
+		  title: "Are you sure?",
+		  text: "You will not be able to recover this imaginary file!",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes, delete it!",
+		  closeOnConfirm: false
+		},
+		function(){
+			$.ajax({
+				type: "POST",
+				url: base_url+'message/deletemsg',
+				data: {
+					'transId':transId,
+					'types':types
+				},
+				success: function(msg){
+					if(msg=='false'){
+						
+					}else{
+						swal("Deleted!", "Your imaginary file has been deleted.", "success");
+					};
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					setUiMessege('err',errorThrown);
+				}
+			});
+		},function(){
+			alert()
+		});
+	}else{
+		setUiMessege('err','Message id not selected');
+		return false;
+	}
+}
 
 
 

@@ -520,9 +520,23 @@ hr { smargin-top: 5px;smargin-bottom: 10px; }
 	width: 100px;
 }
 
+.view-msg-user-img{
+	width: 50px;
+    height: 50px;
+    background: #E7E7E7;
+    text-align: center;
+    border-radius: 50%;
+    padding: 10px 0 0 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #835290;
+}
 
-
-
+.contact-ppl-count{
+	float: right;
+    margin-top: 5px;
+    color: #ccc;
+}
 
 
 

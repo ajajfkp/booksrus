@@ -183,7 +183,7 @@ class Utilities {
 	
 	function listuserad($userId=""){
 		if($userId){
-			$coun = $this->CI->commonModel->getRecord('books_transaction','count(*) as count',array('user_id'=>$userId));
+			$coun = $this->CI->commonModel->getRecord('books_transaction','count(*) as count',array('user_id'=>$userId,'active_status'=>'1'));
 			if($coun){
 				return $coun['count'];
 			}else{
@@ -345,6 +345,19 @@ class Utilities {
 	function getunreadcount($userId=""){
 		if($userId){
 			return $this->CI->commonModel->getunreadcount($userId);
+		}else{
+			return false;
+		}
+	}
+	
+	function numUsersContact($bookId=""){
+		if($bookId){
+			$count = $this->CI->commonModel->getRecord('books_transaction','count(id) as count',array('book_id'=>$bookId,'transaction_typt'=>'2'));
+			if($count){
+				return $count['count']." student(s) already contact with seller";
+			}else{
+				return false;
+			}
 		}else{
 			return false;
 		}

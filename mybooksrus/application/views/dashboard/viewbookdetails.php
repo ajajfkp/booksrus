@@ -1,6 +1,17 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h5><b>View Book Details</b></h5>
+		<div class="row">
+			<div class="col-lg-5">
+				<h5>
+					<b>View Book Details</b>
+				</h5>
+			</div>
+			<div class="col-lg-7">
+				<span class="contact-ppl-count">
+					<?php echo (($contactCnt)?$contactCnt:''); ?>
+				</span>
+			</div>
+		</div>
 	</div>
 	<div class="panel-body">
 		<div class="row">

@@ -39,7 +39,7 @@
 								$urcount = $this->utilities->getunreadcount($this->utilities->getSessionUserData('uid'));
 								if($urcount){
 								?>
-								<span class="badge badge-info pull-right"><?php echo $urcount; ?></span>
+								<span class="badge badge-info"><?php echo $urcount; ?></span>
 								<?php
 								}
 								?>
@@ -50,7 +50,7 @@
 						<li id="listad">
 							<a href="<?php echo base_url('postyouradd/listuseradsetails'); ?>">
 								List your Ads
-								<span class="badge badge-info pull-right"><?php echo $count; ?></span>
+								<span class="badge badge-info"><?php echo $count; ?></span>
 							</a>
 						</li>
 						<?php } ?>

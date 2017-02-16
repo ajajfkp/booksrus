@@ -125,6 +125,7 @@ class Postyouradd extends CI_Controller {
 		if($bookId){
 			$getData = $this->booksad->getBookDetails($bookId);
 			$data['boodata'] = $getData;
+			$data['contactCnt'] = $this->utilities->numUsersContact($bookId);
 			$this->layouts->dbview('dashboard/viewbookdetails',$data);
 		}else{
 			redirect('postyouradd/listuseradsetails');

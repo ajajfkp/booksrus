@@ -1,18 +1,18 @@
 <div class="row">
 	<div class="col-lg-12">
 		<ul class="nav nav-tabs">
-			<li class="active">
-				<a href="" data-toggle="tab">
+			<li class="<?php echo $typeInbox; ?>">
+				<a href="<?php echo base_url('message');?>">
 					<span class="glyphicon glyphicon-inbox"></span>Inbox
 				</a>
 			</li>
-			<li>
-				<a href="" data-toggle="tab">
+			<li class="<?php echo $typeSent; ?>">
+				<a href="<?php echo base_url('message/sent');?>">
 					<span class="glyphicon glyphicon-user"></span>Sent
 				</a>
 			</li>
 			<li>
-				<a href="" data-toggle="tab">
+				<a href="" >
 					<span class="glyphicon glyphicon-briefcase"></span>Archive
 				</a>
 			</li>
@@ -20,11 +20,11 @@
 		<div class="panel-body chat-container">
 			<ul class="chat">
 				<li class="left clearfix">
-					<a href="#">
+					<a href="javascript:window.history.go(-1);">
 						<span class="glyphicon glyphicon-chevron-left"></span> Back
 					</a>
-					<a href="#" class="pull-right">
-						<span class="glyphicon glyphicon-trash"></span>
+					<a class="pull-right">
+						<span class="glyphicon glyphicon-trash" onclick="deletemessage(<?php echo $transId; ?>,'<?php echo $type; ?>')"></span>
 					</a>
 				</li>
 				<li class="left clearfix">
@@ -40,73 +40,81 @@
 						</p>
 					</div>
 				</li>
-				<li class="left clearfix">
-					<span class="chat-img pull-left">
-						<img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-					</span>
-					<div class="chat-body clearfix">
-						<div class="header">
-							<strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-								<span class="glyphicon glyphicon-time"></span>12 mins ago</small>
-						</div>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-							dolor, quis ullamcorper ligula sodales.
-						</p>
-					</div>
-				</li>
+				<?php
+					if($chats){
+						foreach($chats as $chat){
+							if($chat['userId']!=$this->utilities->getSessionUserData('uid')){
+				?>
 				<li class="right clearfix">
+				<div class="row">
+					<div class="col-lg-12">
 					<span class="chat-img pull-right">
-						<img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+						<span class="view-msg-user-img pull-right">
+							<?php echo substr(strtoupper($chat['first_name']),0,1).substr(strtoupper($chat['last_name']),0,1); ?>
+						</span>
 					</span>
 					<div class="chat-body clearfix">
 						<div class="header">
-							<small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
-							<strong class="pull-right primary-font">Bhaumik Patel</strong>
+							<small class=" text-muted">
+								<span class="glyphicon glyphicon-time"></span>
+								<?php echo date('d M, H:ia',strtotime($chat['date_added'])); ?>
+							</small>
+							<strong class="pull-right primary-font">
+								<?php //echo ucfirst($chat['first_name']." ".$chat['last_name']); ?>
+							</strong>
 						</div>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-							dolor, quis ullamcorper ligula sodales.
+						<p class="pull-right">
+							<?php echo $chat['body']; ?>
 						</p>
 					</div>
-				</li>
-				<li class="left clearfix"><span class="chat-img pull-left">
-					<img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-				</span>
-					<div class="chat-body clearfix">
-						<div class="header">
-							<strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-								<span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-						</div>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-							dolor, quis ullamcorper ligula sodales.
-						</p>
+					</div>
 					</div>
 				</li>
-				<li class="right clearfix"><span class="chat-img pull-right">
-					<img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
-				</span>
-					<div class="chat-body clearfix">
-						<div class="header">
-							<small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-							<strong class="pull-right primary-font">Bhaumik Patel</strong>
+				<?php
+							}else{
+				
+				?>
+				<li class="left clearfix">
+					<div class="row">
+						<div class="col-lg-12">
+							<span class="chat-img pull-left">
+								<span class="view-msg-user-img pull-left">
+									<?php echo substr(strtoupper($chat['first_name']),0,1).substr(strtoupper($chat['last_name']),0,1); ?>
+								</span>
+							</span>
+							<div class="chat-body clearfix">
+								<div class="header">
+									<strong class="primary-font">
+										<?php //echo ucfirst($chat['first_name']." ".$chat['last_name']); ?>
+									</strong>
+									<small class="pull-right text-muted">
+										<span class="glyphicon glyphicon-time"></span>
+										<?php echo date('d M, H:ia',strtotime($chat['date_added'])); ?>
+									</small>
+								</div>
+								<p>
+									<?php echo $chat['body']; ?>
+								</p>
+							</div>
 						</div>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-							dolor, quis ullamcorper ligula sodales.
-						</p>
 					</div>
 				</li>
+				<?php
+							}
+						}
+					}
+				?>
 			</ul>
 		</div>
 		<div class="panel-footer">
 			<div class="input-group">
-				<input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+				<input id="reply-message" type="text" class="form-control input-sm" placeholder="Type your message here..." />
 				<span class="input-group-btn">
-					<button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
+					<button class="btn btn-warning btn-sm" id="btn-chat"><span class="glyphicon glyphicon-send"></span> Send</button>
+					<input type="hidden" name="transId" id="transId" value="<?php echo $chat['transId']; ?>" />
 				</span>
 			</div>
+				<span class="text-danger" id="reply-message_error"></span>
 		</div>
 	</div>
 </div>

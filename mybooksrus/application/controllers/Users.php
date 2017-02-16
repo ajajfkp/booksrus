@@ -197,8 +197,8 @@ class Users extends CI_Controller {
 					$this->db->trans_start();
 					
 					$gettransData = $this->commonModel->getRecord('books_transaction','*',array('book_id'=>$bookId,'user_id'=>$this->utilities->getSessionUserData('uid'),'transaction_typt'=>'2','active_status'=>'1'));
-						if(!$gettransData){
-							$trancInsArr = array(
+					if(!$gettransData){
+						$trancInsArr = array(
 							'book_id'=>$bookId,
 							'user_id'=>$this->utilities->getSessionUserData('uid'),
 							'transaction_typt'=>'2',
@@ -217,20 +217,11 @@ class Users extends CI_Controller {
 						$messageIns = $this->commonModel->insertRecord('messages',$messageInsArr);
 						$mapInsArrForSeller = array(
 							'message_id'=>$messageIns,
-							'message_type'=>'1',
 							'to_addr'=>$getBookData['added_by'],
 							'added_by'=>$this->utilities->getSessionUserData('uid'),
 							'date_added'=>date('Y-m-d H:i:s')
 						);
 						$this->commonModel->insertRecord('messages_maped',$mapInsArrForSeller);
-						$mapInsArrForBuyer = array(
-							'message_id'=>$messageIns,
-							'message_type'=>'0',
-							'to_addr'=>$getBookData['added_by'],
-							'added_by'=>$this->utilities->getSessionUserData('uid'),
-							'date_added'=>date('Y-m-d H:i:s')
-						);
-						$this->commonModel->insertRecord('messages_maped',$mapInsArrForBuyer);
 					} else {
 						$messageInsArr = array(
 							'transaction_id'=>$gettransData['id'],
@@ -242,20 +233,11 @@ class Users extends CI_Controller {
 						$messageIns = $this->commonModel->insertRecord('messages',$messageInsArr);
 						$mapInsArrForSeller = array(
 							'message_id'=>$messageIns,
-							'message_type'=>'1',
 							'to_addr'=>$getBookData['added_by'],
 							'added_by'=>$this->utilities->getSessionUserData('uid'),
 							'date_added'=>date('Y-m-d H:i:s')
 						);
 						$this->commonModel->insertRecord('messages_maped',$mapInsArrForSeller);
-						$mapInsArrForBuyer = array(
-							'message_id'=>$messageIns,
-							'message_type'=>'0',
-							'to_addr'=>$getBookData['added_by'],
-							'added_by'=>$this->utilities->getSessionUserData('uid'),
-							'date_added'=>date('Y-m-d H:i:s')
-						);
-						$this->commonModel->insertRecord('messages_maped',$mapInsArrForBuyer);
 					}
 					
 					$this->db->trans_complete();
