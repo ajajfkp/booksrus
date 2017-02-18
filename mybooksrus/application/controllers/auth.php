@@ -407,7 +407,16 @@ class Auth extends CI_Controller {
 	}
 	
 	
-	
+	function updateuserUptime(){
+		$uid = $this->input->post('uid');
+		//echo $this->utilities->getLastActiveTimeDiff($uid);
+		$updateRec = $this->commonModel->updateRecord('users',array('last_activity'=>date('Y-m-d H:i:s')),array('id'=>$uid));
+		if($updateRec){
+			echo "success";
+		}else{
+			echo "fail";
+		}
+	}
 	
 	
 		

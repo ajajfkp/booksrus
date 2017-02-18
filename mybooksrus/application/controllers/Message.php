@@ -4,6 +4,7 @@ class Message extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->library('Layouts');
+		$this->load->library('sendemail');
 		$this->utilities->validateSession();
 		$this->load->model('messages/messages');
 		$this->utilities->checkUnivApr();
@@ -12,11 +13,11 @@ class Message extends CI_Controller {
 	function index(){
 		$extraHead = "activateHeadMeanu('topdashboard');";
 		$extraHead .= "activateLeftMeanu('');";
-		$extraHead .= "setusermenu('listad');";
+		$extraHead .= "setusermenu('messages');";
 		$extraHead .= "$('#published').datepicker({'dateFormat':'mm-dd-yy'})";
 		$this->layouts->set_extra_head($extraHead);
-		$this->layouts->set_title('Book list!');
-		$this->layouts->set_page_title('Book list','<i class="glyphicon glyphicon-plus"></i>');
+		$this->layouts->set_title('Messages!');
+		$this->layouts->set_page_title('Inbox Messages','<i class="glyphicon glyphicon-inbox"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$data['test'] = "";
 		$data['inboxMsgs'] = $this->messages->inbox($this->utilities->getSessionUserData('uid'));
@@ -28,11 +29,11 @@ class Message extends CI_Controller {
 	function sent(){
 		$extraHead = "activateHeadMeanu('topdashboard');";
 		$extraHead .= "activateLeftMeanu('');";
-		$extraHead .= "setusermenu('listad');";
+		$extraHead .= "setusermenu('messages');";
 		$extraHead .= "$('#published').datepicker({'dateFormat':'mm-dd-yy'})";
 		$this->layouts->set_extra_head($extraHead);
-		$this->layouts->set_title('Book list!');
-		$this->layouts->set_page_title('Book list','<i class="glyphicon glyphicon-plus"></i>');
+		$this->layouts->set_title('Messages!');
+		$this->layouts->set_page_title('Sent Messages','<i class="glyphicon glyphicon-envelope"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$data['test'] = "";
 		$data['inboxMsgs'] = $this->messages->inbox($this->utilities->getSessionUserData('uid'));
@@ -44,16 +45,16 @@ class Message extends CI_Controller {
 	function showmessages($transId="",$type='inbox'){
 		$extraHead = "activateHeadMeanu('topdashboard');";
 		$extraHead .= "activateLeftMeanu('');";
-		$extraHead .= "setusermenu('listad');";
+		$extraHead .= "setusermenu('messages');";
 		$extraHead .= "$('#published').datepicker({'dateFormat':'mm-dd-yy'})";
 		$this->layouts->set_extra_head($extraHead);
-		$this->layouts->set_title('Book list!');
-		$this->layouts->set_page_title('Book list','<i class="glyphicon glyphicon-plus"></i>');
+		$this->layouts->set_title('View Messages!');
+		$this->layouts->set_page_title('View Message','<i class="glyphicon glyphicon-pencil"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		
 		$getMsgIds = $this->commonModel->getRecord('messages','id',array('transaction_id'=>$transId),array(),null,null,'array',1);
 		foreach($getMsgIds as $msgid){
-			$this->commonModel->updateRecord('messages_maped',array('is_read'=>'0'),array('message_id'=>$msgid['id'],'added_by'=>$this->utilities->getSessionUserData('uid')));
+			$this->commonModel->updateRecord('messages_maped',array('is_read'=>'0'),array('message_id'=>$msgid['id'],'to_addr'=>$this->utilities->getSessionUserData('uid')));
 		}
 		
 		if($type=='inbox'){
@@ -111,6 +112,23 @@ class Message extends CI_Controller {
 				echo "false";
 			}else{
 				$this->db->trans_complete();
+				$getUserData = $this->commonModel->getRecord('users','*',array('id'=>$to));
+				$timeDiff = $this->utilities->getLastActiveTimeDiff($to);
+				if($timeDiff > 15){
+					$verifyUrl = MSG_CONVER_URL . $transId."/inbox";
+					$data['msgurl'] = array('verifyurl'=>$verifyUrl);
+					$emailMsg = $this->load->view('messages/emailmsg',$data,true);
+					$emailData = array(
+						'to'=>$getUserData['email'],
+						'from'=>EMAIL_FROM,
+						'subject'=>'You have new messages about your Ad',
+						'from_name'=>EMAIL_FROM_NAME,
+						'message'=>$emailMsg
+					);
+					$send = $this->sendemail->emailSend($emailData);
+				}
+				
+				
 				$data['msgsnipt']=$this->messages->getChatById($messageIns);
 				echo $this->load->view('messages/messagesnipts',$data,true);
 			}

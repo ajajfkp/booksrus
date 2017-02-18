@@ -57,7 +57,7 @@ define("REMOTE_IP", $_SERVER['REMOTE_ADDR']);
 /************************************************************/
 /********************|Database Configuration|****************/
 /************************************************************/
-
+date_default_timezone_set('America/Denver');
 define("CH_DB_HOST", "localhost");
 define("CH_DB_USER", "root");
 define("CH_DB_PASSWORD", "");
@@ -80,6 +80,7 @@ define("EMAIL_FROM", "admin@yourdomain.com");
 define("EMAIL_FROM_NAME", "Admin Tean");
 define("EMAIL_VARIFY_URL", "http://localhost/booksrus/mybooksrus/verifyaccount/");
 define("FORGET_PASSWD_URL", "http://localhost/booksrus/mybooksrus/changepasswd/");
+define("MSG_CONVER_URL", "http://localhost/booksrus/mybooksrus/message/showmessages/");
 
 /****************************************************************/
 /*********************|RECAPTCHA Configuration|******************/

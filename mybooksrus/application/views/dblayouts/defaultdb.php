@@ -23,7 +23,26 @@
 		<script src="<?php echo base_url();?>assets/js/jquery/jquery.js"></script>
 		<script src="<?php echo base_url();?>assets/js/jquery/jquery-ui.js"></script>
 		<script type="text/javascript">
-			var base_url = '<?php echo base_url(); ?>'
+			var base_url = '<?php echo base_url(); ?>';
+			(function(){
+				setInterval(
+				function(){
+					var uid = '<?php echo $this->utilities->getSessionUserData('uid');?>';
+					$.ajax({
+						type: "POST",
+						url: base_url+'auth/updateuserUptime',
+						data: {
+							'uid':uid
+						},
+						success: function(msg){
+							console.log(msg);
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							//setUiMessege('err',errorThrown);
+						}
+					});
+				},5000);
+			})();
 		</script>
 		<?php echo $this->layouts->print_includes(); ?>
 	</head>

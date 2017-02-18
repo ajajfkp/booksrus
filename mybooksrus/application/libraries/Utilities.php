@@ -362,4 +362,22 @@ class Utilities {
 			return false;
 		}
 	}
+	
+	function getLastActiveTimeDiff($uid=0){
+		$diff = 0;
+		if($uid){
+			$alstActiveTime = $this->CI->commonModel->getRecord('users','last_activity',array('id'=>$uid));
+			if($alstActiveTime){
+				$start_date = new DateTime($alstActiveTime['last_activity']);
+				$since_start = $start_date->diff(new DateTime(date('Y-m-d H:i:s')));
+				$diff = $since_start->i;
+			}else{
+				$diff=0;
+			}
+			return $diff;
+		}else{
+			return false;
+		}
+	}
+	
 }

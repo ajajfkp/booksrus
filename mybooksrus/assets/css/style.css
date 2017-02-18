@@ -513,7 +513,9 @@ hr { smargin-top: 5px;smargin-bottom: 10px; }
 .chat-container{
 	border: 1px solid #ccc;
     border-top: none;
-	min-height:250px;
+    min-height: 250px;
+    height: 500px;
+    overflow-y: auto;
 }
 
 .chat-img{
