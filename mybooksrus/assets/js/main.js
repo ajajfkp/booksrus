@@ -318,7 +318,7 @@ function deletemessage(transId,types){
 	if(transId){
 		swal({
 		  title: "Are you sure?",
-		  text: "Would you like to delete this message!",
+		  text: "You will not be able to recover this imaginary file!",
 		  type: "warning",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
@@ -337,7 +337,7 @@ function deletemessage(transId,types){
 					if(msg=='false'){
 						
 					}else{
-						swal("Deleted!", "Your message has been deleted.", "success");
+						swal("Deleted!", "Your imaginary file has been deleted.", "success");
 					};
 				},
 				error : function(XMLHttpRequest, textStatus, errorThrown) {
