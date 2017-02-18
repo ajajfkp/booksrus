@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 75px;">
+<div class="container-fluid" style="margin-top: 75px;">
 <div class="row">
 <div class="col-sm-3">
 	<!-- Left column -->
@@ -32,7 +32,7 @@
 				<li id="leftuseraria" class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">User aria <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
 					<ul class="dropdown-menu forAnimate" role="menu">
-						<li id="listad">
+						<li id="messages">
 							<a href="<?php echo base_url('message'); ?>">
 								Messages
 								<?php 
@@ -160,12 +160,22 @@
 <!-- /col-3 -->
 <div class="col-sm-9">
 <ul class="list-inline pull-right">
-<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="glyphicon glyphicon-comment"></i><span class="badge badge-info">3</span></a>
-	<ul class="dropdown-menu" role="menu" style="left: -150px;">
+<li class="dropdown">
+	<?php 
+		$urcount = $this->utilities->getunreadcount($this->utilities->getSessionUserData('uid'));
+		if($urcount){
+	?>
+	<a href="<?php echo base_url('message');?>" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		<i class="glyphicon glyphicon-comment"></i><span class="badge badge-info"><?php echo $urcount;?></span>
+	</a>
+	<?php 
+		}
+	?>
+	<!--<ul class="dropdown-menu" role="menu" style="left: -150px;">
 		<li><a href="#">1. Is there a way..</a></li>
 		<li><a href="#">2. Hello, admin. I would..</a></li>
 		<li><a href="#"><strong>All messages</strong></a></li>
-	</ul>
+	</ul>-->
 </li>
 </ul>
 <a><strong><?php echo $title_for_page; ?></strong></a>
