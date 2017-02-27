@@ -1,84 +1,135 @@
- <div class="jumbotron">
-  <div class="container">
-	<h1>Collegebooksrus</h1>
-	<p class="lead"> To buy/Sell books within same univeristy </p>
-	<p>
-	<div class="container">
-		<div class="row">
-			<?php $attributes = array("name" => "searchform","method"=>"get","class"=>"form-horizontal");
-					echo form_open("search", $attributes);?>
-				<div class="form-group">
-					<div class="col-lg-8 col-lg-offset-2">
-						<div class="row">
-							<div class="col-lg-6 col-md-6">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-									<select name="state" class="form-control selectpicker" onchange="getUniListByStateId(this)" >
-									    <?php 
-											$stateOption = '<option value="">Select State</option>';
-											$listState = $this->utilities->getAllState('','3926');
-											if($listState){
-												foreach($listState as $state){
-													$stateOption.="<option value='". $state->id ."'" . set_select('state', $state->id) . ">".$state->name."</option>";
-												}
-												echo $stateOption;
-											}
-										?>
-									</select>
+<div class="jumbotron">
+		<div class="container">
+		<h1>Collegebooksrus</h1>
+		<p class="lead"> To buy/Sell books within same univeristy </p>
+			<p>
+				<div class="container">
+					<div class="row">
+						<form action="<?php echo base_url('search'); ?>" name="searchform" method="get" class="form-horizontal" accept-charset="utf-8">
+							<div class="form-group">
+								<div class="col-lg-8 col-lg-offset-2">
+									<div class="row">
+										<div class="col-lg-6 col-md-6" style="margin-bottom:10px;">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+												<select name="state" class="form-control selectpicker" onchange="getUniListByStateId(this)" >
+													<option value="">Select State</option><option value='3926'>Colorado</option>									</select>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-home"></i>
+												</span>
+												<select name="university" id="university" class="form-control selectpicker">
+													<option value="">Select University</option>
+												</select>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="input-group">
-									<span class="input-group-addon">
-										<i class="glyphicon glyphicon-home"></i>
-									</span>
-									<select name="university" id="university" class="form-control selectpicker">
-										<option value="">Select University</option>
-									</select>
+							<div class="form-group">
+								<div class="col-lg-8 col-lg-offset-2">
+									<div class="row" style="margin:0 0;">
+										<div class="input-group">
+											<input type="text" name="search" class="search-query form-control" placeholder="Search by Books name, ISBN, Author, university" id="searchInput" value="" style="height:60px;"/>
+											<span class="input-group-btn">
+												<button class="btn btn-danger" type="submit" id="searchButton" style="height:60px;width:60px;">
+													<span class=" glyphicon glyphicon-search"></span>
+												</button>
+											</span>
+										</div>
+									</div>
 								</div>
 							</div>
+						</form>		
+					</div>
+				</div>
+			</p>
+		</div>
+	</div>
+</header>
+<main>
+	<section class="well6 bg-alt">
+		<div class="container center767">
+			<h2 class="text-center">Featured Books</h2>
+			<div class="row">
+			<?php
+				$bookDetails = $this->utilities->getFeaturedBooks();
+				if($bookDetails){
+					foreach($bookDetails as $bookDetail){
+			?>
+				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="2s" style="visibility: visible; animation-duration: 2s; animation-name: fadeInUp;">
+					<div class="thumbnail">
+						<a href="#"><img class='backup_picture' src="<?php echo base_url('uploads/booksimg/'.$bookDetail['image']); ?>" alt=""></a>
+						<div class="caption">
+							<h5><?php echo ((strlen($bookDetail['name'])>20)?substr($bookDetail['name'],0,20)."...":$bookDetail['name']);?></h5>
+							<dl>
+								<dt>ISBN 10:</dt>
+								<dd>8523694</dd>
+								<dt>ISBN 13:</dt>
+								<dd>8523694</dd>
+								<dt>Author(s):</dt>
+								<dd>Conse ctetur adipisicing</dd>
+								<dt>Edition:</dt>
+								<dd>Elit sed do eiusmod tempor</dd>
+								<dt>Binding:</dt>
+								<dd>Incididunt ut labore</dd>
+							</dl>
+							<a href="#" class="btn btn-primary btn-primary__mod">Learn more</a>
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<div class="col-lg-8 col-lg-offset-2">
-						<div class="row" style="margin:0 0;">
-							<div class="input-group">
-								<input type="text" name="search" class="search-query form-control" placeholder="Search by Books name, ISBN, Author, university" id="searchInput" value="<?php echo set_value('search'); ?>" style="height:60px;"/>
-								<span class="input-group-btn">
-									<button class="btn btn-danger" type="submit" id="searchButton" style="height:60px;width:60px;">
-										<span class=" glyphicon glyphicon-search"></span>
-									</button>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			<?php echo form_close(); ?>
+				<?php
+					}
+				}
+				?>
+			</div>
 		</div>
-	</div>
-	</p>
-	<!--<p><a class="btn btn-primary btn-lg" href="<?php echo base_url('auth/signup');?>" role="button">Sign up today &raquo;</a></p>-->
-  </div>
-</div>
-
-<div class="container">
-	<div class="row">
-		<div class="col-md-4">
-		  <h2>Heading</h2>
-		  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-		  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+	</section>
+	<section class="parallax">
+		<div class="parallax_image" style="background-color: inherit; height: 500px; transform: translate3d(0px, -0.0310345px, 0px);">
 		</div>
-		<div class="col-md-4">
-		  <h2>Heading</h2>
-		  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-		  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		<div class="parallax_cnt">
+			<div class="container">
+				<h2 class="text-center txt-clr1">About Us</h2>
+				<ul class="row index-list">
+					<li class="col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-clr1">
+							<a href="#">Incididunt ut labore et dolore</a>
+						</h5>
+						<p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+							laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+							voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet
+							conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+							aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+						ex.</p>
+					</li>
+					<li class="col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-clr1"><a href="#">Incididunt ut labore et dolore</a></h5>
+						<p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+							laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+							voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet
+							conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+							aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+							ex.
+						</p>
+					</li>
+					<li class="col-md-4 col-sm-4 col-xs-12">
+						<h5 class="txt-clr1"><a href="#">Incididunt ut labore et dolore</a></h5>
+							<p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut
+							labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+							laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+							voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet
+							conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+							aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+							ex.</p>
+					</li>
+				</ul>
+			</div>
 		</div>
-		<div class="col-md-4">
-		  <h2>Heading</h2>
-		  <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-		  <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-		</div>
-	</div>
-
-<hr>
+	</section>
+</main>	

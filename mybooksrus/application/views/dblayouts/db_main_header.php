@@ -1,5 +1,4 @@
-<!-- header -->
-<div id="top-nav" class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top" id="mainNave" style="box-shadow: 0 1px 2px #bbb;">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -8,40 +7,37 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a href="<?php echo base_url();?>" class="navbar-brand" ><img src="<?php echo base_url('assets/images/logo.png');?>" alt="collegeboohsrus.com" width="85%" /></a>
+			<a href="<?php echo base_url();?>" class="navbar-brand" ><img src="<?php echo base_url('assets/images/100x40.png');?>" alt="collegeboohsrus.com" width="120%" /></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-			<?php if ($this->utilities->isAuth()){ ?>
-				<li id="topdashboard" class="active">
+							<li id="topdashboard" class="active">
 					<a href="<?php echo base_url('dashboard');?>">
 						<span class="glyphicon glyphicon-dashboard"></span> Dashboard
 					</a>
 				</li>
-			<?php } else { ?>
-				<li id="topdashboard" class="active">
-					<a href="<?php echo base_url();?>">
-						<span class="glyphicon glyphicon-home"></span> Home
-					</a>
-				</li>
-			<?php } ?>
-				<li id="topabout">
-					<a href="<?php echo base_url('index/about');?>">
+							<li id="topabout">
+					<a href="<?php echo base_url('about');?>">
 						About Us
 					</a>
 				</li>
 				<li id="topcontact">
-					<a href="<?php echo base_url('index/contact');?>">
+					<a href="<?php echo base_url('contact');?>">
 						Contact Us
 					</a>
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				<!--<li>
+					<a href="<?php echo base_url('dashboard');?>">
+						<span class="glyphicon glyphicon-shopping-cart"></span> 4
+					</a>
+				</li>-->
 				<?php if ($this->utilities->isAuth()){ ?>
 				<li>
-					<a>
+					<p class="navbar-text">
 						Hello <?php echo $this->utilities->getSessionUserData('uname'); ?>
-					</a>
+					</p>
 				</li>
 				<li>
 					<a href="<?php echo base_url(); ?>auth/logout">
@@ -61,16 +57,46 @@
 				</li>
 				<?php } ?>
 			</ul>
-			<!--<form class="navbar-form navbar-right">
-				<div class="form-group">
-					<input type="text" placeholder="Email" class="form-control">
-				</div>
-				<div class="form-group">
-					<input type="password" placeholder="Password" class="form-control">
-				</div>
-				<button type="submit" class="btn btn-success">Sign in</button>
-			</form>-->
 		</div><!--/.nav-collapse -->
 	</div>
-</div>
-<!-- /Header -->
+</nav>
+<header>
+	<nav class="my-navbar-inverse" style="">
+		<div class="container">
+			<div class="row">
+			  <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 hidden-xs">
+				<div class="myclass">
+					<a href="<?php echo base_url();?>" class="" >
+						<img src="<?php echo base_url('assets/images/300x120.png');?>" alt="collegeboohsrus.com" width="85%" />
+					</a>
+				</div>
+			  </div>
+			  <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 hidden-xs">
+				<div class="myclass">
+					<div class="navbar navbar-default mynavbar">
+						<div class="navbar-collapse collapse">
+							<ul class="nav navbar-nav">
+								<li class="active">
+									<a href="<?php echo base_url();?>">Home</a>
+								</li>
+								<li class="">
+									<a href="<?php echo base_url('index/about');?>">About</a>
+								</li>
+								<li class="">
+									<a href="<?php echo base_url('index/contact');?>">Contact</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			  </div>
+			  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+				<div class="head-btns myclass">
+					<a href="<?php echo base_url('auth/signup');?>" class="btn btn-default btn-sm">Sign Up</a>
+					<a href="<?php echo base_url('auth/signin');?>" class="btn login-btn btn-sm">Sign In</a>
+				</div>
+			  </div>
+			</div>
+		</div>
+	</nav>
+</header>

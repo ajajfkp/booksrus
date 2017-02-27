@@ -1,8 +1,8 @@
-<div class="container-fluid" style="margin-top: 75px;">
+<div class="container-fluid" style="padding-top: 20px;padding-bottom: 50px;background-color:#fff">
 <div class="row">
 <div class="col-sm-3">
 	<!-- Left column -->
-	<a href="<?php echo base_url('dashboard'); ?>"><strong><i class="glyphicon glyphicon-dashboard"></i> Dashboard</strong></a>
+	<a href="<?php echo base_url('dashboard'); ?>"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
 	<hr>
 	
 	<nav class="navbar navbar-default sidebar" role="navigation">
@@ -21,31 +21,21 @@
 					<a href="<?php echo base_url('dashboard')?>">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a>
 				</li>
 				<li id="leftsellbooks">
-				<a href="<?php echo base_url('postyouradd')?>">Sell books<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-usd"></a>
+				<a href="<?php echo base_url('postyouradd')?>">Sell Books<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-usd"></a>
 				</li>
 				<li id="leftsearcby">
-					<a href="<?php echo base_url('search/searchbooks'); ?>">Search & buy<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-search"></a>
+					<a href="<?php echo base_url('search/searchbooks'); ?>">Buy Books<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-search"></a>
 				</li>
 				<!--<li id="leftbybook">
 					<a href="<?php echo base_url('dashboard')?>">Buy Books<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-book"></a>
 				</li>-->
 				<li id="leftuseraria" class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">User aria <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">My Profile<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
 					<ul class="dropdown-menu forAnimate" role="menu">
-						<li id="messages">
-							<a href="<?php echo base_url('message'); ?>">
-								Messages
-								<?php 
-								$urcount = $this->utilities->getunreadcount($this->utilities->getSessionUserData('uid'));
-								if($urcount){
-								?>
-								<span class="badge badge-info"><?php echo $urcount; ?></span>
-								<?php
-								}
-								?>
-							</a>
-						</li>
+						<li id="changename"><a href="<?php echo base_url('users/updateprofile'); ?>">Update profile</a></li>
 						<li class="divider"></li>
+						<li id="changepasswd"><a href="<?php echo base_url('users/updatepasswd'); ?>">Change password</a></li>
+						<!--<li class="divider"></li>
 						<?php if( $count = $this->utilities->listuserad($this->utilities->getSessionUserData('uid'))){?>
 						<li id="listad">
 							<a href="<?php echo base_url('postyouradd/listuseradsetails'); ?>">
@@ -55,17 +45,24 @@
 						</li>
 						<?php } ?>
 						<li class="divider"></li>
-						<li id="changename"><a href="<?php echo base_url('users/updateprofile'); ?>">Update profile</a></li>
-						<li class="divider"></li>
 						<li id="changeaddr"><a href="<?php echo base_url('users/updateaddress'); ?>">Update address</a></li>
 						<li class="divider"></li>
-						<li id="changepasswd"><a href="<?php echo base_url('users/updatepasswd'); ?>">Change password</a></li>
-						<li class="divider"></li>
-						<li id="changenotyfy"><a href="#">Email notifications</a></li>
+						<li id="changenotyfy"><a href="#">Email notifications</a></li>-->
 					</ul>
-				</li>          
-				<li ><a href="#">Libros<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></li>        
-				<li ><a href="#">Tags<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a></li>
+				</li>
+				<li id="messages">
+					<a href="<?php echo base_url('message'); ?>">
+						Messages
+						<?php 
+						$urcount = $this->utilities->getunreadcount($this->utilities->getSessionUserData('uid'));
+						if($urcount){
+						?>
+						<span class="badge badge-info"><?php echo $urcount; ?></span>
+						<?php
+						}
+						?>
+					</a>
+				</li>
 			</ul>
 		</div>
 		</div>

@@ -7,7 +7,7 @@
 
 <div class="panel">
 	<ul class="nav nav-tabs" id="myTab">
-		<li class="active"><a href="#yourad" data-toggle="tab">Your Ad</a></li>
+		<li class="active"><a href="#yourad" data-toggle="tab">Books for sale</a></li>
 		<li><a href="#yourbying" data-toggle="tab">Your bying</a></li>
 	</ul>
 	<div class="tab-content">
@@ -18,7 +18,7 @@
 			?>
 				<div class="row list-book-cntnr">
 					<div class="img-cntnr col-lg-4">
-						<img src="<?php echo base_url('uploads/booksimg/'.$userbook['image']) ;?>" alt="book image" width="100%"/>
+						<img class='backup_picture' src="<?php echo base_url('uploads/booksimg/'.$userbook['image']) ;?>" alt="book image" width="100%"/>
 					</div>
 					<div class="col-lg-8 disc-area">
 						<h3><?php echo (($userbook['title'])?$userbook['title']:'Title'); ?></h3>

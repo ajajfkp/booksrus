@@ -1,4 +1,6 @@
-<div class="container" style="margin-top: 60px;">
+</header>
+<section class="well5 bg-alt">
+<div class="container">
 	<div class="row">
 		<div class="su-frm-bcgrnd">
 			<div class="row">
@@ -78,4 +80,4 @@
 			</div>
 		</div>
 	</div>
-<hr>
+</section>

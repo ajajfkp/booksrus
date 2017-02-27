@@ -1,0 +1,372 @@
+header{
+	background: url(images/2.jpg),#000040 center top no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-attachment: fixed;
+	padding-bottom: 2px;
+}
+
+.my-navbar-inverse {
+    background-color: transparent;
+    border-bottom: 1px solid #ccc;
+}
+
+.my-navbar-collapse{
+	margin-top: 40px;
+}
+
+#mainNave{
+	margin-top:-60px;
+	-webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.navbar-brand {
+    padding: 5px 110px 0 0;
+}
+
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: transparent;
+	text-align:center;
+	color: #C6C6C6;
+}
+
+
+@media (max-width: 768px) {
+	
+	#mainNave {
+		margin-top: 0px;
+	}
+	header{
+		margin-top:50px
+	}
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+
+.btn-primary.btn-outline {
+    color: #428bca;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.myclass{
+	margin: 10px;
+    text-align: center;
+}
+
+.navbar {
+    min-height: 60px;
+	border-bottom:1px solid #ddd;
+}
+.mynavbar {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #101010;
+	margin-top:5px;
+}
+
+.mynavbar {
+    position: relative;
+    min-height: 50px;
+    margin-top: 28px;
+    border: 1px solid transparent;
+	margin-left: 100px;
+}
+
+.mynavbar .navbar-nav > .active > a, .mynavbar .navbar-nav > .active > a:hover, .mynavbar .navbar-nav > .active > a:focus {
+    color: #fbbe04;
+    background-color: transparent;
+}
+
+.mynavbar .navbar-nav > li > a {
+    color: #C6C6C6;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.btn-default {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: #ffffff;
+}
+
+.login-btn {
+    color: #ffffff;
+    background-color: #26DAC3;
+    Xborder-color: #26DAC3;
+	border:1px solid #26DAC3;
+}
+
+.myclass .btn-default:hover {
+    color: #ffffff;
+	background-color: #26DAC3;
+}
+
+.myclass .login-btn:hover {
+    color: #fff;
+	border-color: #26DAC3;
+	background-color: transparent;
+}
+
+.head-btns {
+    float: right;
+    margin-top: 40px;
+    margin-bottom: 10px;
+	float:none;
+	text-align:center;
+}
+
+.head-btns > a {
+    margin-right: 10px;
+}
+
+main {
+    background: #26dac3;
+}
+
+.well6 {
+    padding-top: 34px;
+    padding-bottom: 58px;
+}
+
+.bg-alt {
+    background: #fff;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+
+.center767 .row {
+    margin-top: 23px;
+}
+
+.parallax {
+    position: relative;
+    overflow: hidden;
+}
+.parallax_image {
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.parallax_image, .parallax_pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-position: center center;
+    will-change: transform;
+}
+
+.parallax_cnt {
+    position: relative;
+    color: #fff;
+    padding-top: 34px;
+    padding-bottom: 88px;
+}
+
+.txt-clr1 {
+    color: #fff;
+}
+
+.text-center {
+    text-align: center;
+}
+
+h2, .h2 {
+    font-size: 29px;
+    line-height: 1.82758621;
+    color: #333333;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'PT Sans',sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+.parallax_cnt *+.row {
+    margin-top: 35px;
+}
+
+.index-list {
+    counter-reset: li;
+}
+
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+ul, ol {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.index-list li h5 {
+    position: relative;
+    padding-left: 82px;
+    color: #fbbe04;
+}
+
+
+
+h5 {
+    font-weight: bold;
+}
+
+h5, .h5 {
+    font-size: 15px;
+    line-height: 1.46666667;
+    color: #333333;
+}
+
+.index-list li * + p {
+    margin-top: 31px;
+}
+
+footer {
+    padding-top: 55px;
+    padding-bottom: 14px;
+    background: #262626;
+}
+
+
+
+.fw-n {
+    font-weight: 400;
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h5, .h5 {
+    font-size: 15px;
+    line-height: 1.46666667;
+    color: #333333;
+}
+
+footer h5+ul {
+    margin-top: 9px;
+}
+
+ul, ol {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+ul li, ol li {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+footer ul li a {
+    color: #26dac3;
+}
+
+ul li a, ol li a {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+footer .navbar-brand {
+    padding-left: 38px;
+    float: none;
+    display: inline-block;
+    color: #fff;
+}
+
+footer .rights {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.thumbnail .caption {
+    padding: 9px;
+    color: #333;
+    float: none;
+    text-align: center;
+}
+
+body {
+    font-family: 'PT Sans',sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.69230769;
+    color: #777777;
+    background-color: #262626;
+    -webkit-text-size-adjust: none;
+}
+
+.thumbnail .caption * + .btn {
+    margin-top: 2px;
+}
+
+.btn-primary__mod:hover {
+    background: #edb712;
+    border-color: #edb712;
+    color: #fff;
+}
+
+
+.thumbnails .caption * + .btn-primary {
+    color: #ffffff;
+    background-color: #26dac3;
+    border-color: #26dac3;
+}
+
+.index-list li h5:before {
+    content: counter(li, decimal-leading-zero);
+    counter-increment: li;
+}
+
+.index-list li h5:before {
+    content: '';
+    position: absolute;
+    width: 61px;
+    height: 61px;
+    line-height: 61px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    background: #fe8315;
+    top: -19px;
+    left: 0px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.well2 {
+    padding-top: 34px;
+    padding-bottom: 40px;
+}
+
+.bg-alt {
+    background: #fff;
+}

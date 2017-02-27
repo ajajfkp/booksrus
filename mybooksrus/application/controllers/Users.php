@@ -190,6 +190,7 @@ class Users extends CI_Controller {
 			
 			$this->form_validation->set_rules('message', 'Message to seller', 'trim|required|min_length[20]|xss_clean');
 			if ($this->form_validation->run() == FALSE) {
+				$data['contactCnt'] = $this->utilities->numUsersContact($bookId);
 				$this->layouts->dbview('dashboard/viewbookdetails',$data);
 			}else{
 				$getBookData = $this->commonModel->getRecord('books','*',array('id'=>$bookId));

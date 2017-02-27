@@ -379,4 +379,9 @@ class Utilities {
 			return false;
 		}
 	}
+	
+	function getFeaturedBooks(){
+		return $bookdata = $this->CI->commonModel->getFeaturedBooks();
+	}
+	
 }

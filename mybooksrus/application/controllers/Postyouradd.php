@@ -43,7 +43,7 @@ class Postyouradd extends CI_Controller {
 		$this->form_validation->set_rules('price', 'Price', 'trim|numeric|required|xss_clean');
 		$this->form_validation->set_rules('condition', 'Condition of book', 'trim|numeric|required|xss_clean');
 		$this->form_validation->set_rules('discription', 'Description', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('image', 'Image', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('image', 'Image', 'trim|xss_clean');
 		if ($this->form_validation->run() == FALSE) {
 			$this->layouts->dbview('dashboard/addpost');
 		}else{

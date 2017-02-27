@@ -1,9 +1,7 @@
-<?php
-//echo "<pre>";
-//print_r($_SERVER);die;
-?>
-<div class="container" style="margin-top: 60px;">
-	<div class="container search-container">
+</header>
+<section class="well5 bg-alt">
+<div class="container">
+	<div class="search-container su-frm-bcgrnd">
 		<div class="row">
 			<div class="col-sm-12">
 				<h2>Search results for "<?php echo $searchby; ?>"</h2>
@@ -101,6 +99,10 @@
 		</div>
 	<?php 
 			}
+		}else{
+	?>
+	<h2>Book not found</h2>
+	<?php
 		}
 	?>
 		</div>
@@ -114,4 +116,4 @@
 			</div>
 		</div>
 	</div>
-<hr>
+</section>

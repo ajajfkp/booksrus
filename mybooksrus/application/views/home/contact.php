@@ -1,4 +1,5 @@
-<section id="contact" class="contact section">
+</header>
+<section id="contact" class="contact section well5 bg-alt">
 	<div class="container">
 		<h2 class="title">Drop us a line</h2>
 		<div class="row">

@@ -1,8 +1,4 @@
-<?php
-
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Index extends CI_Controller {
 
@@ -12,8 +8,6 @@ class Index extends CI_Controller {
 		$this->load->model('auth/auths');
 	}
 
-	
-
 	public function index() {
 		$extraHead = "activateHeadMeanu('topdashboard')";
 		$this->layouts->set_extra_head($extraHead);
@@ -22,8 +16,6 @@ class Index extends CI_Controller {
 		$this->layouts->view('home/main_page');
 	}
 
-	
-
 	public function about() {
 		$extraHead = "activateHeadMeanu('topabout')";
 		$this->layouts->set_extra_head($extraHead);
@@ -31,8 +23,6 @@ class Index extends CI_Controller {
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$this->layouts->view('home/about');
 	}
-
-	
 
 	public function contact() {
 		$extraHead = "activateHeadMeanu('topcontact')";

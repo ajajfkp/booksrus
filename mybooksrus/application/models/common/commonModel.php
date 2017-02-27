@@ -445,7 +445,17 @@ class commonModel extends CI_Model {
 		}
 	}
 		
-	
+	function getFeaturedBooks(){
+		$sql = "select t1.id,t1.isbn10,t1.name,t1.authors,t1.price,t1.image,t1.edition from  books t1
+				inner join books_transaction t2 on t2.book_id = t1.id
+		where t1.active_status = '1' and t2.transaction_typt='1' order by t1.date_added desc limit 4";
+		$result = $this->db->query($sql);
+		if($result->num_rows()>0){
+			return $result->result_array();
+		}else{
+			return false;
+		}
+	}
 }
 
 

@@ -2,7 +2,7 @@
 	<fieldset>
 		<div class="row">
 			<div class="col-sm-12">
-				<legend>Post your Ad</legend>
+				<legend>Add your post</legend>
 			</div>
 		</div>
 		<div class="row">
@@ -111,7 +111,7 @@
 					<div class="form-group row"> 
 						<label for="full_name_id" class="col-sm-3 control-label"></label>
 						<div class="col-sm-9">
-							<button type="submit" class="btn btn-md btn-primary">Post Ad</button>
+							<button type="submit" class="btn btn-md btn-primary">Add your post</button>
 						</div>
 					</div>    
 				<?php echo form_close(); ?>

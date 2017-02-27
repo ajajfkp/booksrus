@@ -1,7 +1,5 @@
 .jumbotron {
     text-align: center;
-    border-bottom: 1px solid #e5e5e5;
-	margin-top: 35px;
 }
 
 .footer .container{
@@ -14,7 +12,7 @@
 
 #aboutwrap{
 	background:url('/booksrus/mybooksrus/assets/images/about-bg.jpg') no-repeat center top;
-	margin-top: -10px;
+	margin-top: 0px;
     padding-top: 20px;
     text-align: center;
     background-attachment: relative;
@@ -49,7 +47,8 @@
 }
 
 .mt {
-    padding-top: 25px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 #chartwrap h1, #chartwrap p {
@@ -145,7 +144,7 @@ a {
     background: aliceblue;
     margin: 5%;
     padding: 10px;
-    border: 1px solid #CCCCCC;
+    xborder: 1px solid #CCCCCC;
     border-radius: 5px;
 }
 
@@ -163,9 +162,8 @@ h1 { font-size: 4vw; }
 @media (max-width: 1200px) {    h1 { font-size: 24px; }}
 
 .search-container{
-	border: 1px solid #ccc;
     border-radius: 5px;
-    padding-bottom: 20px;
+	margin: 50px 0px;
 }
 
 .search-paging-head{
@@ -397,6 +395,10 @@ body,html{
 .disc-area h3{
     margin-top: 0px;
     margin-bottom: 0px;
+}
+
+.disc-area{
+    text-align:left;
 }
 
 .orig-price{

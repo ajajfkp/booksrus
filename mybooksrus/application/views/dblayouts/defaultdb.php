@@ -19,11 +19,11 @@
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/dbstyle.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/ui_msg/style.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/sweetalert/dist/sweetalert.css" type="text/css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style_new.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/toastr.min.css" type="text/css">
 		<script src="<?php echo base_url();?>assets/js/jquery/jquery.js"></script>
 		<script src="<?php echo base_url();?>assets/js/jquery/jquery-ui.js"></script>
 		<script type="text/javascript">
-			var base_url = '<?php echo base_url(); ?>';
 			var base_url = '<?php echo base_url(); ?>';
 			(function(){
 				setInterval(
@@ -56,12 +56,12 @@
 		<?php $this->load->view('dblayouts/db_main_footer'); ?>
 		
 		<script src="<?php echo base_url();?>assets/js/ui_msg/jQuery.miniNoty.js"></script>
-		<script src="<?php echo base_url();?>assets/js/common.js"></script>
 		<script src="<?php echo base_url();?>assets/js/bootstrap/bootstrap.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/dbscript.js"></script>
 		<script src="<?php echo base_url();?>assets/sweetalert/dist/sweetalert.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/toastr.min.js"></script>
 		<script src="<?php echo base_url();?>assets/js/jquery.form.js"></script>
+		<script src="<?php echo base_url();?>assets/js/common.js"></script>
 		<script><?php echo $extra_head; ?></script>
 	</body> 
 </html>

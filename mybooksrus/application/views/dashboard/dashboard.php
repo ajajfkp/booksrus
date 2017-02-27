@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default" role="navigation" style="min-height: 0;border-radius: 5px;">
 	<a class="btn btn-lg btn-success" href="<?php echo base_url('postyouradd')?>">
-		<i class="glyphicon glyphicon-plus"></i>&nbsp;Post your AD
+		<i class="glyphicon glyphicon-plus"></i>&nbsp;Add your post
 	</a>
 </nav>
 <hr>
@@ -8,10 +8,6 @@
 	<a href="#" class="btn btn-primary col-sm-3">
 	<i class="glyphicon glyphicon-plus"></i>
 	<br> Service
-	</a>
-	<a href="#" class="btn btn-primary col-sm-3">
-	<i class="glyphicon glyphicon-cloud"></i>
-	<br> Cloud
 	</a>
 	<a href="#" class="btn btn-primary col-sm-3">
 	<i class="glyphicon glyphicon-cog"></i>
@@ -22,41 +18,7 @@
 	<br> Help
 	</a>
 </div>
-<hr>
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h4>Reports</h4>
-	</div>
-	<div class="panel-body">
-		<small>Success</small>
-		<div class="progress">
-			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%">
-				<span class="sr-only">72% Complete</span>
-			</div>
-		</div>
-		<small>Info</small>
-		<div class="progress">
-			<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-				<span class="sr-only">20% Complete</span>
-			</div>
-		</div>
-		<small>Warning</small>
-		<div class="progress">
-			<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-				<span class="sr-only">60% Complete (warning)</span>
-			</div>
-		</div>
-		<small>Danger</small>
-		<div class="progress">
-			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-				<span class="sr-only">80% Complete</span>
-			</div>
-		</div>
-	</div>
-	<!--/panel-body-->
-</div>
-<!--/panel-->
-<hr>
+<hr />
 <!--tabs-->
 <div class="panel">
 	<ul class="nav nav-tabs" id="myTab">
@@ -83,7 +45,7 @@
 	</div>
 </div>
 <!--/tabs-->
-<hr>
+
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h4>New Requests</h4>
