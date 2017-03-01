@@ -53,7 +53,7 @@
 						</span>
 					</a>
 					<a href="#">
-						<span class="fa fa-tumblr-square" style="font-size: 40px;color:#1DA1F2;">
+						<span class="fa fa-twitter-square" style="font-size: 40px;color:#1DA1F2;">
 						</span>
 					</a>
 				</div>

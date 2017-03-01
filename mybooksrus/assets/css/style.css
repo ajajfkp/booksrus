@@ -388,7 +388,6 @@ body,html{
 }
 
 .list-book-cntnr .img-cntnr{
-	border: 1px solid #ccc;
     padding: 5px 5px;
 }
 
@@ -399,6 +398,7 @@ body,html{
 
 .disc-area{
     text-align:left;
+	float:left !important;
 }
 
 .orig-price{

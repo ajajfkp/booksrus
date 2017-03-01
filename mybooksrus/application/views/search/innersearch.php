@@ -63,6 +63,10 @@
 	<div class="divider"></div>
 <?php 
 		}
+	}else{
+?>
+<h2>Book not found</h2>
+<?php		
 	}
 ?>
 	</div>

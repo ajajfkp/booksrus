@@ -17,12 +17,12 @@
 					</a>
 				</li>
 							<li id="topabout">
-					<a href="<?php echo base_url('about');?>">
+					<a href="<?php echo base_url('index/about');?>">
 						About Us
 					</a>
 				</li>
 				<li id="topcontact">
-					<a href="<?php echo base_url('contact');?>">
+					<a href="<?php echo base_url('index/contact');?>">
 						Contact Us
 					</a>
 				</li>
@@ -64,7 +64,7 @@
 	<nav class="my-navbar-inverse" style="">
 		<div class="container">
 			<div class="row">
-			  <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+			  <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 hidden-xs">
 				<div class="myclass">
 					<a href="<?php echo base_url();?>" class="" >
 						<img src="<?php echo base_url('assets/images/300x120.png');?>" alt="collegeboohsrus.com" width="85%" />
@@ -76,24 +76,32 @@
 					<div class="navbar navbar-default mynavbar">
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav">
-								<li class="active">
+								<li id="topdashboardhead" class="">
 									<a href="<?php echo base_url();?>">Home</a>
 								</li>
-								<li class="">
-									<a href="<?php echo base_url('index/about');?>">About</a>
+								<li id="topabouthead"class="">
+									<a href="<?php echo base_url('index/about');?>">About Us</a>
 								</li>
-								<li class="">
-									<a href="<?php echo base_url('index/contact');?>">Contact</a>
+								<li id="topcontacthead" class="">
+									<a href="<?php echo base_url('index/contact');?>">Contact Us</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			  </div>
-			  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+			  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 hidden-xs">
 				<div class="head-btns myclass">
+				<?php if ($this->utilities->isAuth()){ ?>
+					<a href="">Hello <?php echo ucfirst($this->utilities->getSessionUserData('uname')); ?>
+					</a>
+					<a href="<?php echo base_url(); ?>auth/logout">
+						<span class="glyphicon glyphicon-off"></span> Log Out
+					</a>
+				<?php }else{ ?>
 					<a href="<?php echo base_url('auth/signup');?>" class="btn btn-default btn-sm">Sign Up</a>
 					<a href="<?php echo base_url('auth/signin');?>" class="btn login-btn btn-sm">Sign In</a>
+				<?php } ?>
 				</div>
 			  </div>
 			</div>

@@ -35,16 +35,16 @@
 						<li id="changename"><a href="<?php echo base_url('users/updateprofile'); ?>">Update profile</a></li>
 						<li class="divider"></li>
 						<li id="changepasswd"><a href="<?php echo base_url('users/updatepasswd'); ?>">Change password</a></li>
-						<!--<li class="divider"></li>
+						<li class="divider"></li>
 						<?php if( $count = $this->utilities->listuserad($this->utilities->getSessionUserData('uid'))){?>
 						<li id="listad">
 							<a href="<?php echo base_url('postyouradd/listuseradsetails'); ?>">
-								List your Ads
+								Books for sale
 								<span class="badge badge-info"><?php echo $count; ?></span>
 							</a>
 						</li>
 						<?php } ?>
-						<li class="divider"></li>
+						<!--<li class="divider"></li>
 						<li id="changeaddr"><a href="<?php echo base_url('users/updateaddress'); ?>">Update address</a></li>
 						<li class="divider"></li>
 						<li id="changenotyfy"><a href="#">Email notifications</a></li>-->

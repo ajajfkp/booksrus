@@ -8,30 +8,37 @@
 <div class="panel">
 	<ul class="nav nav-tabs" id="myTab">
 		<li class="active"><a href="#yourad" data-toggle="tab">Books for sale</a></li>
-		<li><a href="#yourbying" data-toggle="tab">Your bying</a></li>
+		<!--<li><a href="#yourbying" data-toggle="tab">Your bying</a></li>-->
 	</ul>
-	<div class="tab-content">
+	<div class="tab-content my-tab-content">
 		<div class="tab-pane active" id="yourad">
 			<?php 
 				if($userbooks){
 					foreach($userbooks as $userbook){
 			?>
-				<div class="row list-book-cntnr">
+				<div class="row list-book-cntnr thumbnail" style="margin:0px 0px; padding-top: 10px;border: none;">
 					<div class="img-cntnr col-lg-4">
 						<img class='backup_picture' src="<?php echo base_url('uploads/booksimg/'.$userbook['image']) ;?>" alt="book image" width="100%"/>
 					</div>
-					<div class="col-lg-8 disc-area">
+					<div class="col-lg-8 disc-area caption">
 						<h3><?php echo (($userbook['title'])?$userbook['title']:'Title'); ?></h3>
-						<p>By - <?php echo (($userbook['authors'])?$userbook['authors']:'Authors'); ?></p>
-						<p>ISBN 10 - <?php echo (($userbook['isbn10'])?$userbook['isbn10']:''); ?></p>
-						<p>ISBN 13 - <?php echo (($userbook['isbn13'])?$userbook['isbn13']:''); ?></p>
-						<p>$ <?php echo $this->utilities->getDiscountPrice($userbook['price'],$userbook['discount']); ?>
+						<dl>
+							<dt>ISBN 10:</dt>
+							<dd><?php echo (($userbook['isbn10'])?$userbook['isbn10']:''); ?></dd>
+							<dt>ISBN 13:</dt>
+							<dd><?php echo (($userbook['isbn13'])?$userbook['isbn13']:''); ?></dd>
+							<dt>Author(s):</dt>
+							<dd><?php echo (($userbook['authors'])?$userbook['authors']:'Authors'); ?></dd>
+							<dt>Edition:</dt>
+							<dd>&nbsp;</dd>
+							<dt>Price:</dt>
+							<dd>$ <?php echo $this->utilities->getDiscountPrice($userbook['price'],$userbook['discount']); ?>
 						<?php
 						if($userbook['discount']){
 							echo ' - <span class="orig-price">$'.$this->utilities->getFormatedPrice($userbook['price']).' ('.$userbook['discount'].'% off)</span>';
 						}
-						?>
-						</p>
+						?></dd>
+						</dl>
 						<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$userbook['bookid'].'/'.$this->utilities->cleanurl($userbook['title'])); ?>" class="btn btn-md btn-primary">view & update</a></p>
 					</div>
 				</div>

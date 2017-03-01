@@ -120,7 +120,7 @@
 					<label for="website" class="control-label">&nbsp;</label>
 						<div class="phpto-area" style="padding: 0;">
 							<span class="imgarea">
-								<span id="img-close" class="img-close" style="top: 12px;">x</span><img src="<?php echo base_url('uploads/booksimg/'.$boodata['image']);?>" alt="<?php echo $boodata['image']; ?>" width="100%"/>
+								<span id="img-close" class="img-close" style="top: 12px;">x</span><img class="backup_picture" src="<?php echo base_url('uploads/booksimg/'.$boodata['image']);?>" alt="<?php echo $boodata['image']; ?>" width="100%"/>
 							</span>
 							<span class="prog-comp-body">
 								<span class="prog-comp-inner"></span>

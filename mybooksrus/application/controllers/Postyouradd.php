@@ -20,7 +20,7 @@ class Postyouradd extends CI_Controller {
 		$this->layouts->set_extra_head($extraHead);
 		
 		$this->layouts->set_title('Add your post!');
-		$this->layouts->set_page_title('Post your ad','<i class="glyphicon glyphicon-plus"></i>');
+		$this->layouts->set_page_title('Add your post','<i class="glyphicon glyphicon-plus"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$this->layouts->dbview('dashboard/addpost');
 	}

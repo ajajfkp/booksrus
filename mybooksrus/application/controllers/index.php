@@ -9,7 +9,7 @@ class Index extends CI_Controller {
 	}
 
 	public function index() {
-		$extraHead = "activateHeadMeanu('topdashboard')";
+		$extraHead = "activateHeadMeanu('topdashboard,topdashboardhead')";
 		$this->layouts->set_extra_head($extraHead);
 		$this->layouts->set_title('welcome!');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
@@ -17,7 +17,7 @@ class Index extends CI_Controller {
 	}
 
 	public function about() {
-		$extraHead = "activateHeadMeanu('topabout')";
+		$extraHead = "activateHeadMeanu('topabout,topabouthead')";
 		$this->layouts->set_extra_head($extraHead);
 		$this->layouts->set_title('About!');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
@@ -25,7 +25,7 @@ class Index extends CI_Controller {
 	}
 
 	public function contact() {
-		$extraHead = "activateHeadMeanu('topcontact')";
+		$extraHead = "activateHeadMeanu('topcontact,topcontacthead')";
 		$this->layouts->set_extra_head($extraHead);
 		$this->layouts->set_title('Contact!');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');

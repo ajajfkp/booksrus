@@ -95,9 +95,19 @@ header{
 }
 
 .mynavbar .navbar-nav > li > a {
-    color: #C6C6C6;
+    color: #CCC;
     font-size: 16px;
     font-weight: 500;
+}
+
+.mynavbar .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #FFF;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #CCC;
+    background-color: transparent;
 }
 
 .btn-default {
@@ -151,6 +161,10 @@ main {
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
     display: block;
+}
+
+section {
+    text-align: left;
 }
 
 .center767 .row {
@@ -229,7 +243,15 @@ ul, ol {
     color: #fbbe04;
 }
 
+.index-list li h5 a:hover {
+    color: #ccc;
+    text-decoration: none;
+}
 
+.index-list li h5 a {
+    color: #fbbe04;
+    text-decoration: none;
+}
 
 h5 {
     font-weight: bold;
@@ -251,8 +273,6 @@ footer {
     background: #262626;
 }
 
-
-
 .fw-n {
     font-weight: 400;
 }
@@ -271,55 +291,36 @@ footer h5+ul {
     margin-top: 9px;
 }
 
-ul, ol {
-    padding: 0;
-    list-style: none;
-    margin: 0;
-}
-
-ul li, ol li {
-    padding: 0;
-    list-style: none;
-    margin: 0;
-}
-
 footer ul li a {
     color: #26dac3;
 }
 
-ul li a, ol li a {
-    padding: 0;
-    list-style: none;
-    margin: 0;
-}
-
 footer .navbar-brand {
-    padding-left: 38px;
     float: none;
     display: inline-block;
     color: #fff;
+	width: 0%;
 }
 
 footer .rights {
     display: inline-block;
     margin-left: 5px;
+    color: #fff;
 }
 
 .thumbnail .caption {
     padding: 9px;
     color: #333;
     float: none;
-    text-align: center;
+    text-align: left;
 }
 
 body {
-    font-family: 'PT Sans',sans-serif;
+    font-family: "Merriweather Sans",sans-serif;
     font-size: 13px;
-    font-weight: 400;
-    line-height: 1.69230769;
-    color: #777777;
-    background-color: #262626;
-    -webkit-text-size-adjust: none;
+    line-height: 1.42857;
+    color: #333;
+    background-color: #fff;
 }
 
 .thumbnail .caption * + .btn {
@@ -345,7 +346,6 @@ body {
 }
 
 .index-list li h5:before {
-    content: '';
     position: absolute;
     width: 61px;
     height: 61px;
@@ -369,4 +369,48 @@ body {
 
 .bg-alt {
     background: #fff;
+}
+
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.thumbnail a img {
+    display: inline-block;
+    text-align: left;
+}
+
+.thumbnail .caption dl dt {
+    float: left;
+    margin-right: 10px;
+    width: 55px;
+    display: block;
+	color: #777;
+}
+
+.thumbnail .caption dl dd {
+    color: #fbbe04;
+    display: block;
+    margin: 0;
+}
+
+.parallax_cnt .container >ul >li{
+	margin: 25px 0;
+}
+
+.my-tab-content{
+	border: 1px solid #ccc;
+    border-top: none;
+}
+
+#myTab{
+	font-weight: bold;
 }

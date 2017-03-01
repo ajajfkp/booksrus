@@ -60,24 +60,24 @@
 				if($bookDetails){
 					foreach($bookDetails as $bookDetail){
 			?>
-				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="2s" style="visibility: visible; animation-duration: 2s; animation-name: fadeInUp;">
+				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="2s">
 					<div class="thumbnail">
-						<a href="#"><img class='backup_picture' src="<?php echo base_url('uploads/booksimg/'.$bookDetail['image']); ?>" alt=""></a>
+						<a href="#"><img class='backup_picture' src="<?php echo base_url('uploads/booksimg/'.$bookDetail['image']); ?>" alt="" style="height:200px;"></a>
 						<div class="caption">
 							<h5><?php echo ((strlen($bookDetail['name'])>20)?substr($bookDetail['name'],0,20)."...":$bookDetail['name']);?></h5>
 							<dl>
 								<dt>ISBN 10:</dt>
-								<dd>8523694</dd>
+								<dd><?php echo (($bookDetail['isbn10'])?$bookDetail['isbn10'] : '&nbsp;'); ?></dd>
 								<dt>ISBN 13:</dt>
-								<dd>8523694</dd>
+								<dd><?php echo (($bookDetail['isbn13'])?$bookDetail['isbn13'] : '&nbsp;'); ?></dd>
 								<dt>Author(s):</dt>
-								<dd>Conse ctetur adipisicing</dd>
+								<dd><?php echo (($bookDetail['authors'])?$bookDetail['authors'] : '&nbsp;'); ?></dd>
 								<dt>Edition:</dt>
-								<dd>Elit sed do eiusmod tempor</dd>
-								<dt>Binding:</dt>
-								<dd>Incididunt ut labore</dd>
+								<dd><?php echo (($bookDetail['edition'])?$bookDetail['edition'] : '&nbsp;'); ?></dd>
+								<dt>Price:</dt>
+								<dd><?php echo "$ ".(($bookDetail['price'])?$bookDetail['price'] : '&nbsp;'); ?></dd>
 							</dl>
-							<a href="#" class="btn btn-primary btn-primary__mod">Learn more</a>
+							<a href="<?php echo base_url('postyouradd/bookdetails/'.$bookDetail['id'].'/'.$this->utilities->cleanurl($bookDetail['title'])); ?>" class="btn btn-md btn-primary">view details</a>
 						</div>
 					</div>
 				</div>

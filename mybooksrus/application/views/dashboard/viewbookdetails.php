@@ -21,7 +21,7 @@
 		</div>
 		<div class="row list-book-cntnr">
 			<div class="img-cntnr col-lg-5">
-				<img src="<?php echo base_url('uploads/booksimg/'.$boodata['image']) ;?>" alt="book image" width="100%" height="200px"/>
+				<img class="backup_picture" src="<?php echo base_url('uploads/booksimg/'.$boodata['image']) ;?>" alt="book image" height="200px"/>
 			</div>
 			<div class="col-lg-7 disc-area">
 				<p><b>ISBN10 - </b><?php echo (($boodata['isbn10'])?$boodata['isbn10']:''); ?></p>
@@ -47,7 +47,7 @@
 				<?php
 				if($boodata['added_by'] == $this->utilities->getSessionUserData('uid')){
 				?>
-				<a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".$this->utilities->cleanurl($boodata['title'])); ?>" class="btn btn-md btn-primary pull-right">Edit</a>
+				<a href="<?php echo base_url('postyouradd/updatebookform/'.$boodata['bookid']."/".$this->utilities->cleanurl($boodata['title'])); ?>" class="btn btn-md btn-primary pull-right"> View & Update</a>
 				<?php
 				}else{
 				?>

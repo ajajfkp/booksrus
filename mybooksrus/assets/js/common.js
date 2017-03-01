@@ -16,7 +16,6 @@ $( document ).ready(function(){
 		}
 		//cycleItems();
 	}, 3000);
-console.log(toastr);
 });
 
 
