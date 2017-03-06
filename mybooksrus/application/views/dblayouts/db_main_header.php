@@ -92,8 +92,13 @@
 			  </div>
 			  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 				<div class="head-btns myclass">
+				<?php if (!$this->utilities->isAuth()){ ?>
 					<a href="<?php echo base_url('auth/signup');?>" class="btn btn-default btn-sm">Sign Up</a>
 					<a href="<?php echo base_url('auth/signin');?>" class="btn login-btn btn-sm">Sign In</a>
+				<?php }else{ ?>
+					<a href="<?php echo base_url('auth/signup');?>" class="btn btn-default btn-sm">Sign Up</a>
+					<a href="<?php echo base_url('auth/signin');?>" class="btn login-btn btn-sm">Sign In</a>
+				<?php } ?>
 				</div>
 			  </div>
 			</div>

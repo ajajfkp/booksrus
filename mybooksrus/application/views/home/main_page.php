@@ -1,7 +1,9 @@
 <div class="jumbotron">
 		<div class="container">
-		<h1>Collegebooksrus</h1>
-		<p class="lead"> To buy/Sell books within same univeristy </p>
+		<p><h1>WELCOME</h1></p>
+		<p><h1>TO</h1></p>
+		<p><h1>COLLEGEBOOKS'R'US</h1></p>
+		<p class="lead">BUY TEXT BOOKS FROM AND SELL TO STUDENTS FROM YOUR SCHOOL</p>
 			<p>
 				<div class="container">
 					<div class="row">
@@ -22,7 +24,7 @@
 													<i class="glyphicon glyphicon-home"></i>
 												</span>
 												<select name="university" id="university" class="form-control selectpicker">
-													<option value="">Select University</option>
+													<option value="">Select School</option>
 												</select>
 											</div>
 										</div>
@@ -62,7 +64,7 @@
 			?>
 				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="2s">
 					<div class="thumbnail">
-						<a href="#"><img class='backup_picture' src="<?php echo base_url('uploads/booksimg/'.$bookDetail['image']); ?>" alt="" style="height:200px;"></a>
+						<a href="#"><img class='backup_picture' src="<?php echo base_url('uploads/booksimg/'.$bookDetail['image']); ?>" alt="" style="height:200px;width:150px;"></a>
 						<div class="caption">
 							<h5><?php echo ((strlen($bookDetail['name'])>20)?substr($bookDetail['name'],0,20)."...":$bookDetail['name']);?></h5>
 							<dl>
@@ -74,8 +76,8 @@
 								<dd><?php echo (($bookDetail['authors'])?$bookDetail['authors'] : '&nbsp;'); ?></dd>
 								<dt>Edition:</dt>
 								<dd><?php echo (($bookDetail['edition'])?$bookDetail['edition'] : '&nbsp;'); ?></dd>
-								<dt>Price:</dt>
-								<dd><?php echo "$ ".(($bookDetail['price'])?$bookDetail['price'] : '&nbsp;'); ?></dd>
+								<!--<dt>Price:</dt>
+								<dd><?php echo "$ ".(($bookDetail['price'])?$bookDetail['price'] : '&nbsp;'); ?></dd>-->
 							</dl>
 							<a href="<?php echo base_url('postyouradd/bookdetails/'.$bookDetail['id'].'/'.$this->utilities->cleanurl($bookDetail['title'])); ?>" class="btn btn-md btn-primary">view details</a>
 						</div>

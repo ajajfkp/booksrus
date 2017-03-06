@@ -14,6 +14,7 @@
 		</script>
 		<link rel="shortcut icon" href="<?php echo base_url();?>favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap/bootstrap.css" type="text/css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap/font-awesome.min.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery-ui.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/dbstyle.css" type="text/css">

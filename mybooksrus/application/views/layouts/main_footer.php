@@ -1,5 +1,5 @@
 <footer>
-	<section>
+	<!--<section>
 		<div class="container center767">
 			<div class="row">
 				<div class="col-md-2 col-sm-6 col-xs-6 wow fadeIn animated" data-wow-duration="2s" data-wow-delay="0.8s" style="visibility: visible; animation-duration: 2s; animation-delay: 0.8s; animation-name: fadeIn;">
@@ -31,14 +31,27 @@
 			</div>
 		</div>
 	</section>
-	<hr>
+	<hr>-->
 	<div class="container">
-		<h2 class="navbar-brand">
-			<a href="./"><img src="http://localhost/booksrus/mybooksrus/assets/images/100x40.png" alt="collegeboohsrus.com" /></a>
-		</h2>
-		<p class="rights">
-			© <span id="copyright-year">2017</span>.
-			<a href="index-5.html">Privacy Policy</a>
+		<p>
+			<a href="./"><img src="<?php echo base_url('assets/images/100x40.png'); ?>" alt="collegeboohsrus.com" /></a>
 		</p>
+		<br />
+		<br />
+		<p>Read Tearms & Conditions <a href="./">Here</a></p>
+		<p>© <span id="copyright-year">2017 | Collegebooksrus.com</span></p>
+		<br />
+			<span class="social" style="font-size:25px;">
+				<i class="fa fa-facebook-official" style="font-size:30px;color:#3B5998"></i>
+				<i class="fa fa-twitter-square" style="font-size:30px;color:#1DA1F2"></i>
+				<i class="fa fa-youtube-square" style="font-size:30px;color:#CC181E"></i>
+			</span>
+		<!--<h2 class="navbar-brand">
+			<a href="./"><img src="<?php echo base_url('assets/images/100x40.png'); ?>" alt="collegeboohsrus.com" /></a>
+		</h2>
+		<p class="rights"> © 
+		<span id="copyright-year">2017</span>
+		<a href="index-5.html">Privacy Policy</a>
+		</p>-->
 	</div>
 </footer>

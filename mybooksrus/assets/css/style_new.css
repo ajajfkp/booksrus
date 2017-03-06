@@ -89,8 +89,13 @@ header{
 	margin-left: 100px;
 }
 
-.mynavbar .navbar-nav > .active > a, .mynavbar .navbar-nav > .active > a:hover, .mynavbar .navbar-nav > .active > a:focus {
-    color: #fbbe04;
+.mynavbar .navbar-nav > .active > a {
+	color: #458CBF;
+    background-color: transparent;
+}
+
+.mynavbar .navbar-nav > .active > a:hover, .mynavbar .navbar-nav > .active > a:focus {
+    color: #142561;
     background-color: transparent;
 }
 
@@ -106,7 +111,7 @@ header{
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #CCC;
+    color: #458CBF;
     background-color: transparent;
 }
 
@@ -118,19 +123,19 @@ header{
 
 .login-btn {
     color: #ffffff;
-    background-color: #26DAC3;
-    Xborder-color: #26DAC3;
-	border:1px solid #26DAC3;
+    background-color: #458CBF;
+    Xborder-color: #458CBF;
+	border:1px solid #458CBF;
 }
 
 .myclass .btn-default:hover {
     color: #ffffff;
-	background-color: #26DAC3;
+	background-color: #458CBF;
 }
 
 .myclass .login-btn:hover {
     color: #fff;
-	border-color: #26DAC3;
+	border-color: #458CBF;
 	background-color: transparent;
 }
 
@@ -147,7 +152,7 @@ header{
 }
 
 main {
-    background: #26dac3;
+    background: #458CBF;
 }
 
 .well6 {
@@ -268,7 +273,7 @@ h5, .h5 {
 }
 
 footer {
-    padding-top: 55px;
+    padding-top: 30px;
     padding-bottom: 14px;
     background: #262626;
 }
@@ -292,7 +297,7 @@ footer h5+ul {
 }
 
 footer ul li a {
-    color: #26dac3;
+    color: #458CBF;
 }
 
 footer .navbar-brand {
@@ -300,6 +305,11 @@ footer .navbar-brand {
     display: inline-block;
     color: #fff;
 	width: 0%;
+}
+
+footer .container {
+	text-align: center;
+	color:#fff;
 }
 
 footer .rights {
@@ -336,8 +346,8 @@ body {
 
 .thumbnails .caption * + .btn-primary {
     color: #ffffff;
-    background-color: #26dac3;
-    border-color: #26dac3;
+    background-color: #458CBF;
+    border-color: #458CBF;
 }
 
 .index-list li h5:before {
@@ -413,4 +423,34 @@ body {
 
 #myTab{
 	font-weight: bold;
+}
+
+main {
+	background: url(images/1.jpg),#000040 center top no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+    padding-bottom: 2px;
+}
+
+#searchButton{
+	color: #fff;
+    background-color: #458CBF;
+    border-color: #458CBF;
+}
+
+#searchButton:hover {
+    color: #fff;
+    background-color: #142561;
+    border-color: #142561;
+}
+
+#searchButton:focus, #searchButton.focus {
+    color: #fff;
+    background-color: #142561;
+    border-color: #142561;
+}
+
+.thumbnail{
+	border: 1px solid #458CBF;
 }
