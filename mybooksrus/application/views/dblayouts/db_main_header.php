@@ -11,18 +11,18 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-							<li id="topdashboard" class="active">
+				<li id="topdashboard" class="active">
 					<a href="<?php echo base_url('dashboard');?>">
 						<span class="glyphicon glyphicon-dashboard"></span> Dashboard
 					</a>
 				</li>
 							<li id="topabout">
-					<a href="<?php echo base_url('about');?>">
+					<a href="<?php echo base_url('index/about');?>">
 						About Us
 					</a>
 				</li>
 				<li id="topcontact">
-					<a href="<?php echo base_url('contact');?>">
+					<a href="<?php echo base_url('index/contact');?>">
 						Contact Us
 					</a>
 				</li>
@@ -40,7 +40,7 @@
 					</p>
 				</li>
 				<li>
-					<a href="<?php echo base_url(); ?>auth/logout">
+					<a href="<?php echo base_url('auth/logout'); ?>">
 						<span class="glyphicon glyphicon-off"></span> Log Out
 					</a>
 				</li>
@@ -77,7 +77,9 @@
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav">
 								<li class="active">
-									<a href="<?php echo base_url();?>">Home</a>
+									<a href="<?php echo base_url('dashboard');?>">
+										Dashboard
+									</a>
 								</li>
 								<li class="">
 									<a href="<?php echo base_url('index/about');?>">About</a>
@@ -96,8 +98,10 @@
 					<a href="<?php echo base_url('auth/signup');?>" class="btn btn-default btn-sm">Sign Up</a>
 					<a href="<?php echo base_url('auth/signin');?>" class="btn login-btn btn-sm">Sign In</a>
 				<?php }else{ ?>
-					<a href="<?php echo base_url('auth/signup');?>" class="btn btn-default btn-sm">Sign Up</a>
-					<a href="<?php echo base_url('auth/signin');?>" class="btn login-btn btn-sm">Sign In</a>
+					<span style="color: #fff;margin-right: 10px;">
+						Welcome! <?php echo ucfirst($this->utilities->getSessionUserData('uname')); ?>
+					</span>
+					<a href="<?php echo base_url('auth/logout'); ?>" class="btn login-btn btn-sm">Log Out</a>
 				<?php } ?>
 				</div>
 			  </div>

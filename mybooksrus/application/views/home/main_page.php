@@ -90,7 +90,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="parallax">
+	<!--<section class="parallax">
 		<div class="parallax_image" style="background-color: inherit; height: 500px; transform: translate3d(0px, -0.0310345px, 0px);">
 		</div>
 		<div class="parallax_cnt">
@@ -133,5 +133,5 @@
 				</ul>
 			</div>
 		</div>
-	</section>
+	</section>-->
 </main>	

@@ -19,6 +19,16 @@ class Dashboard extends CI_Controller {
 		$this->layouts->dbview('dashboard/dashboard');
 	}
 	
+	public function admin() {
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('lefthome');";
+		$this->layouts->set_extra_head($extraHead);
+		$this->layouts->set_title('Admin Dashboard!');
+		$this->layouts->set_page_title('Admin Home','<i class="glyphicon glyphicon-home"></i>');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		$this->layouts->dbview('dashboard/admindashboard');
+	}
+	
 	
 	public function adduniversity() {
 		$this->layouts->set_title('Add university!');

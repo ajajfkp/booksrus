@@ -92,7 +92,7 @@ class Search extends CI_Controller {
 			$uniObj = $this->utilities->getListUnivesityByStatteId($stateId);
 			
 			if($uniObj){
-				$uniOption = "<option value=''>Select University</option>";
+				$uniOption = "<option value=''>Select School</option>";
 				foreach($uniObj as $uni){
 					$uniOption .= "<option value='".$uni->id."'>".$uni->name."</option>";
 				}

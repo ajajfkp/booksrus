@@ -253,6 +253,14 @@ class Users extends CI_Controller {
 			}
 		}
 	}
+	
+	/* function viewuserdetails($uid=''){
+		if($uid){
+			
+		}else{
+			redirect('admindb/userlist');
+		}
+	} */
 }
 
 ?>

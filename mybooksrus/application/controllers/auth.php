@@ -72,7 +72,12 @@ class Auth extends CI_Controller {
 						$this->utilities->setSession($sess_data);
 						$this->utilities->setWrongPasswdAtempt(true);
 						if(!$saveurl){
-							redirect('dashboard');
+							$usertype = $this->utilities->getUserType();
+							if($usertype=='admin'){
+								redirect('dashboard/admin');
+							}else{
+								redirect('dashboard');
+							}
 						}else{
 							redirect($saveurl);
 						}
@@ -107,7 +112,7 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|alpha|min_length[3]|max_length[30]|xss_clean');
 		$this->form_validation->set_rules('passwd', 'Password', 'trim|required|min_length[6]|matches[cpasswd]|md5');
 		$this->form_validation->set_rules('cpasswd', 'Confirm Password', 'trim|required');
-		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|is_unique[users.email]');
+		$this->form_validation->set_rules('email', 'Email ID', 'trim|required|valid_email|is_unique[users.email]|callback_cust_email_check');
 		/* |callback_cust_email_check */
 		$recaptcha = $this->input->post("g-recaptcha-response");
 		

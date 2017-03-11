@@ -303,13 +303,12 @@ class Utilities {
 	
 	function getpagination($url,$total,$limit=20,$numlink=5){
 		$config = array();
-			$limit='2';
 			$config["base_url"] = $url;
 			$config['page_query_string'] = TRUE;
 			$config["total_rows"] = $total;
 			$config["per_page"] = $limit;
 			$config['display_pages'] = True;
-			$config['num_links'] = $numlink;
+			$config['num_links'] = 2;
 			//$config['use_page_numbers'] = FALSE;
 			$config['full_tag_open'] = '<div class="pull-right"> <ul class="pagination">';
 			$config['full_tag_close'] = '</div></ul>';
@@ -384,4 +383,14 @@ class Utilities {
 		return $bookdata = $this->CI->commonModel->getFeaturedBooks();
 	}
 	
+	function getUserType(){
+		$type = $this->getSessionUserData('user_type');
+		if($type == 0){
+			return 'student';
+		}else if($type == 1){
+			return 'admin';
+		}else{
+			return false;
+		}
+	}
 }

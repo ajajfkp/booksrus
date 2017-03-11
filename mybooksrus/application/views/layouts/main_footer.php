@@ -33,18 +33,22 @@
 	</section>
 	<hr>-->
 	<div class="container">
-		<p>
-			<a href="./"><img src="<?php echo base_url('assets/images/100x40.png'); ?>" alt="collegeboohsrus.com" /></a>
+		<p><h4>Collegebooksrus.com</h4>
+			<!--<a href="./"><img src="<?php echo base_url('assets/images/100x40.png'); ?>" alt="collegeboohsrus.com" /></a>-->
 		</p>
-		<br />
-		<br />
-		<p>Read Tearms & Conditions <a href="./">Here</a></p>
+		<p>Read Tearms & Conditions <a href="<?php echo base_url('index/termsandpolicy'); ?>">Here</a></p>
 		<p>© <span id="copyright-year">2017 | Collegebooksrus.com</span></p>
 		<br />
 			<span class="social" style="font-size:25px;">
-				<i class="fa fa-facebook-official" style="font-size:30px;color:#3B5998"></i>
-				<i class="fa fa-twitter-square" style="font-size:30px;color:#1DA1F2"></i>
-				<i class="fa fa-youtube-square" style="font-size:30px;color:#CC181E"></i>
+				<a href="https://www.facebook.com/collegebooksrus" target="_blank">
+					<i class="fa fa-facebook-official" style="font-size:30px;color:#3B5998"></i>
+				</a>
+				<a href="https://twitter.com/college_text" target="_blank">
+					<i class="fa fa-twitter-square" style="font-size:30px;color:#1DA1F2"></i>
+				</a>
+				<a href="https://www.youtube.com/channel/UCkugCduONLt90ahLDgO6ElQ" target="_blank">
+					<i class="fa fa-youtube-square" style="font-size:30px;color:#CC181E"></i>
+				</a>
 			</span>
 		<!--<h2 class="navbar-brand">
 			<a href="./"><img src="<?php echo base_url('assets/images/100x40.png'); ?>" alt="collegeboohsrus.com" /></a>

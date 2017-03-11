@@ -11,12 +11,18 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-							<li id="topdashboard" class="active">
+				<li id="topdashboard" class="active">
+				<?php if ($this->utilities->isAuth()){ ?>
 					<a href="<?php echo base_url('dashboard');?>">
-						<span class="glyphicon glyphicon-dashboard"></span> Dashboard
+						Dashboard
 					</a>
+				<?php }else{ ?>
+					<a href="<?php echo base_url('dashboard');?>">
+						Home
+					</a>
+				<?php } ?>
 				</li>
-							<li id="topabout">
+				<li id="topabout">
 					<a href="<?php echo base_url('index/about');?>">
 						About Us
 					</a>
@@ -64,7 +70,7 @@
 	<nav class="my-navbar-inverse" style="">
 		<div class="container">
 			<div class="row">
-			  <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 hidden-xs">
+			  <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
 				<div class="myclass">
 					<a href="<?php echo base_url();?>" class="" >
 						<img src="<?php echo base_url('assets/images/300x120.png');?>" alt="collegeboohsrus.com" width="85%" />
@@ -76,31 +82,38 @@
 					<div class="navbar navbar-default mynavbar">
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav">
-								<li id="topdashboardhead" class="">
-									<a href="<?php echo base_url();?>">Home</a>
+								<li class="active">
+									<?php if ($this->utilities->isAuth()){ ?>
+									<a href="<?php echo base_url('dashboard');?>">
+										Dashboard
+									</a>
+								<?php }else{ ?>
+									<a href="<?php echo base_url();?>">
+										Home
+									</a>
+								<?php } ?>
 								</li>
-								<li id="topabouthead"class="">
-									<a href="<?php echo base_url('index/about');?>">About Us</a>
+								<li class="">
+									<a href="<?php echo base_url('index/about');?>">About</a>
 								</li>
-								<li id="topcontacthead" class="">
-									<a href="<?php echo base_url('index/contact');?>">Contact Us</a>
+								<li class="">
+									<a href="<?php echo base_url('index/contact');?>">Contact</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			  </div>
-			  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 hidden-xs">
+			  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
 				<div class="head-btns myclass">
-				<?php if ($this->utilities->isAuth()){ ?>
-					<a href="">Hello <?php echo ucfirst($this->utilities->getSessionUserData('uname')); ?>
-					</a>
-					<a href="<?php echo base_url(); ?>auth/logout">
-						<span class="glyphicon glyphicon-off"></span> Log Out
-					</a>
+				<?php if (!$this->utilities->isAuth()){ ?>
+				<a href="<?php echo base_url('auth/signup');?>" class="btn btn-default btn-sm">Sign Up</a>
+				<a href="<?php echo base_url('auth/signin');?>" class="btn login-btn btn-sm">Sign In</a>
 				<?php }else{ ?>
-					<a href="<?php echo base_url('auth/signup');?>" class="btn btn-default btn-sm">Sign Up</a>
-					<a href="<?php echo base_url('auth/signin');?>" class="btn login-btn btn-sm">Sign In</a>
+					<span style="color: #fff;margin-right: 10px;">
+						Welcome! <?php echo ucfirst($this->utilities->getSessionUserData('uname')); ?>
+					</span>
+					<a href="<?php echo base_url('auth/logout'); ?>" class="btn login-btn btn-sm">Log Out</a>
 				<?php } ?>
 				</div>
 			  </div>

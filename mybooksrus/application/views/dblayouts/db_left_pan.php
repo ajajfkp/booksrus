@@ -17,9 +17,38 @@
 		</div>
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
 			<ul class="nav navbar-nav">
+				<?php if( $this->utilities->getUserType() == 'admin'){ ?>
+				<li id="lefthome" class="">
+					<a href="<?php echo base_url('dashboard/admin')?>">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a>
+				</li>
+				<li id="leftuseraria" class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Setting<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a>
+					<ul class="dropdown-menu forAnimate" role="menu">
+						<li id="registeruser">
+							<a href="<?php echo base_url('admindb/userlist'); ?>">
+								Registered users
+							</a>
+						</li>
+						<li class="divider"></li>
+						<li id="schoollist">
+							<a href="<?php echo base_url('admindb/schoolList'); ?>">
+								School list
+							</a>
+						</li>
+						<li class="divider"></li>
+						<li id="listad">
+							<a href="<?php echo base_url('postyouradd/listuseradsetails'); ?>">
+								Visitors
+							</a>
+						</li>
+					</ul>
+				</li>
+				<?php }else{ ?>
 				<li id="lefthome" class="">
 					<a href="<?php echo base_url('dashboard')?>">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a>
 				</li>
+				<?php } ?>
+				
 				<li id="leftsellbooks">
 				<a href="<?php echo base_url('postyouradd')?>">Sell Books<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-usd"></a>
 				</li>

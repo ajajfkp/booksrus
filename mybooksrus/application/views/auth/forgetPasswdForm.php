@@ -1,3 +1,4 @@
+</header>
 <div class="container varify-email-card" style="margin-top: 60px;">
 	<div class="row su-frm-bcgrnd">
 		<div class="col-md-4 col-md-offset-4">

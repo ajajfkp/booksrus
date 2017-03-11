@@ -240,6 +240,53 @@ function addunivbyuser(){
 	}
 }
 
+function contactWithUs(){
+	var errObj = [];
+	var name = $('#name').val();
+	var email = $('#email').val();
+	var subject = $('#subject').val();
+	var message = $('#message').val();
+	var city = $('#city').val();
+	errObj.push('name,Please enter your name');
+	errObj.push('email,Please enter your email');
+	errObj.push('subject,Please enter subject');
+	errObj.push('message,Please enter message');
+	if(validateinput(errObj)){
+		return false;
+	}else{
+		validateForm(email);
+		if(!grecaptcha.getResponse()){
+			alert('Pleade enter re-capcha');
+			return false;
+		}
+		$.ajax({ 
+			type: "POST",
+			url: base_url+'index/contactus',
+			data: {
+				'name':name,
+				'email':email,
+				'subject':subject,
+				'message':message,
+				'g-recaptcha-response':grecaptcha.getResponse()
+			},
+			success: function(msg){
+				$('#name').val('');
+				$('#email').val('');
+				$('#subject').val('');
+				$('#message').val('');
+				if(msg=='success'){
+					$('#flagmsg').html('Success : email has been sent to Collegebooksrus.con');
+				}else{
+					$('#flagmsg').html('Fail : somthing is wrong please try again...');
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				setUiMessege('err',errorThrown);
+			}
+		});
+	}
+}
+
 
 function activateHeadMeanu(idArr){
 	$("#navbar >ul >li").removeClass("active");

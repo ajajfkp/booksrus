@@ -454,3 +454,58 @@ main {
 .thumbnail{
 	border: 1px solid #458CBF;
 }
+#heading-breadcrumbs {
+    text-align: center;
+    background: #eee;
+    padding: 40px 0;
+    margin-bottom: 40px;
+}
+
+.breadcrumb {
+    padding: 20px 0;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.breadcrumb {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    background-color: none;
+    letter-spacing: 0.08em;
+    text-align: center;
+}
+
+.breadcrumb > li {
+    display: inline-block;
+}
+
+#heading-breadcrumbs h1 {
+    font-size: 46px;
+}
+breadcrumbs h1 {
+    color: #333333;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-align: center;
+}
+
+#content .heading {
+    margin-bottom: 40px;
+}
+
+#content .heading h1, .heading h2, .heading h3, .heading h4, .heading h5 {
+    display: inline-block;
+    border-bottom: solid 5px #4fbfa8;
+    line-height: 1.1;
+    margin-bottom: 0;
+    padding-bottom: 10px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+#content p.lead {
+    margin-bottom: 40px;
+}
