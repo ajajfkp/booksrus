@@ -13,11 +13,17 @@
 			<ul class="nav navbar-nav">
 				<li id="topdashboard" class="active">
 				<?php if ($this->utilities->isAuth()){ ?>
-					<a href="<?php echo base_url('dashboard');?>">
-						Dashboard
-					</a>
+					<?php if( $this->utilities->getUserType() == 'admin'){ ?>
+						<a href="<?php echo base_url('dashboard/admin');?>">
+							<span class="glyphicon glyphicon-dashboard"></span> Dashboard
+						</a>
+						<?php }else{?>
+						<a href="<?php echo base_url('dashboard');?>">
+							<span class="glyphicon glyphicon-dashboard"></span> Dashboard
+						</a>
+						<?php }?>
 				<?php }else{ ?>
-					<a href="<?php echo base_url('dashboard');?>">
+					<a href="<?php echo base_url();?>">
 						Home
 					</a>
 				<?php } ?>
@@ -84,9 +90,15 @@
 							<ul class="nav navbar-nav">
 								<li class="active">
 									<?php if ($this->utilities->isAuth()){ ?>
-									<a href="<?php echo base_url('dashboard');?>">
-										Dashboard
+									<?php if( $this->utilities->getUserType() == 'admin'){ ?>
+									<a href="<?php echo base_url('dashboard/admin');?>">
+										<span class="glyphicon glyphicon-dashboard"></span> Dashboard
 									</a>
+									<?php }else{?>
+									<a href="<?php echo base_url('dashboard');?>">
+										<span class="glyphicon glyphicon-dashboard"></span> Dashboard
+									</a>
+								<?php }?>
 								<?php }else{ ?>
 									<a href="<?php echo base_url();?>">
 										Home

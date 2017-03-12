@@ -1,12 +1,14 @@
 <div class="panel">
 	<ul class="nav nav-tabs" id="myTab">
-		<li class="active"><a>Activ Schools</a></li>
-		<li>
-			<a href="<?php echo base_url('admindb/inactivuserlist');?>">Schools required approval </a>
+		<li class="active">
+			<a>Activ Schools</a>
 		</li>
 		<li>
-			<a href="<?php echo base_url('admindb/deleteuserlist');?>">
-				Deleted schools
+			<a href="<?php echo base_url('admindb/univapproved');?>">Schools required approval </a>
+		</li>
+		<li>
+			<a href="<?php echo base_url('admindb/inactiveUniv');?>">
+				Inactive schools
 			</a>
 		</li>
 	</ul>
@@ -30,7 +32,7 @@
 						</div>-->
 					</div>
 				</div>
-				<div class="panel-body">
+				<div class="panel-bodys">
 					<ul class="list-group">
 				<?php
 					if($actSchoolLists){
@@ -54,7 +56,7 @@
 				<?php
 						}
 					}else{
-						echo "No record found";
+						echo "<li class='text-center'>No record found</li>";
 					}
 				?>
 					</ul>

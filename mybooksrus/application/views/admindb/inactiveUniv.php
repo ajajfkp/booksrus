@@ -1,12 +1,13 @@
 <div class="panel">
 	<ul class="nav nav-tabs" id="myTab">
-		<li class="active"><a>Activ users</a></li>
 		<li>
-			<a href="<?php echo base_url('admindb/inactivuserlist');?>">Inactive users</a>
+			<a href="<?php echo base_url('admindb/schoolList');?>">Activ Schools</a></li>
+		<li>
+			<a href="<?php echo base_url('admindb/univapproved');?>">Schools required approval </a>
 		</li>
-		<li>
-			<a href="<?php echo base_url('admindb/deleteuserlist');?>">
-				Deleted users
+		<li class="active">
+			<a>
+				Inactive schools
 			</a>
 		</li>
 	</ul>
@@ -16,7 +17,7 @@
 				<div class="panel-heading">
 					<div class="row">
 						<div class="col-lg-6">
-							<span class="glyphicon glyphicon-list"></span>Active User List
+							<span class="glyphicon glyphicon-list"></span>Activ Schools List
 						</div>
 						<!--<div class="col-lg-6">
 							<form>
@@ -33,16 +34,17 @@
 				<div class="panel-bodys">
 					<ul class="list-group">
 				<?php
-					if($actUserLists){
-						foreach($actUserLists as $userlist){
+					if($inactiveUniv){
+						foreach($inactiveUniv as $inactiveUnivlist){
 				?>
 						<li class="list-group-item">
 							<div class="checkbox">
 								<!--<a href="<?php echo base_url('users/viewuserdetails/'.$userlist['id'])?>">-->
 									<label for="checkbox">
-										<?php echo ucfirst($userlist['first_name']." ".$userlist['last_name']);?>
+										<?php echo ucfirst($inactiveUnivlist['name']);?>
 									</label>
 								<!--</a>-->
+									<a href="http://<?php echo $inactiveUnivlist['website']; ?>" target="_blank"><?php echo $inactiveUnivlist['website']; ?></a>
 							</div>
 							<div class="pull-right action-buttons">
 								<!--<a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -53,7 +55,7 @@
 				<?php
 						}
 					}else{
-						echo "No record found";
+						echo "<li class='text-center'>No record found</li>";
 					}
 				?>
 					</ul>

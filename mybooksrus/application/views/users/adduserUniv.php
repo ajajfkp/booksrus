@@ -5,7 +5,7 @@
 			<legend>
 				Hi! <?php echo $name; ?>
 				<p>
-					Please select your university
+					Please select your school
 				</p>
 			</legend>
 			<fieldset>
@@ -29,11 +29,11 @@
 				</div>
 				
 				<div class="form-group row">
-					<label for="passwd" class="col-sm-3 control-label">University</label>
+					<label for="passwd" class="col-sm-3 control-label">School</label>
 					<div class="col-sm-9">
-						<select placeholder="University" class="form-control" id="university" name="university" onchange="openuserunivaddform(this);">
+						<select placeholder="School" class="form-control" id="university" name="university" onchange="openuserunivaddform(this);">
 							<?php 
-							$univOption = '<option value="">Select University</option>';
+							$univOption = '<option value="">Select School</option>';
 								$listUniv = $this->utilities->getListUnivesityByStatteId('3926');
 								if($listUniv){
 									foreach($listUniv as $univ){

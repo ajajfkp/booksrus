@@ -73,9 +73,9 @@
 								<dt>ISBN 13:</dt>
 								<dd><?php echo (($bookDetail['isbn13'])?$bookDetail['isbn13'] : '&nbsp;'); ?></dd>
 								<dt>Author(s):</dt>
-								<dd><?php echo (($bookDetail['authors'])?$bookDetail['authors'] : '&nbsp;'); ?></dd>
+								<dd><?php echo (($bookDetail['authors'])?((strlen($bookDetail['authors'])>25)?substr($bookDetail['authors'],0,20)."...":$bookDetail['authors']) : '&nbsp;'); ?></dd>
 								<dt>Edition:</dt>
-								<dd><?php echo (($bookDetail['edition'])?$bookDetail['edition'] : '&nbsp;'); ?></dd>
+								<dd><?php echo (($bookDetail['edition'])?((strlen($bookDetail['edition'])>25)?substr($bookDetail['edition'],0,20)."...":$bookDetail['edition']) : '&nbsp;'); ?></dd>
 								<!--<dt>Price:</dt>
 								<dd><?php echo "$ ".(($bookDetail['price'])?$bookDetail['price'] : '&nbsp;'); ?></dd>-->
 							</dl>

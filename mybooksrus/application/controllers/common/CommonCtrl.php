@@ -86,7 +86,12 @@ class Commonctrl extends CI_Controller {
 					if($updRec){
 						$saveurl = $this->utilities->getserchurl();
 						if(!$saveurl){
-							redirect('dashboard');
+							$usertype = $this->utilities->getUserType();
+							if($usertype=='admin'){
+								redirect('dashboard/admin');
+							}else{
+								redirect('dashboard');
+							}
 						}else{
 							redirect($saveurl);
 						}

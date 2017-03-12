@@ -28,8 +28,17 @@ class Admindbmodel extends CI_Model {
 		}
 	}
 	
-	public function school_record_count($approved='1',$type='1'){
-		$sql ="select count(*) as count from universities where approved='".$approved."' and ".$type;
+	public function school_record_count($type='totlaapr'){
+		if($type == 'total'){
+			$where = "";
+		}else if($type == 'totlaapr'){
+			$where = " where approved = '1' and active_flag = '1'";
+		}else if($type == 'totlnotaapr'){
+			$where = " where approved = '0' and active_flag = '1'";
+		}else if($type == 'inact'){
+			$where = " where active_flag = '0'";
+		}
+		$sql ="select count(*) as count from universities ".$where;
 		$data = $this->db->query($sql);
 		if ($data->num_rows() > 0) {
 			return $data->row()->count;

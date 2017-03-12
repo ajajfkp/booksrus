@@ -91,7 +91,7 @@ class Admindb extends CI_Controller {
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		
 		$url = base_url('admindb/schoolList/');
-		$total = $this->admindbmodel->school_record_count('1','1');
+		$total = $this->admindbmodel->school_record_count($type='totlaapr');
 		$limit=2;
 		$this->utilities->getpagination($url,$total,$limit);
 		if($this->input->get('per_page')){
@@ -104,5 +104,55 @@ class Admindb extends CI_Controller {
 
 		$data["links"] = $this->pagination->create_links();
 		$this->layouts->dbview('admindb/actschools',$data);
+	}
+	
+	function univapproved(){ 
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('');";
+		$extraHead .= "setusermenu('schoollist');";
+		$this->layouts->set_extra_head($extraHead);
+		$this->layouts->set_title('School list!');
+		$this->layouts->set_page_title('School list','<i class="glyphicon glyphicon-home"></i>');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		
+		$url = base_url('admindb/univapproved/');
+		$total = $this->admindbmodel->school_record_count($type='totlnotaapr');
+		$limit=2;
+		$this->utilities->getpagination($url,$total,$limit);
+		if($this->input->get('per_page')){
+			$offset = $this->input->get('per_page');
+		}else{
+			$offset ='0';
+		}
+		$data["total"] = $total;
+		$data['univapproved'] = $this->commonModel->getRecord('universities','*',array('approved'=>'0','active_flag'=>'1'),array(),$limit,$offset,'array',1);
+
+		$data["links"] = $this->pagination->create_links();
+		$this->layouts->dbview('admindb/univapproved',$data);
+	}
+	
+	function inactiveUniv(){ 
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('');";
+		$extraHead .= "setusermenu('schoollist');";
+		$this->layouts->set_extra_head($extraHead);
+		$this->layouts->set_title('School list!');
+		$this->layouts->set_page_title('School list','<i class="glyphicon glyphicon-home"></i>');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		
+		$url = base_url('admindb/inactiveUniv/');
+		$total = $this->admindbmodel->school_record_count($type='inact');
+		$limit=2;
+		$this->utilities->getpagination($url,$total,$limit);
+		if($this->input->get('per_page')){
+			$offset = $this->input->get('per_page');
+		}else{
+			$offset ='0';
+		}
+		$data["total"] = $total;
+		$data['inactiveUniv'] = $this->commonModel->getRecord('universities','*',array('active_flag'=>'0'),array(),$limit,$offset,'array',1);
+
+		$data["links"] = $this->pagination->create_links();
+		$this->layouts->dbview('admindb/inactiveUniv',$data);
 	}
 }

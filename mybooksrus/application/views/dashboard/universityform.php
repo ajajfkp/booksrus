@@ -1,16 +1,16 @@
 <div class="row well">
 	<fieldset>
 		<div class="row">
-			<legend>Add University</legend>
+			<legend>Add School</legend>
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
 				<?php $attributes = array("name" => "adduniversity","class"=>"form-horizontal");
 						echo form_open("university/adduniversity", $attributes);?>
 					<div class="form-group row">
-						<label for="name" class="col-sm-3 control-label">University Name</label>
+						<label for="name" class="col-sm-3 control-label">School Name</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="name" name="name" placeholder="University name" value="<?php echo set_value('name'); ?>">
+							<input type="text" class="form-control" id="name" name="name" placeholder="School name" value="<?php echo set_value('name'); ?>">
 							<span class="text-danger"><?php echo form_error('name'); ?></span>
 						</div>
 					</div>	

@@ -393,4 +393,12 @@ class Utilities {
 			return false;
 		}
 	}
+	
+	function getTotalUsers($type='1'){
+		return $this->CI->commonModel->getTotalUsers($type);
+	}
+	
+	function getSchoolCount($type='totlaapr'){
+		return $this->CI->commonModel->getSchoolCount($type);
+	}
 }

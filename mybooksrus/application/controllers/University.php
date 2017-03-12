@@ -11,6 +11,10 @@ class University extends CI_Controller {
 	
 	
 	public function index() {
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('');";
+		$extraHead .= "setusermenu('addschool');";
+		$this->layouts->set_extra_head($extraHead);
 		$this->layouts->set_title('Add university');
 		$this->layouts->set_page_title('University','<i class="glyphicon glyphicon-home"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
@@ -18,6 +22,10 @@ class University extends CI_Controller {
 	}
 	
 	public function adduniversity() {
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('');";
+		$extraHead .= "setusermenu('addschool');";
+		$this->layouts->set_extra_head($extraHead);
 		$this->layouts->set_title('Add university');
 		$this->layouts->set_page_title('University','<i class="glyphicon glyphicon-home"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');

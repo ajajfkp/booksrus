@@ -12,9 +12,15 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li id="topdashboard" class="active">
-					<a href="<?php echo base_url('dashboard');?>">
+				<?php if( $this->utilities->getUserType() == 'admin'){ ?>
+					<a href="<?php echo base_url('dashboard/admin');?>">
 						<span class="glyphicon glyphicon-dashboard"></span> Dashboard
 					</a>
+				<?php }else{?>
+				<a href="<?php echo base_url('dashboard');?>">
+						<span class="glyphicon glyphicon-dashboard"></span> Dashboard
+					</a>
+				<?php }?>
 				</li>
 							<li id="topabout">
 					<a href="<?php echo base_url('index/about');?>">
@@ -77,9 +83,15 @@
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav">
 								<li class="active">
-									<a href="<?php echo base_url('dashboard');?>">
-										Dashboard
+									<?php if( $this->utilities->getUserType() == 'admin'){ ?>
+									<a href="<?php echo base_url('dashboard/admin');?>">
+										<span class="glyphicon glyphicon-dashboard"></span> Dashboard
 									</a>
+									<?php }else{?>
+									<a href="<?php echo base_url('dashboard');?>">
+										<span class="glyphicon glyphicon-dashboard"></span> Dashboard
+									</a>
+								<?php }?>
 								</li>
 								<li class="">
 									<a href="<?php echo base_url('index/about');?>">About</a>

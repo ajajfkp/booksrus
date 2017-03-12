@@ -366,7 +366,7 @@ class commonModel extends CI_Model {
      */
     function getListUnivesityByStatteId($state_id = 0) {
 		$this->db->select('id,name',false);
-        $this->db->where('active_flag', '1');
+        $this->db->where(array('approved'=>'1','active_flag'=>'1'));
 		$this->db->order_by('name','asc');
         if ($state_id != 0) {
             $this->db->where('state', $state_id);
@@ -452,6 +452,45 @@ class commonModel extends CI_Model {
 		$result = $this->db->query($sql);
 		if($result->num_rows()>0){
 			return $result->result_array();
+		}else{
+			return false;
+		}
+	}
+	
+	public function getTotalUsers($type='1'){
+		if($type == 'all'){
+			$whare = "";
+		}elseif($type == '0'){
+			$whare = "where active_status='".$type."'";
+		}elseif($type == '1'){
+			$whare = "where active_status='".$type."'";
+		}elseif($type == '2'){
+			$whare = "where active_status='".$type."'";
+		}
+		
+		$sql ="select count(*) as count from users ".$whare;
+		$data = $this->db->query($sql);
+		if ($data->num_rows() > 0) {
+			return $data->row()->count;
+		}else{
+			return false;
+		}
+	}
+	
+	function getSchoolCount($type='totlaapr'){
+		if($type == 'total'){
+			$where = "";
+		}else if($type == 'totlaapr'){
+			$where = " where approved = '1' and active_flag = '1'";
+		}else if($type == 'totlnotaapr'){
+			$where = " where approved = '0' and active_flag = '1'";
+		}else if($type == 'inact'){
+			$where = " where active_flag = '0'";
+		}
+		$sql ="select count(*) as count from universities ".$where;
+		$data = $this->db->query($sql);
+		if ($data->num_rows() > 0) {
+			return $data->row()->count;
 		}else{
 			return false;
 		}

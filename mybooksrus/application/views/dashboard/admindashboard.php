@@ -1,13 +1,13 @@
 <div class="btn-group btn-group-justified">
-	<a href="#" class="btn btn-primary col-sm-3">
+	<a href="<?php echo base_url('admindb/userlist'); ?>" class="btn btn-primary col-sm-3">
 		<i class="glyphicon glyphicon-user"></i>
 		<br> Registerd Users
-		<br> <span class="badge badge-info">1001</span>
+		<br> <span class="badge badge-info"><?php echo $this->utilities->getTotalUsers(1); ?></span>
 	</a>
-	<a href="#" class="btn btn-primary col-sm-3">
+	<a href="<?php echo base_url('admindb/schoolList'); ?>" class="btn btn-primary col-sm-3">
 	<i class="glyphicon glyphicon-home"></i>
-	<br> School List
-	<br> New <span class="badge badge-info">4</span>
+	<br> School List <span class="badge badge-info"><?php echo $this->utilities->getSchoolCount('totlaapr'); ?></span>
+	<br> New <span class="badge badge-info"><?php echo $this->utilities->getSchoolCount('totlnotaapr'); ?></span>
 	</a>
 	<a href="#" class="btn btn-primary col-sm-3">
 	<i class="glyphicon glyphicon-map-marker"></i>

@@ -24,7 +24,7 @@
 						</div>-->
 					</div>
 				</div>
-				<div class="panel-body">
+				<div class="panel-bodys">
 					<ul class="list-group">
 				<?php
 					if($actUserLists){
@@ -47,7 +47,7 @@
 				<?php
 						}
 					}else{
-						echo "No record found";
+						echo "<li class='text-center'>No record found</li>";
 					}
 				?>
 					</ul>

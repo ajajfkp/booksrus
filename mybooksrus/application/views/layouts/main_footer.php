@@ -40,13 +40,13 @@
 		<p>© <span id="copyright-year">2017 | Collegebooksrus.com</span></p>
 		<br />
 			<span class="social" style="font-size:25px;">
-				<a href="https://www.facebook.com/collegebooksrus" target="_blank">
+				<a href="https://www.facebook.com/collegebooksrus" target="_blank" style="text-decoration:none">
 					<i class="fa fa-facebook-official" style="font-size:30px;color:#3B5998"></i>
 				</a>
-				<a href="https://twitter.com/college_text" target="_blank">
+				<a href="https://twitter.com/college_text" target="_blank" style="text-decoration:none">
 					<i class="fa fa-twitter-square" style="font-size:30px;color:#1DA1F2"></i>
 				</a>
-				<a href="https://www.youtube.com/channel/UCkugCduONLt90ahLDgO6ElQ" target="_blank">
+				<a href="https://www.youtube.com/channel/UCkugCduONLt90ahLDgO6ElQ" target="_blank" style="text-decoration:none">
 					<i class="fa fa-youtube-square" style="font-size:30px;color:#CC181E"></i>
 				</a>
 			</span>

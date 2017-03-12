@@ -35,10 +35,16 @@
 								School list
 							</a>
 						</li>
-						<li class="divider"></li>
+						<!--<li class="divider"></li>
 						<li id="listad">
 							<a href="<?php echo base_url('postyouradd/listuseradsetails'); ?>">
 								Visitors
+							</a>
+						</li>-->
+						<li class="divider"></li>
+						<li id="addschool">
+							<a href="<?php echo base_url('university'); ?>">
+								Add school
 							</a>
 						</li>
 					</ul>
