@@ -27,7 +27,7 @@ class Search extends CI_Controller {
 			
 			$url = base_url('/search/index/?university='.$this->input->get('university').'&state='.$this->input->get('state').'&search='.$searchdata['search']);
 			 $total = $this->SearchModel->record_count($searchdata['search'],$this->input->get('university'));
-			$limit=2;
+			$limit=20;
 			$this->utilities->getpagination($url,$total,$limit);
 			if($this->input->get('per_page')){
 				$offset = $this->input->get('per_page');
@@ -58,7 +58,7 @@ class Search extends CI_Controller {
 			$univId = $this->utilities->getUnivByUserId($this->utilities->getSessionUserData('uid'));
 			$url = base_url('/search/searchbooks/?inputsearch='.$this->input->get('inputsearch'));
 			$total = $this->SearchModel->record_count($this->input->get('inputsearch'),$univId['id']);
-			$limit=2;
+			$limit=20;
 			$this->utilities->getpagination($url,$total,$limit);
 			if($this->input->get('per_page')){
 				$offset = $this->input->get('per_page');

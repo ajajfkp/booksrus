@@ -109,6 +109,7 @@ $( document ).ready(function(){
 					//setUiMessege('err',errorThrown);
 				}
 			});
+			$('#reply-message').val('');
 		}
 	});
 });

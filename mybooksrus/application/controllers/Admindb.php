@@ -20,7 +20,7 @@ class Admindb extends CI_Controller {
 		
 		$url = base_url('/admindb/userlist/');
 		$total = $this->admindbmodel->active_record_count(1);
-		$limit=2;
+		$limit=20;
 		$this->utilities->getpagination($url,$total,$limit);
 		if($this->input->get('per_page')){
 			$offset = $this->input->get('per_page');
@@ -43,8 +43,8 @@ class Admindb extends CI_Controller {
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		
 		$url = base_url('/admindb/inactivuserlist/');
-		$total = $this->admindbmodel->active_record_count(0);
-		$limit=2;
+		$total = $this->admindbmodel->active_record_count('0');
+		$limit=20;
 		$this->utilities->getpagination($url,$total,$limit);
 		if($this->input->get('per_page')){
 			$offset = $this->input->get('per_page');
@@ -68,7 +68,7 @@ class Admindb extends CI_Controller {
 		
 		$url = base_url('/admindb/deleteuserlist/');
 		$total = $this->admindbmodel->active_record_count(2);
-		$limit=2;
+		$limit=20;
 		$this->utilities->getpagination($url,$total,$limit);
 		if($this->input->get('per_page')){
 			$offset = $this->input->get('per_page');
@@ -92,7 +92,7 @@ class Admindb extends CI_Controller {
 		
 		$url = base_url('admindb/schoolList/');
 		$total = $this->admindbmodel->school_record_count($type='totlaapr');
-		$limit=2;
+		$limit=20;
 		$this->utilities->getpagination($url,$total,$limit);
 		if($this->input->get('per_page')){
 			$offset = $this->input->get('per_page');
@@ -117,7 +117,7 @@ class Admindb extends CI_Controller {
 		
 		$url = base_url('admindb/univapproved/');
 		$total = $this->admindbmodel->school_record_count($type='totlnotaapr');
-		$limit=2;
+		$limit=20;
 		$this->utilities->getpagination($url,$total,$limit);
 		if($this->input->get('per_page')){
 			$offset = $this->input->get('per_page');
@@ -142,7 +142,7 @@ class Admindb extends CI_Controller {
 		
 		$url = base_url('admindb/inactiveUniv/');
 		$total = $this->admindbmodel->school_record_count($type='inact');
-		$limit=2;
+		$limit=20;
 		$this->utilities->getpagination($url,$total,$limit);
 		if($this->input->get('per_page')){
 			$offset = $this->input->get('per_page');
