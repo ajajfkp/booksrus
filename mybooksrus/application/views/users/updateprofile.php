@@ -46,8 +46,8 @@
           <div class="form-group">
             <label class="col-sm-3 control-label" for="textinput">Email Id</label>
             <div class="col-sm-9">
-              <input type="text" placeholder="Email Id" class="form-control" id="email" name="email" value="<?php echo $userData['email_personal']; ?>">
-			  <span class="text-danger"><?php echo form_error('email_personal'); ?></span>
+              <input type="text" placeholder="Email Id" class="form-control" id="email" name="email" value="<?php echo $userData['email_personal']; ?>" disabled >
+			  <span class="text-danger"><?php echo form_error('email'); ?></span>
             </div>
           </div>
 		  <div class="form-group row">

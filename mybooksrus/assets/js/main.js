@@ -1,4 +1,5 @@
 $( document ).ready(function(){
+	$('[data-toggle="isbnpopover"]').popover(); 
 	$("#searchButton").click(function(event){
 		if(!$("#searchInput").val() || !$("#university").val()){
 			event.preventDefault();
@@ -98,6 +99,7 @@ $( document ).ready(function(){
 				success: function(msg){
 					if(msg!='false'){
 						$('.chat').append(msg);
+						$('#reply-message').val('');
 					}else{
 						setUiMessege('err','Error!...Message not sent.');
 					}

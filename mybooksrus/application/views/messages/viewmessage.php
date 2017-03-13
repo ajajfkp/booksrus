@@ -11,11 +11,11 @@
 					<span class="glyphicon glyphicon-user"></span>Sent
 				</a>
 			</li>
-			<li>
+			<!--<li>
 				<a href="" >
 					<span class="glyphicon glyphicon-briefcase"></span>Archive
 				</a>
-			</li>
+			</li>-->
 		</ul>
 		<div class="panel-body chat-container">
 			<ul class="chat">

@@ -12,7 +12,8 @@
 			<!--<span class="" id="innersearchdd"></span>-->
 		</div>
 		<p class="inner-serch-ino">What's an ISBN?
-		<a href="#">
+		<a href="#" data-toggle="isbnpopover" title="ISBN" data-content="The International Standard Book Number (ISBN) is a unique numeric commercial book identifier.
+An ISBN is assigned to each edition and variation (except reprintings) of a book. The ISBN is 13 digits long if assigned on or after 1 January 2007, and 10 digits long if assigned before 2007. The method of assigning an ISBN is nation-based and varies from country to country, often depending on how large the publishing industry is within a country.">
           <span class="glyphicon glyphicon-info-sign"></span>
         </a>
 		</p>

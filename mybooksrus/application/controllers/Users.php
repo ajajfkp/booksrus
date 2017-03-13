@@ -101,7 +101,7 @@ class Users extends CI_Controller {
 						'first_name'=>$profiledata['first_name'],
 						'middle_name'=>$profiledata['middle_name'],
 						'last_name'=>$profiledata['last_name'],
-						'email_personal'=>$profiledata['email'],
+						/* 'email_personal'=>$profiledata['email'], */
 						'mobile'=>$profiledata['mobile'],
 						'updated_by'=>$this->utilities->getSessionUserData('uid'),
 						'date_updated'=>date('Y-m-d H:i:s')
