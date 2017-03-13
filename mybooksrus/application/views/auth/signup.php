@@ -81,14 +81,13 @@
 					<?php echo form_close(); ?>
 				</div>
 				<div class="col-md-6">
-					<div class='whysign'>
-						<h1>Learn by Doing</h1>
-						<p>Learning to code is not magic. It is as simply as opening your browser! See in real time the changes you make to HTMl, CSS, JavaScript, HAML, and more!</p>
-						<p>Learn: 
-							<span>HTML</span>
-							<span>CSS</span>
-							<span>JavaScript</span>
-						</p>
+					<div class='whysign' style="margin-left:20px;">
+						<h3 class="text-center">Collegegebooks'R'us</h3>
+						<br />
+						<br />
+						<p><h5>&#x25CF; Sign up to Collegegebooksrus with one-click!</h5></p>
+						<p><h5>&#x25CF; Buy and sell books with Collegegebooksrus</h5></p>
+						<p><h5>&#x25CF; By signing-up, you agree to the Collegegebooksrus.com <a href="<?php echo base_url('index/termsandpolicy')?>" target="_blank">Privacy Policy and Terms & Conditions.</a></h5></p>
 					</div>
 				</div>
 			</div>
