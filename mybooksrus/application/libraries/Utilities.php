@@ -415,4 +415,14 @@ class Utilities {
 		$getcount = $this->CI->commonModel->getRecord('pageview','count(*) as total',array());
 		return $getcount['total'];
 	}
+	
+	function getBookPostedDate($bookId=''){
+		if($bookId){
+			$getDate = $this->CI->commonModel->getRecord('books','date_added',array('id'=>$bookId));
+			if($getDate['date_added']){
+				$date = new DateTime($getDate['date_added']);
+				return "Posted at ".$date->format('d M Y H:ia');
+			}
+		}
+	}
 }

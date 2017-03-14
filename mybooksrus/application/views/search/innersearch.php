@@ -54,19 +54,32 @@ An ISBN is assigned to each edition and variation (except reprintings) of a book
 				}
 			?>
 		</div>
-		<div class="col-lg-8 disc-area">
-			<h3><?php echo (($bookdata['title'])?$bookdata['title']:'Title'); ?></h3>
-			<p>By - <?php echo (($bookdata['authors'])?$bookdata['authors']:'Authors'); ?></p>
-			<p>ISBN 10 - <?php echo (($bookdata['isbn10'])?$bookdata['isbn10']:''); ?></p>
-			<p>ISBN 13 - <?php echo (($bookdata['isbn13'])?$bookdata['isbn13']:''); ?></p>
-			<p>$ <?php echo $this->utilities->getDiscountPrice($bookdata['price'],$bookdata['discount']); ?>
-			<?php
-			if($bookdata['discount']){
-				echo ' - <span class="orig-price">$'.$this->utilities->getFormatedPrice($bookdata['price']).' ('.$bookdata['discount'].'% off)</span>';
-			}
-			?>
-			</p>
-			<p><a href="<?php echo base_url('postyouradd/bookdetails/'.$bookdata['bookid'].'/'.$this->utilities->cleanurl($bookdata['title'])); ?>" class="btn btn-md btn-primary">view details</a></p>
+		<div class="col-lg-8 disc-area bookthumb">
+			<div class="caption">
+				<h3><?php echo (($bookdata['title'])?$bookdata['title']:'Title'); ?></h3>
+				<span class="posted-date">
+				<i class="glyphicon glyphicon-time"></i>
+				<i><?php echo $this->utilities->getBookPostedDate($bookdata['bookid']); ?></i>
+				</span>
+				<dl>
+					<dt>By:</dt>
+					<dd><a href="<?php echo base_url('search/searchbooks?inputsearch='.$bookdata['authors'])?>"><?php echo (($bookdata['authors'])?$bookdata['authors']:''); ?></a></dd>
+					<dt>ISBN 10:</dt>
+					<dd><?php echo (($bookdata['isbn10'])?$bookdata['isbn10']:'&nbsp;'); ?></dd>
+					<dt>ISBN 13:</dt>
+					<dd><?php echo (($bookdata['isbn13'])?$bookdata['isbn13']:'&nbsp;'); ?></dd>
+					<dt>Edition:</dt>
+					<dd><?php echo (($bookdata['edition'])?$bookdata['edition']:'&nbsp;'); ?></dd>
+					<dt>Price:</dt>
+					<dd>$ <?php echo $this->utilities->getDiscountPrice($bookdata['price'],$bookdata['discount']); ?>
+					<?php
+					if($bookdata['discount']){
+						echo ' - <span class="orig-price">$'.$this->utilities->getFormatedPrice($bookdata['price']).' ('.$bookdata['discount'].'% off)</span>';
+					}
+					?></dd>
+				</dl>
+				<a href="<?php echo base_url('postyouradd/bookdetails/'.$bookdata['bookid'].'/'.$this->utilities->cleanurl($bookdata['title'])); ?>" class="btn btn-md btn-primary">view details</a>
+			</div>
 		</div>
 	</div>
 	<div class="divider"></div>

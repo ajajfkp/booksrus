@@ -57,7 +57,7 @@ define("REMOTE_IP", $_SERVER['REMOTE_ADDR']);
 /************************************************************/
 /********************|Database Configuration|****************/
 /************************************************************/
-date_default_timezone_set('America/Denver');
+date_default_timezone_set('Asia/Kolkata');
 define("CH_DB_HOST", "localhost");
 define("CH_DB_USER", "root");
 define("CH_DB_PASSWORD", "");

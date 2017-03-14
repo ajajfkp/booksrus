@@ -51,7 +51,7 @@ class SearchModel extends CI_Model {
 			t1.discount,t2.transaction_typt from books t1 
 			inner join books_transaction t2 on t1.id=t2.book_id
 			inner join users t3 on t3.university_id=t1.university_id
-			where t2.active_status ='1' and t2.transaction_typt='1' and (t1.name like '%".$searchBy."%' or t1.authors like '%".$searchBy."%' or t1.isbn10 like '%".$searchBy."%' or t1.isbn13 like '%".$searchBy."%')".$where .$range;
+			where t2.active_status ='1' and t2.transaction_typt='1' and (t1.name like '%".$searchBy."%' or t1.authors like '%".$searchBy."%' or t1.isbn10 like '%".$searchBy."%' or t1.isbn13 like '%".$searchBy."%')".$where ." ORDER BY t1.date_added DESC ".$range;
 				
 		$data = $this->db->query($sql);
 		if ($data->num_rows() > 0) {

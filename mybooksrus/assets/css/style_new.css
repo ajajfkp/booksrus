@@ -318,7 +318,7 @@ footer .rights {
     color: #fff;
 }
 
-.thumbnail .caption {
+.thumbnail .caption,.bookthumb .caption {
     padding: 9px;
     color: #333;
     float: none;
@@ -333,7 +333,7 @@ body {
     background-color: #fff;
 }
 
-.thumbnail .caption * + .btn {
+.thumbnail .caption * + .btn,.bookthumb .caption * + .btn {
     margin-top: 2px;
 }
 
@@ -344,7 +344,7 @@ body {
 }
 
 
-.thumbnails .caption * + .btn-primary {
+.thumbnails .caption * + .btn-primary,.bookthumb .caption * + .btn-primary {
     color: #ffffff;
     background-color: #458CBF;
     border-color: #458CBF;
@@ -393,12 +393,12 @@ body {
     animation-fill-mode: both;
 }
 
-.thumbnail a img {
+.thumbnail a img, .bookthumb a img {
     display: inline-block;
     text-align: left;
 }
 
-.thumbnail .caption dl dt {
+.thumbnail .caption dl dt, .bookthumb .caption dl dt {
     float: left;
     margin-right: 10px;
     width: 55px;
@@ -406,7 +406,11 @@ body {
 	color: #777;
 }
 
-.thumbnail .caption dl dd {
+.bookthumb .caption dl dt {
+    width: 100px;
+}
+
+.thumbnail .caption dl dd,.bookthumb .caption dl dd {
     color: #fbbe04;
     display: block;
     margin: 0;
