@@ -124,7 +124,7 @@ class Postyouradd extends CI_Controller {
 		
 		if($bookId){
 			$getData = $this->booksad->getBookDetails($bookId);
-			$data['boodata'] = $getData;
+			$data['bookdata'] = $getData;
 			$data['contactCnt'] = $this->utilities->numUsersContact($bookId);
 			$this->layouts->dbview('dashboard/viewbookdetails',$data);
 		}else{
@@ -138,13 +138,13 @@ class Postyouradd extends CI_Controller {
 		$extraHead .= "setusermenu('listad');";
 		$extraHead .= "$('#published').datepicker({'dateFormat':'mm-dd-yy'})";
 		$this->layouts->set_extra_head($extraHead);
-		$this->layouts->set_title('Book list!');
-		$this->layouts->set_page_title('Book list','<i class="glyphicon glyphicon-plus"></i>');
+		$this->layouts->set_title('Book details!');
+		$this->layouts->set_page_title('Book details','<i class="glyphicon glyphicon-plus"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		
 		if($bookId){
 			$getData = $this->booksad->getBookDetails($bookId);
-			$data['boodata'] = $getData;
+			$data['bookdata'] = $getData;
 			$this->layouts->dbview('dashboard/updatebookdetails',$data);
 		}else{
 			redirect('postyouradd/listuseradsetails');
@@ -165,8 +165,8 @@ class Postyouradd extends CI_Controller {
 		
 		// set form validation rules
 		$this->form_validation->set_rules('name', 'Title', 'trim|required|xss_clean|max_length[255]');
-		$this->form_validation->set_rules('isbn10', 'ISBN 10', 'trim|integer|required|xss_clean|max_length[11]');
-		$this->form_validation->set_rules('isbn13', 'ISBN 13', 'trim|integer|required|xss_clean|max_length[11]');
+		$this->form_validation->set_rules('isbn10', 'ISBN 10', 'trim|integer|required|xss_clean|max_length[10]');
+		$this->form_validation->set_rules('isbn13', 'ISBN 13', 'trim|integer|required|xss_clean|max_length[13]');
 		$this->form_validation->set_rules('authors', 'Authors', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('price', 'Price', 'trim|numeric|required|xss_clean');
 		$this->form_validation->set_rules('condition', 'Condition of book', 'trim|numeric|required|xss_clean');

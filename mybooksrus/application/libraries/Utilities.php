@@ -352,7 +352,7 @@ class Utilities {
 	function numUsersContact($bookId=""){
 		if($bookId){
 			$count = $this->CI->commonModel->getRecord('books_transaction','count(id) as count',array('book_id'=>$bookId,'transaction_typt'=>'2'));
-			if($count){
+			if($count['count']){
 				return $count['count']." student(s) already contact with seller";
 			}else{
 				return false;
