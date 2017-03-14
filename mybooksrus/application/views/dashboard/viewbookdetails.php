@@ -79,15 +79,15 @@
 						<dt>Condition:</dt>
 						<dd><?php echo (($bookdata['conditions'])?$bookdata['conditions']:'&nbsp;'); ?></dd>
 					</dl>
-				<p><b>Description - </b><?php echo (($bookdata['discription'])?$bookdata['discription']:''); ?></p>
-				<p>
-				<?php
-				if($bookdata['added_by'] == $this->utilities->getSessionUserData('uid')){
-				?>
-				<a href="<?php echo base_url('postyouradd/updatebookform/'.$bookdata['bookid']."/".$this->utilities->cleanurl($bookdata['title'])); ?>" class="btn btn-md btn-primary pull-right"> View & Update</a>
-				<?php
-				}else{
-				?>
+					<p><b>Description - </b><?php echo (($bookdata['discription'])?$bookdata['discription']:''); ?></p>
+					<p>
+					<?php
+					if($bookdata['added_by'] == $this->utilities->getSessionUserData('uid')){
+					?>
+					<a href="<?php echo base_url('postyouradd/updatebookform/'.$bookdata['bookid']."/".$this->utilities->cleanurl($bookdata['title'])); ?>" class="btn btn-md btn-primary pull-right"> View & Update</a>
+					<?php
+					}else{
+					?>
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<?php $attributes = array("name" => "sendtoseller","method"=>"post","class"=>"form-horizontal");
@@ -112,10 +112,11 @@
 						</div>
 						<!--/panel content-->
 					</div>
-				<?php
-				}
-				?>
-				</p>
+					<?php
+					}
+					?>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
