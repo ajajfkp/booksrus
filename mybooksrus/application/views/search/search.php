@@ -78,7 +78,15 @@
 	?>	<div class="col-sm-6">
 			<div class="list-book-cntnr" style="height:300px">
 				<div class="img-cntnr col-lg-4">
-					<img src="<?php echo base_url('uploads/booksimg/'.$bookdata['image']) ;?>" alt="book image" width="100%"/>
+				<?php
+					if($bookdata['image']){
+				?>
+					<img class='backup_picture' src="<?php echo base_url('uploads/booksimg/'.$bookdata['image']) ;?>" alt="Book image" style="height:200px;width:150px;"/>
+				<?php } else{ ?>
+					<img class='backup_picture' src="<?php echo base_url('assets/images/no_book avalaible.jpg') ;?>" alt="Book image" style="height:200px;width:150px;"/>
+				<?php
+					}
+				?>
 				</div>
 				<div class="col-lg-8 disc-area">
 					<h3><?php echo (($bookdata['title'])?$bookdata['title']:'Title'); ?></h3>

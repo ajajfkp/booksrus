@@ -88,7 +88,7 @@
 					<div class="navbar navbar-default mynavbar">
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav">
-								<li class="active">
+								<li id="intopdashboard">
 									<?php if ($this->utilities->isAuth()){ ?>
 									<?php if( $this->utilities->getUserType() == 'admin'){ ?>
 									<a href="<?php echo base_url('dashboard/admin');?>">
@@ -105,11 +105,11 @@
 									</a>
 								<?php } ?>
 								</li>
-								<li class="">
-									<a href="<?php echo base_url('index/about');?>">About</a>
+								<li id="intopabout">
+									<a href="<?php echo base_url('index/about');?>">About Us</a>
 								</li>
-								<li class="">
-									<a href="<?php echo base_url('index/contact');?>">Contact</a>
+								<li id="intopcontact">
+									<a href="<?php echo base_url('index/contact');?>">Contact Us</a>
 								</li>
 							</ul>
 						</div>

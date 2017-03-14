@@ -401,4 +401,18 @@ class Utilities {
 	function getSchoolCount($type='totlaapr'){
 		return $this->CI->commonModel->getSchoolCount($type);
 	}
+	
+	function setTotalVisitors($ip){
+		if($ip){
+			$getIp = $this->CI->commonModel->getRecord('pageview','id',array('userip'=>$ip));
+			if(!$getIp){
+				$alstActiveTime = $this->CI->commonModel->insertRecord('pageview',array('userip'=>$ip));
+			}
+		}
+	}
+	
+	function getTotalVisitors(){
+		$getcount = $this->CI->commonModel->getRecord('pageview','count(*) as total',array());
+		return $getcount['total'];
+	}
 }

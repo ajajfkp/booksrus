@@ -12,7 +12,7 @@
 	<a href="#" class="btn btn-primary col-sm-3">
 	<i class="glyphicon glyphicon-map-marker"></i>
 	<br> Visitors
-	<br> <span class="badge badge-info">4</span>
+	<br> <span class="badge badge-info"><?php echo $this->utilities->getTotalVisitors(); ?></span>
 	</a>
 </div>
 <hr />

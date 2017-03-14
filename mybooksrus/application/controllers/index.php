@@ -8,10 +8,11 @@ class Index extends CI_Controller {
 		$this->load->library('recaptcha');
 		$this->load->library('sendemail');
 		$this->load->model('auth/auths');
+		$this->utilities->setTotalVisitors($this->input->ip_address());
 	}
 
 	public function index() {
-		$extraHead = "activateHeadMeanu('topdashboard,topdashboardhead')";
+		$extraHead = "activateHeadMeanu('topdashboard,topdashboardhead,intopdashboard')";
 		$this->layouts->set_extra_head($extraHead);
 		$this->layouts->set_title('welcome!');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
@@ -19,7 +20,7 @@ class Index extends CI_Controller {
 	}
 
 	public function about() {
-		$extraHead = "activateHeadMeanu('topabout,topabouthead')";
+		$extraHead = "activateHeadMeanu('topabout,topabouthead,intopabout')";
 		$this->layouts->set_extra_head($extraHead);
 		$this->layouts->set_title('About!');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
@@ -27,7 +28,7 @@ class Index extends CI_Controller {
 	}
 
 	public function contact() {
-		$extraHead = "activateHeadMeanu('topcontact,topcontacthead')";
+		$extraHead = "activateHeadMeanu('topcontact,topcontacthead,intopcontact')";
 		$this->layouts->set_extra_head($extraHead);
 		$this->layouts->set_title('Contact!');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css')->add_include('https://www.google.com/recaptcha/api.js',false);

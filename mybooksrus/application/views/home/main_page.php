@@ -64,7 +64,18 @@
 			?>
 				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="2s">
 					<div class="thumbnail">
-						<a href="#"><img class='backup_picture' src="<?php echo base_url('uploads/booksimg/'.$bookDetail['image']); ?>" alt="" style="height:200px;width:150px;"></a>
+					
+						<a href="#">
+						<?php
+							if($bookDetail['image']){
+						?>
+							<img class='backup_picture' src="<?php echo base_url('uploads/booksimg/'.$bookDetail['image']) ;?>" alt="Book image" style="height:200px;width:150px;"/>
+						<?php } else{ ?>
+							<img class='backup_picture' src="<?php echo base_url('assets/images/no_book avalaible.jpg') ;?>" alt="Book image" style="height:200px;width:150px;"/>
+						<?php
+							}
+						?>
+						</a>
 						<div class="caption">
 							<h5><?php echo ((strlen($bookDetail['name'])>20)?substr($bookDetail['name'],0,20)."...":$bookDetail['name']);?></h5>
 							<dl>

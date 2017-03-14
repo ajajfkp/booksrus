@@ -5,7 +5,7 @@
 		<div class="input-group col-md-12">
 			<input type="text" class="form-control input-lg" placeholder="Search by title, author, or ISBN" id="inputsearch" name="inputsearch" onkeyup="booksearchkeyup();" value="<?php echo (isset($inputsearch)?$inputsearch:"")?>"/>
 			<span class="input-group-btn">
-				<button class="btn btn-info btn-lg" type="submit" onclick="booksearch();">
+				<button class="btn btn-info btn-lg" type="submit" onclickx="booksearch();">
 					<i class="glyphicon glyphicon-search"></i>
 				</button>
 			</span>
@@ -44,7 +44,15 @@ An ISBN is assigned to each edition and variation (except reprintings) of a book
 ?>
 	<div class="row list-book-cntnr">
 		<div class="img-cntnr col-lg-4">
-			<img src="<?php echo base_url('uploads/booksimg/'.$bookdata['image']) ;?>" alt="book image" width="100%"/>
+			<?php
+					if($bookdata['image']){
+				?>
+					<img class='backup_picture' src="<?php echo base_url('uploads/booksimg/'.$bookdata['image']) ;?>" alt="Book image" style="height:200px;width:150px;"/>
+				<?php } else{ ?>
+					<img class='backup_picture' src="<?php echo base_url('assets/images/no_book avalaible.jpg') ;?>" alt="Book image" style="height:200px;width:150px;"/>
+				<?php
+					}
+				?>
 		</div>
 		<div class="col-lg-8 disc-area">
 			<h3><?php echo (($bookdata['title'])?$bookdata['title']:'Title'); ?></h3>
