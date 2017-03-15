@@ -183,9 +183,9 @@ class Utilities {
 	
 	function listuserad($userId=""){
 		if($userId){
-			$coun = $this->CI->commonModel->getRecord('books_transaction','count(*) as count',array('user_id'=>$userId,'active_status'=>'1'));
+			$coun = $this->CI->commonModel->gettotaluserad($userId);
 			if($coun){
-				return $coun['count'];
+				return $coun;
 			}else{
 				return false;
 			}
