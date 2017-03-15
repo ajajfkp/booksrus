@@ -78,6 +78,10 @@
 						</a>
 						<div class="caption">
 							<h5><?php echo ((strlen($bookDetail['name'])>20)?substr($bookDetail['name'],0,20)."...":$bookDetail['name']);?></h5>
+							<span class="posted-date">
+							<i class="glyphicon glyphicon-time"></i>
+							<i><?php echo $this->utilities->getBookPostedDate($bookDetail['id']); ?></i>
+							</span>
 							<dl>
 								<dt>ISBN 10:</dt>
 								<dd><?php echo (($bookDetail['isbn10'])?$bookDetail['isbn10'] : '&nbsp;'); ?></dd>

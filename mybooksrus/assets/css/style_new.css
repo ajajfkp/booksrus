@@ -115,11 +115,11 @@ header{
     background-color: transparent;
 }
 
-.btn-default {
-    color: #ffffff;
+/* .btn-default {
+    color: #777;
     background-color: transparent;
-    border-color: #ffffff;
-}
+    border-color: #777;
+} */
 
 .login-btn {
     color: #ffffff;

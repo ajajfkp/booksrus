@@ -32,11 +32,11 @@
 				?>
 						<li class="list-group-item">
 							<div class="checkbox">
-								<!--<a href="<?php echo base_url('users/viewuserdetails/'.$userlist['id'])?>">-->
+								<a href="<?php echo base_url('admindb/viewuser/'.$userlist['id'].'/inact')?>">
 									<label for="checkbox">
 										<?php echo ucfirst($userlist['first_name']." ".$userlist['last_name']);?>
 									</label>
-								<!--</a>-->
+								</a>
 							</div>
 							<div class="pull-right action-buttons">
 								<!--<a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-pencil"></span></a>

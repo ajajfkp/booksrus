@@ -75,8 +75,8 @@
 	<?php 
 		if($getBooks){
 			foreach($getBooks as $bookdata){
-	?>	<div class="col-sm-6">
-			<div class="list-book-cntnr" style="height:300px">
+	?>	<div class="col-sm-6 thumbnail">
+			<div class="list-book-cntnr" style="min-height:325px">
 				<div class="img-cntnr col-lg-4">
 				<?php
 					if($bookdata['image']){

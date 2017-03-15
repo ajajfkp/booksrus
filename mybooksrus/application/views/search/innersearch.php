@@ -3,7 +3,7 @@
 	<div id="custom-search-input">
 	<form action="<?php echo base_url('/search/searchbooks');?>">
 		<div class="input-group col-md-12">
-			<input type="text" class="form-control input-lg" placeholder="Search by title, author, or ISBN" id="inputsearch" name="inputsearch" onkeyup="booksearchkeyup();" value="<?php echo (isset($inputsearch)?$inputsearch:"")?>"/>
+			<input type="text" class="form-control input-lg" placeholder="Search by title, author, or ISBN" id="inputsearch" name="inputsearch" onkeyupx="booksearchkeyup();" value="<?php echo (isset($inputsearch)?$inputsearch:"")?>"/>
 			<span class="input-group-btn">
 				<button class="btn btn-info btn-lg" type="submit" onclickx="booksearch();">
 					<i class="glyphicon glyphicon-search"></i>

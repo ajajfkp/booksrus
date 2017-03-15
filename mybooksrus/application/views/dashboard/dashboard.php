@@ -3,8 +3,16 @@
 		<i class="glyphicon glyphicon-plus"></i>&nbsp;Add your post
 	</a>
 </nav>
-<hr>
-<div class="btn-group btn-group-justified">
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4>New Requests</h4>
+	</div>
+	<div class="panel-body">
+		No record.
+	</div>
+</div>
+<hr style="visibility: hidden;">
+<div class="btn-group btn-group-justified" style="visibility: hidden;">
 	<a href="#" class="btn btn-primary col-sm-3">
 	<i class="glyphicon glyphicon-plus"></i>
 	<br> Service
@@ -18,9 +26,9 @@
 	<br> Help
 	</a>
 </div>
-<hr />
+<hr style="visibility: hidden;"/>
 <!--tabs-->
-<div class="panel">
+<div class="panel" style="visibility: hidden;">
 	<ul class="nav nav-tabs" id="myTab">
 		<li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
 		<li><a href="#messages" data-toggle="tab">Messages</a></li>
@@ -45,18 +53,5 @@
 	</div>
 </div>
 <!--/tabs-->
-
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h4>New Requests</h4>
-	</div>
-	<div class="panel-body">
-		<div class="list-group">
-			<a href="#" class="list-group-item active">Hosting virtual mailbox serv..</a>
-			<a href="#" class="list-group-item">Dedicated server doesn't..</a>
-			<a href="#" class="list-group-item">RHEL 6 install on new..</a>
-		</div>
-	</div>
-</div>
 </div>
 <!--/col-->

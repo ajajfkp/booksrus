@@ -16,7 +16,7 @@ class Search extends CI_Controller {
 		$this->layouts->set_title('Search!');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$data['listState'] = $this->utilities->getAllState('','3926');
-		$searchdata = array('search' => $this->input->get('search'));
+		$searchdata = array('search' => mysql_real_escape_string($this->input->get('search')));
 		$this->form_validation->set_data($searchdata);
 		$this->form_validation->set_rules("search", "Search", "trim|required|xss_clean");
 		if ($this->form_validation->run() == FALSE) {
@@ -53,11 +53,11 @@ class Search extends CI_Controller {
 		$this->layouts->set_title('Search!');
 		$this->layouts->set_page_title('Search Books','<i class="glyphicon glyphicon-search"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
-		
-		if($this->input->get('inputsearch')){
+		$searchText = mysql_real_escape_string($this->input->get('inputsearch'));
+		if($searchText){
 			$univId = $this->utilities->getUnivByUserId($this->utilities->getSessionUserData('uid'));
-			$url = base_url('/search/searchbooks/?inputsearch='.$this->input->get('inputsearch'));
-			$total = $this->SearchModel->record_count($this->input->get('inputsearch'),$univId['id']);
+			$url = base_url('/search/searchbooks/?inputsearch='.$searchText);
+			$total = $this->SearchModel->record_count($searchText,$univId['id']);
 			$limit=20;
 			$this->utilities->getpagination($url,$total,$limit);
 			if($this->input->get('per_page')){
@@ -66,9 +66,9 @@ class Search extends CI_Controller {
 				$offset ='0';
 			}
 			$data["links"] = $this->pagination->create_links();
-			$getRec = $this->SearchModel->getBookList($this->input->get('inputsearch'),$univId['id'],$limit,$offset);
+			$getRec = $this->SearchModel->getBookList($searchText,$univId['id'],$limit,$offset);
 			$data['booksdata'] = $getRec;
-			$data['inputsearch'] = $this->input->get('inputsearch');
+			$data['inputsearch'] = $searchText;
 			$this->layouts->dbview('search/innersearch',$data);
 		}else{
 			$data["links"] ='';

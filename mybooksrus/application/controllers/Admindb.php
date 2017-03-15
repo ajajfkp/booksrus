@@ -155,4 +155,83 @@ class Admindb extends CI_Controller {
 		$data["links"] = $this->pagination->create_links();
 		$this->layouts->dbview('admindb/inactiveUniv',$data);
 	}
+	
+	public function viewuser($uid='',$type='act'){
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('');";
+		$extraHead .= "setusermenu('registeruser');";
+		$this->layouts->set_extra_head($extraHead);
+		$this->layouts->set_title('User list!');
+		$this->layouts->set_page_title('User list','<i class="glyphicon glyphicon-user"></i>');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		$data['userData'] = $this->utilities->getUserDataById($uid ? $uid : 0);
+		$data['univList'] = $this->utilities->getListUnivesityByStatteId();
+		$data['type'] = $type;
+		
+		if($this->input->post()){
+			// set form validation rules
+			$this->form_validation->set_rules('username', 'User Name', 'trim|alpha_numeric|max_length[30]|xss_clean|callback_cust_username_check');
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|alpha|required|max_length[100]|xss_clean');
+			$this->form_validation->set_rules('middle_name', 'Middle Name', 'trim|alpha|max_length[100]|xss_clean');
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|alpha|max_length[100]|required|xss_clean');
+			$this->form_validation->set_rules('mobile', 'Mobile', 'trim|integer|max_length[11]|xss_clean');
+			$this->form_validation->set_rules('email', 'Email Id', 'trim|valid_email|max_length[100]|xss_clean');
+			$this->form_validation->set_rules('university_id', 'School', 'trim|max_length[11]|xss_clean');
+			$this->form_validation->set_rules('active_status', 'Status', 'trim|max_length[11]|xss_clean');
+			if ($this->form_validation->run() == FALSE) {
+				$this->layouts->dbview('admindb/viewuser',$data);
+			}else{
+				$profiledata = $this->input->post();
+				if($profiledata){
+					$usaeData = array(
+						'username'=>$profiledata['username'],
+						'first_name'=>$profiledata['first_name'],
+						'last_name'=>$profiledata['last_name'],
+						'mobile'=>$profiledata['mobile'],
+						'university_id'=>$profiledata['university_id'],
+						'active_status'=>$profiledata['active_status'],
+						'user_type'=>$profiledata['user_type'],
+						'updated_by'=>$uid,
+						'date_updated'=>date('Y-m-d H:i:s')
+					);
+					$updateUser = $this->commonModel->updateRecord('users',$usaeData,array('id'=>$uid));
+					
+					$userProfileData = array(
+						'username'=>$profiledata['username'],
+						'first_name'=>$profiledata['first_name'],
+						'middle_name'=>$profiledata['middle_name'],
+						'last_name'=>$profiledata['last_name'],
+						'mobile'=>$profiledata['mobile'],
+						'updated_by'=>$uid,
+						'date_updated'=>date('Y-m-d H:i:s')
+					);
+					
+					$updateUserProfile = $this->commonModel->updateRecord('user_profile',$userProfileData,array('users_id'=>$uid));
+					if($updateUser && $updateUserProfile){
+						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">User data updated successfully!!!</div>');
+						redirect('admindb/viewuser/'.$uid.'/'.$type);
+					}else{
+						$this->session->set_flashdata('msg','<div class="alert alert-danger text-center">Oops!...Some technical error!!!</div>');
+					}
+				}
+			}
+		}else{
+			$this->layouts->dbview('admindb/viewuser',$data);
+		}
+	}	
+	
+	public function cust_username_check($str) {
+		$getusername=$this->commonModel->getRecord('users','username',array('username'=>$str));
+		if(!$getusername['username']){
+			return true;
+		}else{
+			$userusername=$this->commonModel->getRecord('users','username',array('username'=>$getusername['username'],'id'=>$this->utilities->getSessionUserData('uid')));
+			if($userusername){
+				return true;
+			}else{
+				$this->form_validation->set_message('cust_username_check', 'This %s field must contain a unique value');
+				return FALSE;
+			}
+		}
+	}
 }

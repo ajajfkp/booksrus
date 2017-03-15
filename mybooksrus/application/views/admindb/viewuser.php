@@ -1,7 +1,7 @@
 <div class="row well">
     <div class="col-md-12">
 	<?php $attributes = array("name" => "profile","method"=>"post","class"=>"form-horizontal");
-					echo form_open("users/updateprofile", $attributes);?>
+					echo form_open("admindb/viewuser/".$userData['id']."/".$type, $attributes);?>
         <fieldset>
           <!-- Form Name -->
           <legend>User profile</legend>
@@ -50,6 +50,43 @@
 			  <span class="text-danger"><?php echo form_error('email'); ?></span>
             </div>
           </div>
+		  <div class="form-group">
+            <label class="col-sm-3 control-label" for="textinput">School</label>
+            <div class="col-sm-9">
+				<select class="form-control" id="university_id" name="university_id">
+				<option value="">Select school</option>
+				<?php 
+					if($univList){ 
+						foreach($univList as $univ){
+						echo '<option value="'.$univ->id.'" '.(($userData['university_id']==$univ->id)?'selected':'').'>'.$univ->name .'</option>';
+						}
+					}
+				?>
+				</select>
+				<span class="text-danger"><?php echo form_error('university_id'); ?></span>
+            </div>
+          </div>
+		  <div class="form-group">
+            <label class="col-sm-3 control-label" for="textinput">Status</label>
+            <div class="col-sm-9">
+				<select class="form-control" id="active_status" name="active_status">
+					<option value="1" <?php echo (($userData['active_status']==1)?"selected":"")?>>Active</option>
+					<option value="0" <?php echo (($userData['active_status']==0)?"selected":"")?>>Inactive</option>
+					<option value="2" <?php echo (($userData['active_status']==2)?"selected":"")?>>Delete</option>
+				</select>
+				<span class="text-danger"><?php echo form_error('active_status'); ?></span>
+            </div>
+          </div>
+		  <div class="form-group">
+            <label class="col-sm-3 control-label" for="textinput">User type</label>
+            <div class="col-sm-9">
+				<select class="form-control" id="user_type" name="user_type">
+					<option value="1" <?php echo (($userData['user_type']==1)?"selected":"")?>>Admin</option>
+					<option value="0" <?php echo (($userData['user_type']==0)?"selected":"")?>>User</option>
+				</select>
+				<span class="text-danger"><?php echo form_error('user_type'); ?></span>
+            </div>
+          </div>
 		  <div class="form-group row">
 				<label class="col-sm-3 control-label">&nbsp;</label>
 				<div class="col-sm-9">
@@ -59,12 +96,23 @@
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="pull-right">
-			  <?php if( $this->utilities->getUserType() == 'admin'){ ?>
-                <a href="<?php echo base_url('dashboard/admin')?>" type="submit" class="btn btn-default">Cancel</a>
-			  <?php }else{ ?>
-				<a href="<?php echo base_url('dashboard')?>" type="submit" class="btn btn-default">Cancel</a>
-			  <?php } ?>
-                <button type="submit" class="btn btn-primary">Save</button>
+				<?php
+					if($type=='act'){
+				?>
+				<a href="<?php echo base_url('admindb/userlist')?>" type="submit" class="btn btn-default">Cancel</a>
+				<?php
+					}else if($type=='inact'){
+						?>
+				<a href="<?php echo base_url('admindb/inactivuserlist')?>" type="submit" class="btn btn-default">Cancel</a>
+				<?php
+					}else if($type=='del'){
+				?>
+				<a href="<?php echo base_url('admindb/deleteuserlist')?>" type="submit" class="btn btn-default">Cancel</a>
+				<?php
+					}
+				?>
+				
+                <button type="submit" id="uderupdatebyadmin" class="btn btn-primary">Save</button>
               </div>
             </div>
           </div>

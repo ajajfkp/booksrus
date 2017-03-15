@@ -388,6 +388,7 @@ class commonModel extends CI_Model {
 		t1.university_flag uf,
 		t1.university_id,
 		t1.email,
+		t1.user_type,
 		t2.username,
 		t2.first_name,
 		t2.middle_name,

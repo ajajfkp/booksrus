@@ -155,7 +155,7 @@ class Users extends CI_Controller {
 	}
 	public function cust_username_check($str) {
 		$getusername=$this->commonModel->getRecord('users','username',array('username'=>$str));
-		if(!$getusername){
+		if(!$getusername['username']){
 			return true;
 		}else{
 			$userusername=$this->commonModel->getRecord('users','username',array('username'=>$getusername['username'],'id'=>$this->utilities->getSessionUserData('uid')));

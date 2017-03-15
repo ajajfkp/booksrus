@@ -5,6 +5,15 @@ $( document ).ready(function(){
 			event.preventDefault();
 		}
 	});
+	
+	$("#uderupdatebyadmin").click(function(event){
+		if($("#user_type").val() =='1'){
+			var conf  = confirm("Do you want to make this user as administrator ?");
+			if(!conf){
+				event.preventDefault();
+			}
+		}
+	});
 	//swal("Here's a message!")
 	//alert("Here's a message!")
 	$(document).on('click','.imgblock',function(){
