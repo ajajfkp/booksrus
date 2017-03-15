@@ -18,7 +18,7 @@
  * author     		Aijaz Ahmad <aijaz@collegebooksrus.com>
  * Description	It uses for insert,update,fetch and delete the records.
  * */
-class commonModel extends CI_Model {
+class CommonModel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
