@@ -172,6 +172,7 @@ class Postyouradd extends CI_Controller {
 		$this->form_validation->set_rules('condition', 'Condition of book', 'trim|numeric|required|xss_clean');
 		$this->form_validation->set_rules('discription', 'Description', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('image', 'Image', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('active_status', 'Status', 'trim|required|xss_clean');
 		if ($this->form_validation->run() == FALSE) {
 			$getData = $this->booksad->getBookDetails($bookId);
 			$data['boodata'] = $getData;

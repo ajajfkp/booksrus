@@ -32,7 +32,7 @@ class Booksad extends CI_Model {
 	}
 	
 	function getBookDetails($bookId=""){
-			$sql = "select t1.id bookid,t1.isbn10,t1.isbn13,t1.name title,t1.discription,t1.authors,
+			$sql = "select t1.id bookid,t1.isbn10,t1.isbn13,t1.name title,t1.discription,t1.authors,t1.active_status as status,
 				t1.edition,t1.binding,t1.publisher,t1.published,t1.price,t1.copyright_year,
 				t1.pages,t1.image,t1.size,t1.size_unit,t1.weight,t1.weight_unit,
 				case 

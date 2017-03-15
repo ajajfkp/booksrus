@@ -1,30 +1,31 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<div class="row">
-			<div class="col-lg-4">
+			<div class="col-lg-6">
 				<h5>
 					View Book Details
 				</h5>
-				<span style="font-size: 11px; color: #777;">
-				<i class="glyphicon glyphicon-time" style="font-size: 11px; color: #777;"></i> Poated at 7 Mar 2017 12:30pm
-				</span>
 			</div>
 			<div class="col-lg-6">
 				<span class="contact-ppl-count">
 					<?php echo (($contactCnt)?$contactCnt:''); ?>
 				</span>
 			</div>
-			<div class="col-lg-2" style="padding-left:35px;text-align: right;">
+			<!--<div class="col-lg-2" style="padding-left:35px;text-align: right;">
 				<a class="btn btn-primary" href="<?php echo base_url('search/searchbooks');?>">
 					Back
 				</a>
-			</div>
+			</div>-->
 		</div>
 	</div>
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-lg-12">
 				<h4><?php echo $bookdata['title']; ?></h4>
+				<span class="posted-date">
+				<i class="glyphicon glyphicon-time"></i>
+				<i><?php echo $this->utilities->getBookPostedDate($bookdata['bookid']); ?></i>
+				</span>
 			</div>
 		</div>
 		<div class="row list-book-cntnr">

@@ -110,6 +110,15 @@
 						<input type="text" class="form-control" id="discount " name="discount" placeholder="Discount %" value="<?php echo (($bookdata['discount'])?$bookdata['discount']:""); ?>">
 						<span class="text-danger"><?php echo form_error('discount'); ?></span>
 					</div>
+					<div class="col-sm-6 form-group">
+						<label for="Status" class="control-label">Status</label>
+						<select placeholder="Status" class="form-control" id="active_status" name="active_status">
+							<option value="1" <?php echo (($bookdata['status']=='1')?"selected":"")?>>Active</option>
+							<option value="0" <?php echo (($bookdata['status']=='0')?"selected":"")?>>Inactive</option>
+							<option value="2" <?php echo (($bookdata['status']=='2')?"selected":"")?>>Delete</option>
+						</select>
+						<span class="text-danger"><?php echo form_error('active_status'); ?></span>
+					</div>
 					<div class="clearfix"></div>
 					<div class="col-sm-9 form-group">
 					<label for="Description" class="control-label">Description</label>

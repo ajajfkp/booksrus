@@ -91,6 +91,10 @@
 				<div class="col-lg-8 disc-area bookthumb">
 					<div class="caption">
 						<h3><?php echo (($bookdata['title'])?$bookdata['title']:'Title'); ?></h3>
+						<span class="posted-date">
+							<i class="glyphicon glyphicon-time"></i>
+							<i><?php echo $this->utilities->getBookPostedDate($bookdata['bookid']); ?></i>
+						</span>
 						<dl>
 							<dt>By:</dt>
 							<dd><a href="<?php echo base_url('search?university='.$university.'&state='.$state.'&search='.$bookdata['authors'])?>"><?php echo (($bookdata['authors'])?$bookdata['authors']:''); ?></a></dd>
