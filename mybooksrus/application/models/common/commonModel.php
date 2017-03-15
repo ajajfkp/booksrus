@@ -496,9 +496,9 @@ class commonModel extends CI_Model {
 		}
 	}
 	
-	function gettitallistuserad($userId=''){
+	function gettotaluserad($userId=''){
 		$sql ="select count(*) as count from books t1 inner join books_transaction t2
-			  on t1.id =t2.book_id where t1.active_status in ('0','1')".$where;
+			  on t1.id = t2.book_id where t1.active_status in ('0','1') and transaction_typt='1' and t1.added_by=".$userId;
 		$data = $this->db->query($sql);
 		if ($data->num_rows() > 0) {
 			return $data->row()->count;
