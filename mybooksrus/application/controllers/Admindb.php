@@ -170,7 +170,7 @@ class Admindb extends CI_Controller {
 		
 		if($this->input->post()){
 			// set form validation rules
-			$this->form_validation->set_rules('username', 'User Name', 'trim|alpha_numeric|max_length[30]|xss_clean|callback_cust_username_check');
+			$this->form_validation->set_rules('username', 'User Name', 'trim|alpha_numeric|max_length[30]|xss_clean|callback_cust_username_check['.$uid.']');
 			$this->form_validation->set_rules('first_name', 'First Name', 'trim|alpha|required|max_length[100]|xss_clean');
 			$this->form_validation->set_rules('middle_name', 'Middle Name', 'trim|alpha|max_length[100]|xss_clean');
 			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|alpha|max_length[100]|required|xss_clean');
@@ -239,12 +239,12 @@ class Admindb extends CI_Controller {
 		echo json_encode($returnArr);
 	}
 	
-	public function cust_username_check($str) {
+	public function cust_username_check($str,$uid) {
 		$getusername=$this->commonModel->getRecord('users','username',array('username'=>$str));
 		if(!$getusername['username']){
 			return true;
 		}else{
-			$userusername=$this->commonModel->getRecord('users','username',array('username'=>$getusername['username'],'id'=>$this->utilities->getSessionUserData('uid')));
+			$userusername=$this->commonModel->getRecord('users','username',array('username'=>$getusername['username'],'id'=>$uid));
 			if($userusername){
 				return true;
 			}else{

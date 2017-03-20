@@ -424,7 +424,7 @@ function deleteuser(id){
 	}
 }
 
-function deleteuserConfirm(id){
+function deleteuserConfirm(id,rdpage){
 	swal({
 		title:"Are you sure?",
 		text: "Would you like to delete this user!",
@@ -445,7 +445,11 @@ function deleteuserConfirm(id){
 				var obj = $.parseJSON(msg);
 				if(obj.status == 'true'){
 					setUiMessege('err',obj.msg);
-					window.location.href = base_url+"admindb/userlist";
+					if(rdpage=='act'){
+						window.location.href = base_url+"admindb/userlist";
+					}else if(rdpage=='act'){
+						window.location.href = base_url+"admindb/inactivuserlist";
+					}
 				}else{
 					setUiMessege('err',obj.msg);
 				}
