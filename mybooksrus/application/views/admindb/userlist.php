@@ -45,9 +45,9 @@
 								</a>
 							</div>
 							<div class="pull-right action-buttons">
-								<!--<a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-pencil"></span></a>
-								<a href="http://www.jquery2dotnet.com" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-								<a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span></a>-->
+								<a href="<?php echo base_url('admindb/viewuser/'.$userlist['id'].'/act')?>"><span class="glyphicon glyphicon-pencil"></span></a>
+								<a class="trash"><span onclick="deleteuser(<?php echo $userlist['id']; ?>);" class="glyphicon glyphicon-trash"></span></a>
+								<!--<a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span></a>-->
 							</div>
 						</li>
 				<?php

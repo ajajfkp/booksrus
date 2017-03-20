@@ -33,12 +33,9 @@
 	</section>
 	<hr>-->
 	<div class="container">
-		<p><h4>Collegebooksrus.com</h4>
-			<!--<a href="./"><img src="<?php echo base_url('assets/images/100x40.png'); ?>" alt="collegeboohsrus.com" /></a>-->
-		</p>
+		<h4>Collegebooksrus.com</h4>
 		<p>Read Tearms & Conditions <a href="<?php echo base_url('index/termsandpolicy'); ?>">Here</a></p>
 		<p>© <span id="copyright-year">2017 | Collegebooksrus.com</span></p>
-		<br />
 			<span class="social" style="font-size:25px;">
 				<a href="https://www.facebook.com/collegebooksrus" target="_blank" style="text-decoration:none">
 					<i class="fa fa-facebook-official" style="font-size:30px;color:#3B5998"></i>

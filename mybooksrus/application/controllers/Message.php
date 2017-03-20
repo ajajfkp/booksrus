@@ -80,59 +80,68 @@ class Message extends CI_Controller {
 	function replymsg(){
 		$msg = $this->input->post('inputmsg');
 		$transId = $this->input->post('transId');
+		$returnArr=array("status"=>'true',"msg"=>"Success!!");
 		if($msg && $transId){
 			$this->db->trans_start();
 			$gettransData = $this->commonModel->getRecord('books_transaction','*',array('id'=>$transId,'active_status'=>'1'));
 			$getbookData = $this->commonModel->getRecord('books','*',array('id'=>$gettransData['book_id'],'active_status'=>'1'));
 			
-			if($this->utilities->getSessionUserData('uid')==$gettransData['added_by']){
-				$to=$getbookData['added_by'];
-			}else{
-				$to=$gettransData['added_by'];
-			}
-			
-			$messageInsArr = array(
-				'transaction_id'=>$gettransData['id'],
-				'subject'=>$getbookData['name'],
-				'body'=>$this->input->post('inputmsg'),
-				'added_by'=>$this->utilities->getSessionUserData('uid'),
-				'date_added'=>date('Y-m-d H:i:s')
-			);
-			$messageIns = $this->commonModel->insertRecord('messages',$messageInsArr);
-			$mapInsArrForSeller = array(
-				'message_id'=>$messageIns,
-				'to_addr'=>$to,
-				'added_by'=>$this->utilities->getSessionUserData('uid'),
-				'date_added'=>date('Y-m-d H:i:s')
-			);
-			$this->commonModel->insertRecord('messages_maped',$mapInsArrForSeller);
-			$this->db->trans_complete();
-			if($this->db->trans_status() === FALSE){
-				$this->db->trans_rollback();
-				echo "false";
-			}else{
-				$this->db->trans_complete();
-				$getUserData = $this->commonModel->getRecord('users','*',array('id'=>$to));
-				$timeDiff = $this->utilities->getLastActiveTimeDiff($to);
-				if($timeDiff > 15){
-					$verifyUrl = MSG_CONVER_URL . $transId."/inbox";
-					$data['msgurl'] = array('verifyurl'=>$verifyUrl);
-					$emailMsg = $this->load->view('messages/emailmsg',$data,true);
-					$emailData = array(
-						'to'=>$getUserData['email'],
-						'from'=>EMAIL_FROM,
-						'subject'=>'You have new messages about your Ad',
-						'from_name'=>EMAIL_FROM_NAME,
-						'message'=>$emailMsg
-					);
-					$send = $this->sendemail->emailSend($emailData);
+			if($getbookData){
+				if($this->utilities->getSessionUserData('uid')==$gettransData['added_by']){
+					$to=$getbookData['added_by'];
+				}else{
+					$to=$gettransData['added_by'];
 				}
-				$data['msgsnipt']=$this->messages->getChatById($messageIns);
-				echo $this->load->view('messages/messagesnipts',$data,true);
+			
+				$messageInsArr = array(
+					'transaction_id'=>$gettransData['id'],
+					'subject'=>$getbookData['name'],
+					'body'=>$this->input->post('inputmsg'),
+					'added_by'=>$this->utilities->getSessionUserData('uid'),
+					'date_added'=>date('Y-m-d H:i:s')
+				);
+				$messageIns = $this->commonModel->insertRecord('messages',$messageInsArr);
+				$mapInsArrForSeller = array(
+					'message_id'=>$messageIns,
+					'to_addr'=>$to,
+					'added_by'=>$this->utilities->getSessionUserData('uid'),
+					'date_added'=>date('Y-m-d H:i:s')
+				);
+				$this->commonModel->insertRecord('messages_maped',$mapInsArrForSeller);
+				$this->db->trans_complete();
+				if($this->db->trans_status() === FALSE){
+					$this->db->trans_rollback();
+					echo "false";
+				}else{
+					$this->db->trans_complete();
+					/* $getUserData = $this->commonModel->getRecord('users','*',array('id'=>$to));
+					$timeDiff = $this->utilities->getLastActiveTimeDiff($to);
+					if($timeDiff > 15){
+						$verifyUrl = MSG_CONVER_URL . $transId."/inbox";
+						$data['msgurl'] = array('verifyurl'=>$verifyUrl);
+						$emailMsg = $this->load->view('messages/emailmsg',$data,true);
+						$emailData = array(
+							'to'=>$getUserData['email'],
+							'from'=>EMAIL_FROM,
+							'subject'=>'You have new messages about your Ad',
+							'from_name'=>EMAIL_FROM_NAME,
+							'message'=>$emailMsg
+						);
+						$send = $this->sendemail->emailSend($emailData);
+					} */
+					$data['msgsnipt']=$this->messages->getChatById($messageIns);
+					$returnArr['status'] = 'true';
+					$returnArr['msg'] = $this->load->view('messages/messagesnipts',$data,true);
+				}
+			}else{
+				$returnArr['status'] = 'false';
+				$returnArr['msg'] = 'This Ad no longer exist';
 			}
 		}else{
-			echo 'false';
+			$returnArr['status'] = 'false';
+			$returnArr['msg'] = 'Error!...Message not sent';
 		}
+		echo json_encode($returnArr);
 	}
 	
 	function deletemsg(){

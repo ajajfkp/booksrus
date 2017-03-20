@@ -47,9 +47,11 @@ $( document ).ready(function(){
 			}
 		}).submit();
 	});
+	
 	$(document).on('click','.imgblock',function(){
 		$('#photoimgupload').click();
 	});
+	
 	$('#photoimgupload').change(function(){
 		console.log('ddd')
 		$("#imageform").ajaxForm({
@@ -106,11 +108,13 @@ $( document ).ready(function(){
 					'inputmsg':inputmsg
 				},
 				success: function(msg){
-					if(msg!='false'){
-						$('.chat').append(msg);
+					var obj = $.parseJSON(msg);
+					if(obj.status == 'true'){
+						$('.chat').append(obj.msg);
 						$('#reply-message').val('');
+						setUiMessege('suc','Message sent successfully.');
 					}else{
-						setUiMessege('err','Error!...Message not sent.');
+						setUiMessege('err',obj.msg);
 					}
 					//window.location=data.successMsg.redirect;
 				},
@@ -412,9 +416,48 @@ function deletemessage(transId,types){
 	}
 }
 
+function deleteuser(id){
+	if(id){
+		deleteuserConfirm(id);
+	}else{
+		setUiMessege('err','Error : Some technical erroe..!!');
+	}
+}
 
-
-
+function deleteuserConfirm(id){
+	swal({
+		title:"Are you sure?",
+		text: "Would you like to delete this user!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, delete it!",
+		closeOnConfirm: false
+	},
+	function(){
+		$.ajax({
+			type: "POST",
+			url: base_url+'admindb/deleteuser',
+			data: {
+				'uid':id
+			},
+			success: function(msg){
+				var obj = $.parseJSON(msg);
+				if(obj.status == 'true'){
+					setUiMessege('err',obj.msg);
+					window.location.href = base_url+"admindb/userlist";
+				}else{
+					setUiMessege('err',obj.msg);
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				setUiMessege('err',errorThrown);
+			}
+		});
+	},function(){
+		alert()
+	});
+}
 
 
 

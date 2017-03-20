@@ -220,6 +220,25 @@ class Admindb extends CI_Controller {
 		}
 	}	
 	
+	public function deleteuser(){
+		$uid = $this->input->post('uid');
+		$returnArr=array("status"=>'true',"msg"=>"Success!!");
+		if($uid){
+			$updateUserProfile = $this->commonModel->updateRecord('users',array('active_status'=>'2'),array('id'=>$uid));
+			if($updateUserProfile){
+				$returnArr['status'] = 'true';
+				$returnArr['msg'] = 'User delete successfully';
+			}else{
+				$returnArr['status'] = 'false';
+				$returnArr['msg'] = 'Some technical erroe on deleting user..!!';
+			}
+		}else{
+			$returnArr['status'] = 'false';
+			$returnArr['msg'] = 'Some technical erroe..!!';
+		}
+		echo json_encode($returnArr);
+	}
+	
 	public function cust_username_check($str) {
 		$getusername=$this->commonModel->getRecord('users','username',array('username'=>$str));
 		if(!$getusername['username']){
@@ -234,4 +253,6 @@ class Admindb extends CI_Controller {
 			}
 		}
 	}
+	
+	
 }
