@@ -77,7 +77,7 @@
 					<div class="form-group row"> 
 						<label for="full_name_id" class="col-sm-3 control-label">State</label>
 						<div class="col-sm-9">
-							<select placeholder="Satate" class="form-control" id="uni_state" name="state" onchange="getCityByStateId(this)">
+							<select placeholder="Satate" class="form-control selectpicker" id="uni_state" name="state" onchange="getCityByStateId(this)">
 								<?php 
 								$stateOption = '<option value="">Select state</option>';
 									$listState = $this->utilities->getAllState('231');
@@ -96,7 +96,7 @@
 					<div class="form-group row"> 
 						<label for="full_name_id" class="col-sm-3 control-label">City</label>
 						<div class="col-sm-9">
-							<select placeholder="City" class="form-control" id="city" name="city">
+							<select placeholder="City" class="form-control selectpicker" id="city" name="city">
 								<?php 
 								$cityOption = '<option value="">Select City</option>';
 									$listCity = $this->utilities->getAllCity('3926');

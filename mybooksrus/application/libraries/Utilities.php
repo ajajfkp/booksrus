@@ -414,7 +414,7 @@ class Utilities {
 		if($ip){
 			$getIp = $this->CI->commonModel->getRecord('pageview','id',array('userip'=>$ip));
 			if(!$getIp){
-				$alstActiveTime = $this->CI->commonModel->insertRecord('pageview',array('userip'=>$ip));
+				$alstActiveTime = $this->CI->commonModel->insertRecord('pageview',array('userip'=>$ip,'date_added'=>date('Y-m-d H:i:s')));
 			}
 		}
 	}

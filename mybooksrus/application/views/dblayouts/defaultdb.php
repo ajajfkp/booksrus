@@ -14,6 +14,7 @@
 		</script>
 		<link rel="shortcut icon" href="<?php echo base_url();?>favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap/bootstrap.css" type="text/css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap/bootstrap-select.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap/font-awesome.min.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery-ui.css" type="text/css">
@@ -64,6 +65,7 @@
 		<script src="<?php echo base_url();?>assets/js/jquery.form.js"></script>
 		<script src="<?php echo base_url();?>assets/js/common.js"></script>
 		<script src="<?php echo base_url();?>assets/js/chosen.jquery.js"></script>
+		<script src="<?php echo base_url();?>assets/js/bootstrap/bootstrap-select.js"></script>
 		<script><?php echo $extra_head; ?></script>
 	</body> 
 </html>
