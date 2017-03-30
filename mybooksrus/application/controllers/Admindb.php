@@ -216,7 +216,56 @@ class Admindb extends CI_Controller {
 				}
 			}
 		}else{
-			$this->layouts->dbview('admindb/viewuser',$data);
+			$this->layouts->dbview('admindb/viewuser');
+		}
+	}
+	
+	public function viewuniv($univId='',$type='act'){
+		$extraHead = "activateHeadMeanu('topdashboard');";
+		$extraHead .= "activateLeftMeanu('');";
+		$extraHead .= "setusermenu('schoollist');";
+		$this->layouts->set_extra_head($extraHead);
+		$this->layouts->set_title('School list!');
+		$this->layouts->set_page_title('School list','<i class="glyphicon glyphicon-user"></i>');
+		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
+		
+		$data['univData'] = $this->commonModel->getRecord('universities','*',array('id'=>$univId,'active_flag'=>'1'),array(),'','','array',0);
+
+		$data['type'] = $type;
+		
+		if($this->input->post()){
+			// set form validation rules
+			$this->form_validation->set_rules('name', 'University Name', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('nickname', 'Nick Name', 'trim|xss_clean');
+			$this->form_validation->set_rules('year_establis', 'Year Establis', 'trim|numeric|min_length[4]|max_length[4]|xss_clean');
+			$this->form_validation->set_rules('website', 'Website', 'trim');
+			$this->form_validation->set_rules('state', 'State', 'required');
+			$this->form_validation->set_rules('city', 'City', 'required');
+			
+			if ($this->form_validation->run() == FALSE) {
+				$this->layouts->dbview('admindb/viewuniv',$data);
+			}else{
+				$inputDataArr = $this->input->post();
+				if($inputDataArr){
+					$inputDataArr['updated_by'] = $this->utilities->getSessionUserData('uid');
+					$inputDataArr['date_updated'] = date("Y-m-d H:i:s");
+					$inputDataArr['active_flag'] = '1';
+					$inputDataArr['approved'] = '1';
+					$insRec = $this->commonModel->updateRecord('universities',$inputDataArr);
+					if($insRec){
+						$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">University added successfully!</div>');
+							redirect('admindb/viewuniv/'.$univId.'/'.$type);
+					}else{
+						$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">ERROR!..Something is wrong!</div>');
+						redirect('admindb/viewuniv/'.$univId.'/'.$type);
+					}
+				}else{
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">ERROR!..Something is wrong!</div>');
+					redirect('admindb/viewuniv/'.$univId.'/'.$type);
+				}
+			}
+		}else{
+			$this->layouts->dbview('admindb/viewuniv',$data);
 		}
 	}	
 	
