@@ -40,16 +40,20 @@
 				?>
 						<li class="list-group-item">
 							<div class="checkbox">
-								<!--<a href="<?php echo base_url('users/viewuserdetails/'.$userlist['id'])?>">-->
-									<label for="checkbox">
+								<a href="<?php echo base_url('admindb/viewuniv/'.$schoolList['id'].'/act')?>">
+									<label for="univ_name">
 										<?php echo ucfirst($schoolList['name']);?>
 									</label>
-								<!--</a>-->
-									<a href="http://<?php echo $schoolList['website']; ?>" target="_blank"><?php echo $schoolList['website']; ?></a>
+								</a>
+								<a href="http://<?php echo $schoolList['website']; ?>" target="_blank">
+									<label for="univ_url">
+										<?php echo $schoolList['website']; ?>
+									</label>
+								</a>
 							</div>
 							<div class="pull-right action-buttons">
-								<!--<a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-pencil"></span></a>
-								<a href="http://www.jquery2dotnet.com" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+								<a href="<?php echo base_url('admindb/viewuniv/'.$schoolList['id'].'/act');?>"><span class="glyphicon glyphicon-pencil"></span></a>
+								<!--<a href="http://www.jquery2dotnet.com" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
 								<a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span></a>-->
 							</div>
 						</li>

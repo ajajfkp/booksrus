@@ -14,8 +14,10 @@
 										<div class="col-lg-6 col-md-6" style="margin-bottom:10px;">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-												<select name="state" class="form-control selectpicker" onchange="getUniListByStateId(this)" >
-													<option value="">Select State</option><option value='3926'>Colorado</option>									</select>
+												<select name="state" class="form-control selectpicker"  onchange="javascript:getUniListByStateId(this,0);" >
+													<option value="">Select State</option>
+													<option value='3926'>Colorado</option>
+												</select>
 											</div>
 										</div>
 										<div class="col-lg-6 col-md-6">
@@ -35,9 +37,9 @@
 								<div class="col-lg-8 col-lg-offset-2">
 									<div class="row" style="margin:0 0;">
 										<div class="input-group">
-											<input type="text" name="search" class="search-query form-control" placeholder="Search by Books name, ISBN, Author, university" id="searchInput" value="" style="height:60px;"/>
+											<input type="text" name="search" class="search-query form-control" placeholder="Search by Books name, ISBN, Author, university" id="searchInput" value="" style="height:60px;z-index:0;"/>
 											<span class="input-group-btn">
-												<button class="btn btn-danger" type="submit" id="searchButton" style="height:60px;width:60px;">
+												<button class="btn btn-danger" type="submit" id="searchButton" style="height:60px;width:60px;z-index:0;">
 													<span class=" glyphicon glyphicon-search"></span>
 												</button>
 											</span>

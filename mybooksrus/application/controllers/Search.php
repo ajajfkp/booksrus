@@ -16,7 +16,7 @@ class Search extends CI_Controller {
 		$this->layouts->set_title('Search!');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
 		$data['listState'] = $this->utilities->getAllState('','3926');
-		$searchdata = array('search' => $this->input->get('search'));
+		$searchdata = array('search' => $this->utilities->rempveSpecial(($this->input->get('search'))));
 		$this->form_validation->set_data($searchdata);
 		$this->form_validation->set_rules("search", "Search", "trim|required|xss_clean");
 		if ($this->form_validation->run() == FALSE) {
@@ -53,7 +53,7 @@ class Search extends CI_Controller {
 		$this->layouts->set_title('Search!');
 		$this->layouts->set_page_title('Search Books','<i class="glyphicon glyphicon-search"></i>');
 		$this->layouts->add_include('assets/js/main.js')->add_include('assets/css/coustom.css');
-		$searchText = $this->input->get('inputsearch');
+		$searchText = $this->utilities->rempveSpecial($this->input->get('inputsearch'));
 		if($searchText){
 			$univId = $this->utilities->getUnivByUserId($this->utilities->getSessionUserData('uid'));
 			$url = base_url('/search/searchbooks/?inputsearch='.$searchText);
@@ -88,6 +88,7 @@ class Search extends CI_Controller {
 	
 	public function getUniListByStateId(){
 		$stateId = $this->input->post('stateid');
+		$withother = $this->input->post('withother');
 		if($stateId){
 			$uniObj = $this->utilities->getListUnivesityByStatteId($stateId);
 			
@@ -96,7 +97,9 @@ class Search extends CI_Controller {
 				foreach($uniObj as $uni){
 					$uniOption .= "<option value='".$uni->id."'>".$uni->name."</option>";
 				}
-				$uniOption .= "<option value='-2'>Other</option>";
+				if($withother==1){
+					$uniOption .= "<option value='-2'>Other</option>";
+				}
 				echo $uniOption;
 			}else{
 				echo "false";

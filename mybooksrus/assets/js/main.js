@@ -167,18 +167,21 @@ function getCityByStateId(id){
 	}
 }
 
-function getUniListByStateId(id){
+function getUniListByStateId(id,wother){
 	var stateId = id.value;
+	var withother = wother ? wother : 0;
 	if(stateId){
 		$.ajax({ 
 			type: "POST",
 			url: base_url+'search/getUniListByStateId',
 			data: {
-				'stateid':stateId
+				'stateid':stateId,
+				'withother':withother
 			},
 			success: function(msg){
 				if(msg!=="false"){
 					$('#university').html(msg);
+					$('.selectpicker').selectpicker('refresh');
 				}else{
 					setUiMessege('err','No record found');
 				}

@@ -17,7 +17,7 @@
 							<span class="input-group-addon">
 								<i class="glyphicon glyphicon-home"></i>
 							</span>
-							<select name="state" class="form-control selectpicker" onchange="getUniListByStateId(this)" >
+							<select name="state" class="form-control selectpicker" onchange="getUniListByStateId(this,0)" >
 								<?php 
 									$stateOption = '<option value="">Select State</option>';
 									if($listState){
@@ -50,9 +50,9 @@
 				<div class="form-group">
 					<div class="col-lg-12 col-md-12">
 						<div class="input-group">
-							<input type="text" name="search" class="search-query form-control" placeholder="Search by Books name, ISBN, Author, university" id="searchInput" value="<?php echo set_value('search'); ?>" style="height:60px;"/>
+							<input type="text" name="search" class="search-query form-control" placeholder="Search by Books name, ISBN, Author, university" id="searchInput" value="<?php echo set_value('search'); ?>" style="height:60px;z-index:0;"/>
 							<span class="input-group-btn">
-								<button class="btn btn-danger" type="submit" id="searchButton" style="height:60px;width:60px;">
+								<button class="btn btn-danger" type="submit" id="searchButton" style="height:60px;width:60px;z-index:0;">
 									<span class=" glyphicon glyphicon-search"></span>
 								</button>
 							</span>

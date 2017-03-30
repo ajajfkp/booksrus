@@ -12,7 +12,7 @@
 				<div class="form-group row">
 					<label for="passwd" class="col-sm-3 control-label">State</label>
 					<div class="col-sm-9">
-						<select placeholder="State" class="form-control" id="state" name="state" onchange="getUniListByStateId(this)">
+						<select placeholder="State" class="form-control" id="state" name="state" onchange="getUniListByStateId(this,1)">
 							<?php 
 							$stateOption = '<option value="">Select State</option>';
 								$listState = $this->utilities->getAllState('','3926');

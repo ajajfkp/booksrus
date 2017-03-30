@@ -32,6 +32,7 @@ class Commonctrl extends CI_Controller {
 	
 	public function getUniListByStateId(){
 		$stateId = $this->input->post('stateid');
+		$withother = $this->input->post('withother');
 		if($stateId){
 			$uniObj = $this->utilities->getListUnivesityByStatteId($stateId);
 			
@@ -40,7 +41,9 @@ class Commonctrl extends CI_Controller {
 				foreach($uniObj as $uni){
 					$uniOption .= "<option value='".$uni->id."'>".$uni->name."</option>";
 				}
-				$uniOption .= "<option value='-2'>Other</option>";
+				if($withother==1){
+					$uniOption .= "<option value='-2'>Other</option>";
+				}
 				echo $uniOption;
 			}else{
 				echo "false";

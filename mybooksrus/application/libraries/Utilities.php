@@ -276,6 +276,14 @@ class Utilities {
 		}
 	}
 	
+	function rempveSpecial($input){
+		if($input){
+			return preg_replace('/[,!@#$%^&*()+<>?\/\~"\']+/', '', trim($input));
+		}else{
+			return false;
+		}
+	}
+	
 	function setserchurl($url,$reset=false){
 		if($reset){
 			$cookie= array(
