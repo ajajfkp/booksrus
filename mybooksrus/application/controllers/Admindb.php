@@ -251,7 +251,7 @@ class Admindb extends CI_Controller {
 					$inputDataArr['date_updated'] = date("Y-m-d H:i:s");
 					$inputDataArr['active_flag'] = '1';
 					$inputDataArr['approved'] = '1';
-					$insRec = $this->commonModel->updateRecord('universities',$inputDataArr);
+					$insRec = $this->commonModel->updateRecord('universities',$inputDataArr,array('id'=>$univId));
 					if($insRec){
 						$this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">University added successfully!</div>');
 							redirect('admindb/viewuniv/'.$univId.'/'.$type);
