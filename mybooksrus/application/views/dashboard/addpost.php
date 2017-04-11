@@ -65,7 +65,7 @@
 					<div class="form-group row"> 
 						<label for="full_name_id" class="col-sm-3 control-label">Condition of book</label>
 						<div class="col-sm-9">
-							<select placeholder="Condition" class="form-control" id="condition" name="condition">
+							<select placeholder="Condition" class="form-control selectpicker" id="condition" name="condition">
 								<option value="">Select Condition</option>
 								<option value="1">New</option>
 								<option value="2">Like new</option>

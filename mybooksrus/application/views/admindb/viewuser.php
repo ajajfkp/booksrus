@@ -53,7 +53,7 @@
 		  <div class="form-group">
             <label class="col-sm-3 control-label" for="textinput">School</label>
             <div class="col-sm-9">
-				<select class="form-control" id="university_id" name="university_id">
+				<select class="form-control selectpicker" id="university_id" name="university_id">
 				<option value="">Select school</option>
 				<?php 
 					if($univList){ 
@@ -69,7 +69,7 @@
 		  <div class="form-group">
             <label class="col-sm-3 control-label" for="textinput">Status</label>
             <div class="col-sm-9">
-				<select class="form-control" id="active_status" name="active_status">
+				<select class="form-control selectpicker" id="active_status" name="active_status">
 					<option value="1" <?php echo (($userData['active_status']==1)?"selected":"")?>>Active</option>
 					<option value="0" <?php echo (($userData['active_status']==0)?"selected":"")?>>Inactive</option>
 					<option value="2" <?php echo (($userData['active_status']==2)?"selected":"")?>>Delete</option>
@@ -80,7 +80,7 @@
 		  <div class="form-group">
             <label class="col-sm-3 control-label" for="textinput">User type</label>
             <div class="col-sm-9">
-				<select class="form-control" id="user_type" name="user_type">
+				<select class="form-control selectpicker" id="user_type" name="user_type">
 					<option value="1" <?php echo (($userData['user_type']==1)?"selected":"")?>>Admin</option>
 					<option value="0" <?php echo (($userData['user_type']==0)?"selected":"")?>>User</option>
 				</select>

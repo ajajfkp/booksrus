@@ -216,7 +216,7 @@ class Admindb extends CI_Controller {
 				}
 			}
 		}else{
-			$this->layouts->dbview('admindb/viewuser');
+			$this->layouts->dbview('admindb/viewuser',$data);
 		}
 	}
 	
