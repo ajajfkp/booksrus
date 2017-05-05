@@ -181,7 +181,7 @@ class Users extends CI_Controller {
 	function messagetosellar($bookId=""){
 		if($bookId){
 			$getData = $this->booksad->getBookDetails($bookId);
-			$data['boodata'] = $getData;
+			$data['bookdata'] = $getData;
 				
 			$extraHead = "activateHeadMeanu('topdashboard');";
 			$extraHead .= "activateLeftMeanu('');";
